@@ -1,7 +1,13 @@
 <template>
   <v-app-bar density="compact" class="bg-black">
     <v-toolbar-title>
-      <v-btn class="no-active" to="/" depressed color="white" rounded outlined>
+      <v-btn
+        class="appTitleBadge"
+        elevation="0"
+        color="white"
+        rounded
+        variant="outlined"
+      >
         Четец на Документи
         <v-icon id="titleIcon" right class="pl-2">
           mdi-card-account-details-outline
@@ -29,7 +35,7 @@
     app
     v-model="drawer"
     class="bg-grey-darken-4 text-white"
-    bottom
+    right
     temporary
   >
     <v-list nav>
@@ -58,7 +64,7 @@ export default {
 };
 </script>
 <style>
-.v-btn--active.no-active::before {
-  opacity: 0 !important;
+.appTitleBadge {
+  pointer-events: none;
 }
 </style>
