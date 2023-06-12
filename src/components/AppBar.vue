@@ -33,7 +33,7 @@
     app
     v-model="drawer"
     class="bg-grey-darken-4 text-white"
-    right
+    location="right"
     temporary
   >
     <v-list nav>
