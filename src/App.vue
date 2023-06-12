@@ -1,9 +1,22 @@
 <template>
-  <router-view />
+  <v-app>
+    <AppBar />
+
+    <v-main>
+      <router-view></router-view>
+    </v-main>
+
+    <AppFooter />
+  </v-app>
 </template>
 
-<script setup>
-//
+<script>
+import AppBar from "./components/AppBar.vue";
+import AppFooter from "./components/AppFooter.vue";
+
+export default {
+  components: { AppBar, AppFooter },
+};
 </script>
 
 <style>
