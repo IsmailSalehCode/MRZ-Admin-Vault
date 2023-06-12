@@ -8,7 +8,7 @@
         rounded
         variant="outlined"
       >
-        Четец на Документи
+        MRZ Админ
         <v-icon right class="ml-2"> mdi-card-account-details-outline </v-icon>
       </v-btn>
     </v-toolbar-title>
