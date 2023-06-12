@@ -25,7 +25,13 @@
       </v-app-bar-nav-icon>
     </span>
   </v-app-bar>
-  <v-navigation-drawer app v-model="drawer" dark bottom temporary>
+  <v-navigation-drawer
+    app
+    v-model="drawer"
+    class="bg-grey-darken-4 text-white"
+    bottom
+    temporary
+  >
     <v-list nav>
       <v-list-item
         v-for="item in menuItems"
