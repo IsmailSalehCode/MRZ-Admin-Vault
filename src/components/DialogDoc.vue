@@ -58,7 +58,7 @@ export default {
           data = {
             title: "Поддръжка",
             message:
-              "<p><strong>Тел, Вайбър</strong>: 088 990 7045</p> <p><strong>E-mail</strong>: centriu78@gmail.com, isaleh@tu-sofia.bg</p> <p><strong>Фейсбук</strong>: ismail.saleh.921230</p>",
+              "<p><strong>Тел, Вайбър</strong>: 088 990 7045</p> <p><strong>E-mail</strong>: isaleh@tu-sofia.bg</p> <p><strong>Фейсбук</strong>: ismail.saleh.921230</p>",
           };
       }
       return data;
