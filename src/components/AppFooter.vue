@@ -2,7 +2,10 @@
   <v-footer bottom absolute app theme="dark">
     <v-col cols="12" sm="4" align="center" justify="center">
       <v-row align="center" justify="center">
-        <v-btn outlined tile small text @click="openDoc('terms-and-conditions')"
+        <v-btn
+          variant="outlined"
+          size="small"
+          @click="openDoc('terms-and-conditions')"
           >Общи Условия</v-btn
         >
       </v-row>
@@ -20,7 +23,7 @@
     </v-col>
     <v-col cols="12" sm="4" align="center" justify="center">
       <v-row align="center" justify="center">
-        <v-btn outlined tile small text @click="openDoc('contact-info')"
+        <v-btn variant="outlined" size="small" @click="openDoc('contact-info')"
           >Поддръжка</v-btn
         >
       </v-row>

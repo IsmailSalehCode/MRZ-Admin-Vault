@@ -1,5 +1,5 @@
 <template>
-  <v-dialog :max-width="docWidth" v-model="dialog">
+  <v-dialog theme="dark" :max-width="docWidth" v-model="dialog">
     <v-card>
       <v-toolbar density="compact">
         <v-spacer></v-spacer>
