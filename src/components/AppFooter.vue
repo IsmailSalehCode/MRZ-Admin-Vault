@@ -2,12 +2,14 @@
   <v-footer bottom absolute app theme="dark">
     <v-col style="text-align: center">
       <v-row align="center" justify="space-evenly">
-        <v-btn
-          variant="outlined"
-          size="small"
-          @click="openDoc('terms-and-conditions')"
-          >Общи Условия</v-btn
-        >
+        <v-col>
+          <v-btn
+            variant="outlined"
+            size="small"
+            @click="openDoc('terms-and-conditions')"
+            >Общи Условия</v-btn
+          >
+        </v-col>
         <v-col
           cols="12"
           sm="4"
@@ -19,9 +21,14 @@
           &#169; 2023 -
           <strong>Исмаил Салех @ ТУ-София</strong>
         </v-col>
-        <v-btn variant="outlined" size="small" @click="openDoc('contact-info')"
-          >Поддръжка</v-btn
-        >
+        <v-col>
+          <v-btn
+            variant="outlined"
+            size="small"
+            @click="openDoc('contact-info')"
+            >Поддръжка</v-btn
+          >
+        </v-col>
       </v-row>
     </v-col>
   </v-footer>
