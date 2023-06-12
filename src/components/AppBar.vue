@@ -9,7 +9,7 @@
         variant="outlined"
       >
         Четец на Документи
-        <v-icon id="titleIcon" right class="pl-2">
+        <v-icon id="titleIcon" right class="ml-2">
           mdi-card-account-details-outline
         </v-icon>
       </v-btn>
