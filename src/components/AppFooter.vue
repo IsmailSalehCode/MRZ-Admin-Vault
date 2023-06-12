@@ -17,7 +17,6 @@
     >
       &#169; {{ new Date().getFullYear() }} -
       <strong>Исмаил Салех @ ТУ-София</strong>
-      Всички права запазени.
     </v-col>
     <v-col cols="12" sm="4" align="center" justify="center">
       <v-row align="center" justify="center">
