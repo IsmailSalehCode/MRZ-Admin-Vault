@@ -18,7 +18,7 @@
       class="text-center"
       style="font-size: 0.8rem"
     >
-      &#169; {{ new Date().getFullYear() }} -
+      &#169; 2023 -
       <strong>Исмаил Салех @ ТУ-София</strong>
     </v-col>
     <v-col cols="12" sm="4" align="center" justify="center">
