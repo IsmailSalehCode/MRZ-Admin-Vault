@@ -7,7 +7,8 @@
     "dev-host": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint . --fix --ignore-path .gitignore"
+    "lint": "eslint . --fix --ignore-path .gitignore",
+    "electron:serve": "vue-cli-service electron:serve"
   },
   "dependencies": {
     "@mdi/font": "7.0.96",
