@@ -1,18 +1,30 @@
 // electron/electron.js
 const path = require("path");
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, Menu, MenuItem } = require("electron");
 
 const isDev = process.env.IS_DEV == "true" ? true : false;
 
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1240,
+    height: 1000,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: true,
     },
+  });
+
+  mainWindow.removeMenu();
+
+  mainWindow.webContents.on("context-menu", (_, props) => {
+    const menu = new Menu();
+    if (props.isEditable) {
+      menu.append(new MenuItem({ label: "Cut", role: "cut" }));
+      menu.append(new MenuItem({ label: "Copy", role: "copy" }));
+      menu.append(new MenuItem({ label: "Paste", role: "paste" }));
+      menu.popup();
+    }
   });
 
   // and load the index.html of the app.
