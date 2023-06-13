@@ -10,10 +10,10 @@
     "serve": "vite preview",
     "electron": "wait-on tcp:3000 && cross-env IS_DEV=true electron .",
     "electron:pack": "electron-builder --dir",
-    "electron:dev": "concurrently -k \"cross-env BROWSER=none yarn dev\" \"yarn electron\"",
+    "electron:dev": "concurrently -k \"cross-env BROWSER=none npm run dev\" \"npm run electron\"",
     "electron:builder": "electron-builder",
     "build:for:electron": "cross-env ELECTRON=true vite build",
-    "app:build": "yarn build:for:electron && yarn electron:builder"
+    "app:build": "npm run build:for:electron && npm run electron:builder"
   },
   "dependencies": {
     "@mdi/font": "7.0.96",
@@ -36,9 +36,9 @@
     "wait-on": "^7.0.1"
   },
   "build": {
-    "appId": "com.my-website.my-app",
-    "productName": "MyApp",
-    "copyright": "Copyright © 2019 ${author}",
+    "appId": "com.ismailsalehcode.mrz-administrator",
+    "productName": "MRZ Administrator",
+    "copyright": "Copyright © 2023 ${author}",
     "mac": {
       "category": "public.app-category.utilities"
     },
