@@ -35,9 +35,9 @@ function createWindow() {
       : `file://${path.join(__dirname, "../dist/index.html")}`
   );
   // Open the DevTools.
-  if (isDev) {
-    mainWindow.webContents.openDevTools();
-  }
+  // if (isDev) {
+  mainWindow.webContents.openDevTools();
+  // }
 }
 
 // This method will be called when Electron has finished
