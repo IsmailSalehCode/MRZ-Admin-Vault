@@ -17,15 +17,21 @@
         </v-card-title>
       </v-form>
       <!-- output from mrz processing below -->
-      <!-- <v-card-text v-if=""></v-card-text> -->
+      <v-card-text v-if="mrzData.info.length !== 0">
+        <AlertMRZInfo :mrzInfo="mrzData.info" />
+      </v-card-text>
     </v-card>
   </v-container>
 </template>
 <script>
 import _mrzRules from "../field-validation-rules/mrzRules";
 import _NaNCharValues from "../ICAO-constants/NaNCharValues";
+import AlertMRZInfo from "./AlertMRZInfo.vue";
 
 export default {
+  components: {
+    AlertMRZInfo,
+  },
   data() {
     return {
       mrzRules: _mrzRules,
