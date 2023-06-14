@@ -383,6 +383,76 @@ export default {
         this.alertInvalidDoc();
       }
     },
+    showResult(format, data) {
+      //Unsupported missing dates from travel documents: If all or part of the date of birth is unknown, the relevant character positions shall be completed with filler characters (<).
+      //make sure all regex have the same group names!!!
+      console.log(format, data);
+      this.mrzData.format = format;
+      this.mrzData.mrz = this.machineCode;
+      this.mrzData.type = this.removeFiller(data.type);
+      // -TODO verify it all works
+      this.mrzData.issuingOrg = data.issuing_org;
+      //===================================
+      this.extractNames(data.names);
+      this.mrzData.docNum = this.removeFiller(data.doc_num);
+      // -TODO verify it all works
+      this.mrzData.nationality = data.nationality;
+      //===================================
+      this.mrzData.birthDate = this.toDate(data.birth_date);
+      // -TODO verify it all works
+      this.mrzData.sex = data.sex;
+      //===================================
+      this.mrzData.expDate = this.toDate(data.exp_date);
+      //current dilema: personal num /egn/ ili optional data? EGN-to ni e optional data spored standarta
+      //re6enie: prosto vuv label-a za poleto 'optional data 2' slagame hint 'EGN for Bulgaria'
+      //re6enie pri printvane: ako ima null poleta, ne se rendervat
+      if (
+        data.first_row_optional_data &&
+        this.removeFiller(data.first_row_optional_data) != ""
+      ) {
+        this.mrzData.optional1 = this.removeFiller(
+          data.first_row_optional_data
+        );
+      }
+      if (
+        data.second_row_optional_data &&
+        this.removeFiller(data.second_row_optional_data) != ""
+      ) {
+        this.mrzData.optional2 = this.removeFiller(
+          data.second_row_optional_data
+        );
+      }
+      if (data.personal_num && this.removeFiller(data.personal_num) != "") {
+        this.mrzData.personalNum = this.removeFiller(data.personal_num);
+      }
+      //ctrl+f ?! и се подсигури че regex-ите наистина са така, защото има разминаване с https://www.doubango.org/SDKs/mrz/docs/MRZ_formats.html
+      //виж според основната документация къде check-digitовете могат да са '<'
+      //Засега: Check digit-овете могат да са '<' при TD2 doc_num_check_digit, TD1 doc_num_check_digit
+      console.log("mrzdata->", this.mrzData);
+    },
+    toDate(str) {
+      str = str.split("");
+      let yearDigits = str[0] + str[1];
+      const monthDigits = str[2] + str[3];
+      const dayDigits = str[4] + str[5];
+
+      return (
+        yearDigits.toString() +
+        "-" +
+        monthDigits.toString() +
+        "-" +
+        dayDigits.toString()
+      );
+    },
+    extractNames(str) {
+      str = str.split(/<</g);
+      this.mrzData.surname = str[0];
+      this.mrzData.givenNames = str[1].replaceAll(/</g, " ").trim();
+    },
+    removeFiller(str) {
+      const result = str.replaceAll(/</g, "");
+      return result;
+    },
   },
   watch: {
     machineCode() {
