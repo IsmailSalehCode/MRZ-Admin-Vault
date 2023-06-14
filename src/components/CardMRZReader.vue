@@ -6,10 +6,7 @@
           <v-text-field
             label="Машинен код"
             v-model.trim="machineCode"
-            :rules="[
-              machineCoderules.validLength,
-              machineCoderules.validCharacters,
-            ]"
+            :rules="[mrzRules.validLength, mrzRules.validCharacters]"
             class="mx-auto centered-input"
             variant="outlined"
             append-icon="mdi-close"
@@ -20,17 +17,19 @@
         </v-card-title>
       </v-form>
       <!-- output from mrz processing below -->
-      <v-card-text v-if=""></v-card-text>
+      <!-- <v-card-text v-if=""></v-card-text> -->
     </v-card>
   </v-container>
 </template>
 <script>
-import mrzRules from "../field-validation-rules/mrzRules";
+import _mrzRules from "../field-validation-rules/mrzRules";
+import _NaNCharValues from "../ICAO_constants/NaNCharValues";
 
 export default {
   data() {
     return {
-      machineCoderules: mrzRules,
+      mrzRules: _mrzRules,
+      NaNCharValues: _NaNCharValues,
       machineCode: null,
       loadingMachineCodeRead: false,
     };
