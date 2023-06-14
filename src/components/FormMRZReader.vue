@@ -15,7 +15,7 @@
             append-icon="mdi-close"
             @click:append="resetForm"
           ></v-text-field>
-          <!-- TODO: :rules ; loading... -->
+          <!-- TODO: loading... -->
         </v-card-title>
       </v-form>
     </v-card>
