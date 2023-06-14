@@ -1,7 +1,7 @@
 <template>
-  <FormMRZReader />
+  <CardMRZReader />
 </template>
 
 <script setup>
-import FormMRZReader from "@/components/FormMRZReader.vue";
+import CardMRZReader from "@/components/CardMRZReader.vue.js";
 </script>
