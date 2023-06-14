@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-import CardMRZReader from "@/components/CardMRZReader.vue.js";
+import CardMRZReader from "@/components/CardMRZReader.vue";
 </script>
