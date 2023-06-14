@@ -466,4 +466,8 @@ export default {
   },
 };
 </script>
-<style></style>
+<style>
+.centered-input input {
+  text-align: center;
+}
+</style>
