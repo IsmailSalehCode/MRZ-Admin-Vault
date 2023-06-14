@@ -1,10 +1,16 @@
 // Composables
 import { createRouter, createWebHistory } from "vue-router";
 import ViewReadMRZ from "../views/ViewReadMRZ.vue";
+import ViewSavedData from "../views/ViewSavedData.vue";
+
 const routes = [
   {
     path: "/",
     component: ViewReadMRZ,
+  },
+  {
+    path: "/saved",
+    component: ViewSavedData,
   },
 ];
 

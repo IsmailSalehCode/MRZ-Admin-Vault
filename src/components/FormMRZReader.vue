@@ -6,7 +6,6 @@
           <v-text-field
             label="Машинен код"
             v-model.trim="machineCode"
-            :rules="mrzRules"
             class="mx-auto centered-input"
             variant="outlined"
             append-icon="mdi-close"
@@ -22,7 +21,7 @@
 export default {
   data() {
     return {
-      mrzRules: require("../field-validation-rules/mrzRules"),
+      // mrzRules: require("../field-validation-rules/mrzRules"),
       machineCode: null,
     };
   },
