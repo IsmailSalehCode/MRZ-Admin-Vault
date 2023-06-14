@@ -23,6 +23,7 @@
     </v-card>
   </v-container>
 </template>
+
 <script>
 import _mrzRules from "../field-validation-rules/mrzRules";
 import _NaNCharValues from "../ICAO-constants/NaNCharValues";
@@ -31,6 +32,16 @@ import AlertMRZInfo from "./AlertMRZInfo.vue";
 export default {
   components: {
     AlertMRZInfo,
+  },
+  watch: {
+    machineCode() {
+      this.resetMRZData();
+      if (this.machineCode != null) {
+        this.indicate_MRZ_is_being_read();
+        this.determine_MRZ_Type_and_Parse();
+        this.indicate_MRZ_finished_read();
+      }
+    },
   },
   data() {
     return {
@@ -458,16 +469,6 @@ export default {
     removeFiller(str) {
       const result = str.replaceAll(/</g, "");
       return result;
-    },
-  },
-  watch: {
-    machineCode() {
-      this.resetMRZData();
-      if (this.machineCode != null) {
-        this.indicate_MRZ_is_being_read();
-        this.determine_MRZ_Type_and_Parse();
-        this.indicate_MRZ_finished_read();
-      }
     },
   },
 };
