@@ -21,6 +21,6 @@ export default {
 
 <style>
 .v-application {
-  font-family: sans-serif, Times !important;
+  font-family: sans-serif, Times;
 }
 </style>
