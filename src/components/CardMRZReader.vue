@@ -23,7 +23,7 @@
 </template>
 <script>
 import _mrzRules from "../field-validation-rules/mrzRules";
-import _NaNCharValues from "../ICAO_constants/NaNCharValues";
+import _NaNCharValues from "../ICAO-constants/NaNCharValues";
 
 export default {
   data() {
