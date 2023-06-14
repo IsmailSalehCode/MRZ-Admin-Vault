@@ -6,6 +6,10 @@
           <v-text-field
             label="Машинен код"
             v-model.trim="machineCode"
+            :rules="[
+              machineCoderules.validLength,
+              machineCoderules.validCharacters,
+            ]"
             class="mx-auto centered-input"
             variant="outlined"
             append-icon="mdi-close"
@@ -18,10 +22,12 @@
   </v-container>
 </template>
 <script>
+import mrzRules from "../field-validation-rules/mrzRules";
+
 export default {
   data() {
     return {
-      // mrzRules: require("../field-validation-rules/mrzRules"),
+      machineCoderules: mrzRules,
       machineCode: null,
     };
   },
