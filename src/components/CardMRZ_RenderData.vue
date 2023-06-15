@@ -9,11 +9,7 @@ export default {
   props: {
     rdata: Object,
   },
-  //   data() {
-  //     return {
-  //       mrzData: this.rdata,
-  //     };
-  //   },
+
   computed: {
     mrzData() {
       const surname = this.rdata.surname;
