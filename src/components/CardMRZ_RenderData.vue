@@ -5,7 +5,7 @@
     <v-card-subtitle>Фамилия, дадени имена</v-card-subtitle>
     <v-card-text>
       <v-row>
-        <v-col cols="4">
+        <v-col cols="6" sm="4">
           <v-text-field
             style="max-width: 800px"
             class="mx-auto"
@@ -18,7 +18,7 @@
             </v-tooltip>
           </v-text-field>
         </v-col>
-        <v-col cols="4">
+        <v-col cols="6" sm="4">
           <v-text-field
             style="max-width: 160px"
             class="mx-auto centered-input"
@@ -27,7 +27,7 @@
             readonly
           ></v-text-field>
         </v-col>
-        <v-col cols="4">
+        <v-col cols="6" sm="4">
           <v-text-field
             style="max-width: 150px"
             class="mx-auto centered-input"
@@ -36,7 +36,7 @@
             readonly
           />
         </v-col>
-        <v-col cols="4">
+        <v-col cols="12" sm="6" md="4">
           <v-text-field
             class="mx-auto centered-input"
             label="Издаваща държава или организация"
@@ -44,7 +44,7 @@
             readonly
           />
         </v-col>
-        <v-col cols="4">
+        <v-col cols="12" sm="6" md="4">
           <v-text-field
             class="mx-auto centered-input"
             label="Националност"
@@ -52,7 +52,7 @@
             readonly
           />
         </v-col>
-        <v-col cols="4">
+        <v-col cols="12" sm="4">
           <v-text-field
             style="max-width: 130px"
             class="mx-auto centered-input"
@@ -61,7 +61,7 @@
             readonly
           />
         </v-col>
-        <v-col cols="4">
+        <v-col cols="6" sm="4">
           <v-text-field
             prepend-inner-icon="mdi-cake-variant"
             readonly
@@ -73,7 +73,7 @@
             persistent-hint
           />
         </v-col>
-        <v-col cols="4">
+        <v-col cols="6" sm="4">
           <v-text-field
             prepend-inner-icon="mdi-calendar-remove"
             readonly
@@ -85,7 +85,7 @@
             persistent-hint
           />
         </v-col>
-        <v-col v-if="mData.personalNum" cols="4">
+        <v-col v-if="mData.personalNum" cols="12" md="4">
           <v-text-field
             readonly
             class="mx-auto centered-input"
@@ -94,7 +94,12 @@
             v-model="mData.personalNum"
           />
         </v-col>
-        <v-col v-if="mData.optional1" cols="6">
+        <v-col
+          v-if="mData.optional1"
+          cols="12"
+          md="6"
+          style="max-width: fit-content"
+        >
           <v-text-field
             class="mx-auto centered-input"
             label="Незадължителни данни 1ви ред"
@@ -102,7 +107,12 @@
             readonly
           />
         </v-col>
-        <v-col v-if="mData.optional2" cols="6" style="max-width: fit-content">
+        <v-col
+          v-if="mData.optional2"
+          cols="12"
+          md="6"
+          style="max-width: fit-content"
+        >
           <v-text-field
             class="mx-auto centered-input"
             label="Незадължителни данни 2ри ред"
