@@ -13,14 +13,9 @@
             v-model="mData.type"
             readonly
           >
-            <!-- <template v-slot:append>
-              <v-tooltip bottom>
-                <template v-slot:activator="{ on }">
-                  <v-icon v-on="on"> mdi-help-circle-outline </v-icon>
-                </template>
-                {{ rData.type }}
-              </v-tooltip>
-            </template> -->
+            <v-tooltip activator="parent" location="end">
+              {{ rData.type }}
+            </v-tooltip>
           </v-text-field>
         </v-col>
       </v-row>
