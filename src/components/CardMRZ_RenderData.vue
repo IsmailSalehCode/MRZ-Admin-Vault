@@ -52,6 +52,15 @@
             readonly
           />
         </v-col>
+        <v-col cols="4">
+          <v-text-field
+            style="max-width: 90px"
+            class="mx-auto centered-input"
+            label="Пол"
+            v-model="mData.sex"
+            readonly
+          />
+        </v-col>
       </v-row>
     </v-card-text>
   </v-card>
@@ -59,6 +68,7 @@
 <script>
 import CountryCodes from "../ICAO-constants/CountryCodes.json";
 import DocumentTypes from "../ICAO-constants/DocumentTypes.json";
+import SexCodes from "../ICAO-constants/SexCodes.json";
 
 export default {
   props: {
@@ -74,6 +84,10 @@ export default {
       const result = CountryCodes[countryCode.toString()];
       return result;
     },
+    translateSexCode(sexCode) {
+      const result = SexCodes[sexCode.toString()];
+      return result;
+    },
   },
   computed: {
     mData() {
@@ -85,6 +99,7 @@ export default {
       const docNum = this.rData.docNum;
       const issuingOrg = this.translateCountryCode(this.rData.issuingOrg);
       const nationality = this.translateCountryCode(this.rData.nationality);
+      const sex = this.translateSexCode(this.rData.sex);
 
       return {
         surname,
@@ -94,6 +109,7 @@ export default {
         docNum,
         issuingOrg,
         nationality,
+        sex,
       };
     },
   },
