@@ -85,6 +85,15 @@
             persistent-hint
           />
         </v-col>
+        <v-col v-if="mData.personalNum" cols="4">
+          <v-text-field
+            readonly
+            class="mx-auto centered-input"
+            style="max-width: 170px"
+            label="ЕГН/Личен номер"
+            v-model="mData.personalNum"
+          />
+        </v-col>
       </v-row>
     </v-card-text>
   </v-card>
@@ -131,6 +140,7 @@ export default {
       const sex = this.translateSexCode(this.rData.sex);
       const birthDate = this.rData.birthDate;
       const expDate = this.rData.expDate;
+      const personalNum = this.rData.personalNum;
 
       return {
         surname,
@@ -143,6 +153,7 @@ export default {
         sex,
         birthDate,
         expDate,
+        personalNum,
       };
     },
   },
