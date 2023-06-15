@@ -61,6 +61,18 @@
             readonly
           />
         </v-col>
+        <v-col cols="4">
+          <v-text-field
+            prepend-inner-icon="mdi-cake-variant"
+            readonly
+            class="mx-auto centered-input"
+            style="max-width: 170px"
+            label="Дата на раждане"
+            v-model="mData.birthDate"
+            hint="година-месец-ден"
+            persistent-hint
+          />
+        </v-col>
       </v-row>
     </v-card-text>
   </v-card>
@@ -100,6 +112,7 @@ export default {
       const issuingOrg = this.translateCountryCode(this.rData.issuingOrg);
       const nationality = this.translateCountryCode(this.rData.nationality);
       const sex = this.translateSexCode(this.rData.sex);
+      const birthDate = this.rData.birthDate;
 
       return {
         surname,
@@ -110,6 +123,7 @@ export default {
         issuingOrg,
         nationality,
         sex,
+        birthDate,
       };
     },
   },
