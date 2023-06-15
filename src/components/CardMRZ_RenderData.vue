@@ -1,13 +1,25 @@
 <template>
   <div>{{ JSON.stringify(rdata) }}</div>
+  <v-card max-width="740px" variant="outlined" rounded="xl">
+    <v-card-title>{{ mrzData.surname }}, {{ mrzData.givenNames }}</v-card-title>
+  </v-card>
 </template>
 <script>
 export default {
   props: {
     rdata: Object,
   },
-  data() {
-    return {};
+  //   data() {
+  //     return {
+  //       mrzData: this.rdata,
+  //     };
+  //   },
+  computed: {
+    mrzData() {
+      const surname = this.rdata.surname;
+      const givenNames = this.rdata.givenNames;
+      return { surname, givenNames };
+    },
   },
 };
 </script>
