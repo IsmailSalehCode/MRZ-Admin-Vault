@@ -1,14 +1,14 @@
 <template>
   <div>{{ JSON.stringify(rdata) }}</div>
-  <v-card max-width="740px" variant="outlined" rounded="xl">
+  <v-card variant="outlined" rounded="xl">
     <v-card-title>{{ mrzData.surname }}, {{ mrzData.givenNames }}</v-card-title>
     <v-card-subtitle>Фамилия, дадени имена</v-card-subtitle>
     <v-card-text>
       <v-row>
         <v-col cols="4">
           <v-text-field
-            style="max-width: 200px"
-            class="mx-auto centered-input"
+            style="max-width: 1000px"
+            class="mx-auto"
             label="Тип на документа"
             v-model="mrzData.type"
             readonly
