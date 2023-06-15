@@ -70,7 +70,6 @@ export default {
         personalNum: null,
         optional1: null,
         optional2: null,
-        notes: null,
       },
     };
   },

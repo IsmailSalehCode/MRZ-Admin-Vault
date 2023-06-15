@@ -112,6 +112,16 @@
             readonly
           />
         </v-col>
+        <v-col cols="12" class="pb-0">
+          <v-textarea
+            variant="outlined"
+            prepend-icon="mdi-notebook"
+            clearable
+            class="mx-auto"
+            label="Бележки"
+            v-model.trim="notes"
+          ></v-textarea>
+        </v-col>
       </v-row>
     </v-card-text>
   </v-card>
@@ -129,6 +139,7 @@ export default {
   data() {
     return {
       dateFieldHint: "Година-Месец-Ден",
+      notes: null,
     };
   },
   methods: {
