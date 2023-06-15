@@ -69,7 +69,19 @@
             style="max-width: 170px"
             label="Дата на раждане"
             v-model="mData.birthDate"
-            hint="година-месец-ден"
+            :hint="dateFieldHint"
+            persistent-hint
+          />
+        </v-col>
+        <v-col cols="4">
+          <v-text-field
+            prepend-inner-icon="mdi-calendar-remove"
+            readonly
+            class="mx-auto centered-input"
+            style="max-width: 170px"
+            label="Валидност"
+            v-model="mData.expDate"
+            :hint="dateFieldHint"
             persistent-hint
           />
         </v-col>
@@ -86,6 +98,11 @@ export default {
   props: {
     // rData = render data
     rData: Object,
+  },
+  data() {
+    return {
+      dateFieldHint: "Година-Месец-Ден",
+    };
   },
   methods: {
     translateDocType(type) {
@@ -113,6 +130,7 @@ export default {
       const nationality = this.translateCountryCode(this.rData.nationality);
       const sex = this.translateSexCode(this.rData.sex);
       const birthDate = this.rData.birthDate;
+      const expDate = this.rData.expDate;
 
       return {
         surname,
@@ -124,6 +142,7 @@ export default {
         nationality,
         sex,
         birthDate,
+        expDate,
       };
     },
   },
