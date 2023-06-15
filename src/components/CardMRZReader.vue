@@ -19,6 +19,7 @@
       <!-- output from mrz processing below -->
       <v-card-text v-if="mrzData.info.length !== 0">
         <AlertMRZInfo :mrzInfo="mrzData.info" />
+        <CardMRZ_RenderData :rdata="mrzData" />
       </v-card-text>
     </v-card>
   </v-container>
@@ -28,10 +29,12 @@
 import _mrzRules from "../field-validation-rules/mrzRules";
 import _NaNCharValues from "../ICAO-constants/NaNCharValues";
 import AlertMRZInfo from "./AlertMRZInfo.vue";
+import CardMRZ_RenderData from "./CardMRZ_RenderData.vue";
 
 export default {
   components: {
     AlertMRZInfo,
+    CardMRZ_RenderData,
   },
   watch: {
     machineCode() {
