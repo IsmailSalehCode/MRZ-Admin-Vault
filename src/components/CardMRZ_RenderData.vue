@@ -18,6 +18,15 @@
             </v-tooltip>
           </v-text-field>
         </v-col>
+        <v-col cols="4">
+          <v-text-field
+            style="max-width: 150px"
+            class="mx-auto centered-input"
+            label="Формат на документа"
+            v-model.trim="mData.format"
+            readonly
+          ></v-text-field>
+        </v-col>
       </v-row>
     </v-card-text>
   </v-card>
@@ -64,7 +73,8 @@ export default {
       const surname = this.rData.surname;
       const givenNames = this.rData.givenNames;
       const type = this.translateDocType(this.rData.type);
-      return { surname, givenNames, type };
+      const format = this.rData.format;
+      return { surname, givenNames, type, format };
     },
   },
 };
