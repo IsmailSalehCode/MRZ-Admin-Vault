@@ -11,9 +11,8 @@
             variant="outlined"
             append-icon="mdi-close"
             @click:append="resetForm"
-            :loading="loadingMachineCodeRead"
+            :loading="loadingCodeRead"
           ></v-text-field>
-          <!-- TODO: loading... -->
         </v-card-title>
       </v-form>
       <!-- output from mrz processing below -->
@@ -51,7 +50,7 @@ export default {
       mrzRules: _mrzRules,
       NaNCharValues: _NaNCharValues,
       machineCode: null,
-      loadingMachineCodeRead: false,
+      loadingCodeRead: false,
       mrzData: {
         info: [],
         mrz: null,
