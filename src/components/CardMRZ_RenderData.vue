@@ -1,6 +1,6 @@
 <template>
-  <div>{{ JSON.stringify(rData) }}</div>
-  <v-card variant="outlined" rounded="xl">
+  <!-- <div>{{ JSON.stringify(rData) }}</div> -->
+  <v-card elevation="1" variant="outlined" rounded="lg">
     <v-card-title>{{ mData.surname }}, {{ mData.givenNames }}</v-card-title>
     <v-card-subtitle>Фамилия, дадени имена</v-card-subtitle>
     <v-card-text>

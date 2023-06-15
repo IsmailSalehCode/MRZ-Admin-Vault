@@ -1,6 +1,6 @@
 <template>
   <v-container style="max-width: 1000px">
-    <v-card>
+    <v-card elevation="5" rounded="lg">
       <v-form ref="mrzForm" @submit.prevent>
         <v-card-title>
           <v-text-field
@@ -21,6 +21,7 @@
         <!-- Checking for mrzData.info.length!=0, because it's the first thing AlertMRZInfo.vue works with. -->
         <!-- Checking for mrzData.type!=null, because it's the first thing CardMRZ_RenderData.vue works with. -->
         <AlertMRZInfo :mrzInfo="mrzData.info" />
+        <br />
         <CardMRZ_RenderData :rData="mrzData" />
       </v-card-text>
     </v-card>
