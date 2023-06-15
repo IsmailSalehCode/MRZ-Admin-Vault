@@ -1,5 +1,5 @@
 <template>
-  <div>{{ JSON.stringify(rdata) }}</div>
+  <div>{{ JSON.stringify(rData) }}</div>
   <v-card variant="outlined" rounded="xl">
     <v-card-title>{{ mData.surname }}, {{ mData.givenNames }}</v-card-title>
     <v-card-subtitle>Фамилия, дадени имена</v-card-subtitle>
@@ -18,7 +18,7 @@
                 <template v-slot:activator="{ on }">
                   <v-icon v-on="on"> mdi-help-circle-outline </v-icon>
                 </template>
-                {{ rdata.type }}
+                {{ rData.type }}
               </v-tooltip>
             </template> -->
           </v-text-field>
@@ -30,7 +30,8 @@
 <script>
 export default {
   props: {
-    rdata: Object,
+    // rData = render data
+    rData: Object,
   },
   methods: {
     translateDocType(type) {
@@ -64,9 +65,10 @@ export default {
   },
   computed: {
     mData() {
-      const surname = this.rdata.surname;
-      const givenNames = this.rdata.givenNames;
-      const type = this.translateDocType(this.rdata.type);
+      // mData = modified data (to be human-readable)
+      const surname = this.rData.surname;
+      const givenNames = this.rData.givenNames;
+      const type = this.translateDocType(this.rData.type);
       return { surname, givenNames, type };
     },
   },

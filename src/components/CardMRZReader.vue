@@ -19,7 +19,7 @@
       <!-- output from mrz processing below -->
       <v-card-text v-if="mrzData.info.length !== 0">
         <AlertMRZInfo :mrzInfo="mrzData.info" />
-        <CardMRZ_RenderData :rdata="mrzData" />
+        <CardMRZ_RenderData :rData="mrzData" />
       </v-card-text>
     </v-card>
   </v-container>
