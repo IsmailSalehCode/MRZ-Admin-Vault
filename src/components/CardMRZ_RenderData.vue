@@ -20,7 +20,7 @@
         </v-col>
         <v-col cols="4">
           <v-text-field
-            style="max-width: 150px"
+            style="max-width: 160px"
             class="mx-auto centered-input"
             label="Формат на документа"
             v-model.trim="mData.format"
