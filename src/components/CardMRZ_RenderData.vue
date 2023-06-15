@@ -27,6 +27,15 @@
             readonly
           ></v-text-field>
         </v-col>
+        <v-col cols="4">
+          <v-text-field
+            style="max-width: 150px"
+            class="mx-auto centered-input"
+            label="№ на документа"
+            v-model.trim="mData.docNum"
+            readonly
+          />
+        </v-col>
       </v-row>
     </v-card-text>
   </v-card>
@@ -74,7 +83,8 @@ export default {
       const givenNames = this.rData.givenNames;
       const type = this.translateDocType(this.rData.type);
       const format = this.rData.format;
-      return { surname, givenNames, type, format };
+      const docNum = this.rData.docNum;
+      return { surname, givenNames, type, format, docNum };
     },
   },
 };
