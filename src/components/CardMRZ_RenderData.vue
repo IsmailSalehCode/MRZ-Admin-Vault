@@ -54,7 +54,7 @@
         </v-col>
         <v-col cols="4">
           <v-text-field
-            style="max-width: 90px"
+            style="max-width: 130px"
             class="mx-auto centered-input"
             label="Пол"
             v-model="mData.sex"
