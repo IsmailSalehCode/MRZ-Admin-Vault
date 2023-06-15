@@ -94,6 +94,24 @@
             v-model="mData.personalNum"
           />
         </v-col>
+        <v-col v-if="mData.optional1" cols="6">
+          <v-text-field
+            class="mx-auto centered-input"
+            label="Незадължителни данни 1ви ред"
+            v-model.trim="mData.optional1"
+            readonly
+          />
+        </v-col>
+        <v-col v-if="mData.optional2" cols="6" style="max-width: fit-content">
+          <v-text-field
+            class="mx-auto centered-input"
+            label="Незадължителни данни 2ри ред"
+            v-model.trim="mData.optional2"
+            persistent-hint
+            hint="ЕГН за български TD1 документи"
+            readonly
+          />
+        </v-col>
       </v-row>
     </v-card-text>
   </v-card>
@@ -141,6 +159,8 @@ export default {
       const birthDate = this.rData.birthDate;
       const expDate = this.rData.expDate;
       const personalNum = this.rData.personalNum;
+      const optional1 = this.rData.optional1;
+      const optional2 = this.rData.optional2;
 
       return {
         surname,
@@ -154,6 +174,8 @@ export default {
         birthDate,
         expDate,
         personalNum,
+        optional1,
+        optional2,
       };
     },
   },
