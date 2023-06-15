@@ -1,7 +1,7 @@
 <template>
   <div>{{ JSON.stringify(rdata) }}</div>
   <v-card variant="outlined" rounded="xl">
-    <v-card-title>{{ mrzData.surname }}, {{ mrzData.givenNames }}</v-card-title>
+    <v-card-title>{{ mData.surname }}, {{ mData.givenNames }}</v-card-title>
     <v-card-subtitle>Фамилия, дадени имена</v-card-subtitle>
     <v-card-text>
       <v-row>
@@ -10,7 +10,7 @@
             style="max-width: 800px"
             class="mx-auto"
             label="Тип на документа"
-            v-model="mrzData.type"
+            v-model="mData.type"
             readonly
           >
             <!-- <template v-slot:append>
@@ -63,7 +63,7 @@ export default {
     },
   },
   computed: {
-    mrzData() {
+    mData() {
       const surname = this.rdata.surname;
       const givenNames = this.rdata.givenNames;
       const type = this.translateDocType(this.rdata.type);
