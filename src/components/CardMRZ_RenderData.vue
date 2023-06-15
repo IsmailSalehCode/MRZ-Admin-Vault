@@ -36,11 +36,30 @@
             readonly
           />
         </v-col>
+        <v-col cols="4">
+          <v-text-field
+            class="mx-auto centered-input"
+            label="Издаваща държава или организация"
+            v-model="mData.issuingOrg"
+            readonly
+          />
+        </v-col>
+        <v-col cols="4">
+          <v-text-field
+            class="mx-auto centered-input"
+            label="Националност"
+            v-model="mData.nationality"
+            readonly
+          />
+        </v-col>
       </v-row>
     </v-card-text>
   </v-card>
 </template>
 <script>
+import CountryCodes from "../ICAO-constants/CountryCodes.json";
+import DocumentTypes from "../ICAO-constants/DocumentTypes.json";
+
 export default {
   props: {
     // rData = render data
@@ -48,31 +67,11 @@ export default {
   },
   methods: {
     translateDocType(type) {
-      let result;
-      type = type.toString().trim();
-      switch (type) {
-        case "I":
-          result = "Идентификационен документ";
-          break;
-        case "ID":
-          result = "Лична карта";
-          break;
-        case "IP":
-          result = "Паспортна карта";
-          break;
-        case "P":
-          result = "Паспорт";
-          break;
-        case "V":
-          result = "Виза";
-          break;
-        case "AC":
-          result = "Сертификат за член на екипаж";
-          break;
-        default:
-          result = "Неразпознат";
-          break;
-      }
+      const result = DocumentTypes[type.toString()];
+      return result;
+    },
+    translateCountryCode(countryCode) {
+      const result = CountryCodes[countryCode.toString()];
       return result;
     },
   },
@@ -84,7 +83,18 @@ export default {
       const type = this.translateDocType(this.rData.type);
       const format = this.rData.format;
       const docNum = this.rData.docNum;
-      return { surname, givenNames, type, format, docNum };
+      const issuingOrg = this.translateCountryCode(this.rData.issuingOrg);
+      const nationality = this.translateCountryCode(this.rData.nationality);
+
+      return {
+        surname,
+        givenNames,
+        type,
+        format,
+        docNum,
+        issuingOrg,
+        nationality,
+      };
     },
   },
 };
