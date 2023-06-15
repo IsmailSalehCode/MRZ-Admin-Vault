@@ -7,7 +7,7 @@
       <v-row>
         <v-col cols="4">
           <v-text-field
-            style="max-width: 1000px"
+            style="max-width: 800px"
             class="mx-auto"
             label="Тип на документа"
             v-model="mrzData.type"
