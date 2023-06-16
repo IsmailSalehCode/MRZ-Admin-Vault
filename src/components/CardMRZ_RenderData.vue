@@ -136,6 +136,7 @@
     </v-card-text>
   </v-card>
 </template>
+
 <script>
 import CountryCodes from "../ICAO-constants/CountryCodes.json";
 import DocumentTypes from "../ICAO-constants/DocumentTypes.json";
