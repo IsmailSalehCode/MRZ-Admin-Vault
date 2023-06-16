@@ -49,6 +49,23 @@ app.whenReady().then(() => {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
+
+    const { sequelize } = require("../DB/config");
+    async function initializeDatabase() {
+      try {
+        await sequelize.authenticate();
+        console.log(
+          "Connection to the database has been established successfully."
+        );
+
+        await sequelize.sync({ alter: true });
+        console.log("Database synchronization completed.");
+      } catch (error) {
+        console.error("Unable to connect to the database:", error);
+      }
+    }
+
+    initializeDatabase();
   });
 });
 
