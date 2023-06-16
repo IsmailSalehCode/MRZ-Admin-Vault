@@ -4,7 +4,7 @@
     <v-card-title>{{ mData.surname }}, {{ mData.givenNames }}</v-card-title>
     <v-card-subtitle>Фамилия, дадени имена</v-card-subtitle>
     <v-card-text>
-      <v-row>
+      <v-row justify="center">
         <v-col cols="6" sm="4">
           <v-text-field
             style="max-width: 800px"
