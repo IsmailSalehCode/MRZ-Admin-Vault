@@ -443,8 +443,6 @@ export default {
       this.mrzData.sex = data.sex;
       //===================================
       this.mrzData.expDate = this.toDate(data.exp_date);
-      //current dilema: personal num /egn/ ili optional data? EGN-to ni e optional data spored standarta
-      //re6enie: prosto vuv label-a za poleto 'optional data 2' slagame hint 'EGN for Bulgaria'
       //re6enie pri printvane: ako ima null poleta, ne se rendervat
       if (
         data.first_row_optional_data &&
