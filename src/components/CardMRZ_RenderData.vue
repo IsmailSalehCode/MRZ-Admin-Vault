@@ -155,7 +155,14 @@ export default {
   },
   methods: {
     translateDocType(type) {
-      const result = DocumentTypes[type.toString()];
+      let result = DocumentTypes[type.toString()];
+      if (result == null) {
+        //Reason: i.e. P indicates the document is a passport. One additional character may be used to further identify the document at the discretion of the issuing State [https://developers.mobbeel.com/docs/mobbscan-icao-document-types/]. That means that if i have a 'PA', I would still want to indicate that it is a passport. DocumentTypes would return null.
+        const firstChar = type.charAt(0);
+        const secondChar = type.charAt(1);
+        result = DocumentTypes[firstChar];
+        result = result.concat(", " + secondChar);
+      }
       return result;
     },
     translateCountryCode(countryCode) {
