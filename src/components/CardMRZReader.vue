@@ -373,7 +373,7 @@ export default {
     },
     parsePassport() {
       const result =
-        /(?<type>P[A-Z<]{1})(?<issuing_org>[A-Z<]{3})(?<names>[A-Z<]{39})(?<doc_num>[A-Z\d<]{9})(?<doc_num_check_digit>[\d]{1})(?<nationality>[A-Z<]{3})(?<birth_date>[\d]{6})(?<birth_date_check_digit>[\d]{1})(?<sex>[MF<]{1})(?<exp_date>[\d]{6})(?<exp_date_check_digit>[\d]{1})(?<personal_num>[A-Z\d<]{14})(?<personal_num_check_digit>[\d<]{1})(?<big_check_digit>[\d]{1})/g.exec(
+        /(?<type>P[ABC<]{1})(?<issuing_org>[A-Z<]{3})(?<names>[A-Z<]{39})(?<doc_num>[A-Z\d<]{9})(?<doc_num_check_digit>[\d]{1})(?<nationality>[A-Z<]{3})(?<birth_date>[\d]{6})(?<birth_date_check_digit>[\d]{1})(?<sex>[MF<]{1})(?<exp_date>[\d]{6})(?<exp_date_check_digit>[\d]{1})(?<personal_num>[A-Z\d<]{14})(?<personal_num_check_digit>[\d<]{1})(?<big_check_digit>[\d]{1})/g.exec(
           this.machineCode
         );
       const format = "TD3 PASSPORT";
