@@ -14,11 +14,11 @@ const MRZ_Entry = sequelize.define("MRZ_Entry", {
     type: DataTypes.STRING(39),
     allowNull: false,
   },
-  docType: {
+  type: {
     type: DataTypes.STRING(3),
     allowNull: false,
   },
-  docFormat: {
+  format: {
     type: DataTypes.STRING(15),
     allowNull: false,
   },
@@ -26,7 +26,7 @@ const MRZ_Entry = sequelize.define("MRZ_Entry", {
     type: DataTypes.STRING(20),
     allowNull: false,
   },
-  docIssuingOrg: {
+  issuingOrg: {
     type: DataTypes.STRING(3),
     allowNull: false,
   },
@@ -42,7 +42,7 @@ const MRZ_Entry = sequelize.define("MRZ_Entry", {
     type: DataTypes.DATEONLY,
     allownull: false,
   },
-  docExpDate: {
+  expDate: {
     type: DataTypes.DATEONLY,
     allowNull: false,
   },
