@@ -1,5 +1,5 @@
 <template>
-  <v-container style="max-width: 1000px">
+  <v-container style="max-width: 1015px">
     <v-card elevation="5" rounded="lg">
       <v-form ref="mrzForm" @submit.prevent>
         <v-card-title>
