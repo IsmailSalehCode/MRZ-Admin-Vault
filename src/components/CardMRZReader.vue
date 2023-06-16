@@ -82,7 +82,6 @@ export default {
     resetMRZData() {
       this.mrzData = {
         info: [],
-        mrz: null,
         format: null,
         type: null,
         issuingOrg: null,
@@ -431,7 +430,6 @@ export default {
       //make sure all regex have the same group names!!!
       console.log(format, data);
       this.mrzData.format = format;
-      this.mrzData.mrz = this.machineCode;
       this.mrzData.type = this.removeFiller(data.type);
       // -TODO verify it all works
       this.mrzData.issuingOrg = data.issuing_org;
