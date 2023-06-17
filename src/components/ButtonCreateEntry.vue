@@ -61,7 +61,6 @@ export default {
       } else {
         this.handleSuccess(result);
       }
-      // this.$emit("ShowAddResult", this.alert);
     },
   },
 };
