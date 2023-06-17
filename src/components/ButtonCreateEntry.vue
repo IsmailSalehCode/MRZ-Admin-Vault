@@ -23,24 +23,34 @@ export default {
 <!-- this doesnt work -->
 <!-- "createEntry" is not exported by "controllers/MRZ_Entry-Controller.js", imported by "src/components/ButtonCreateEntry.vue". -->
 <template>
+  <v-alert v-if="alertErr" type="error">{{ errMsg }}</v-alert>
   <v-btn @click="insertNewEntry">Запази</v-btn>
 </template>
 <script>
-// import { createEntry } from "../../controllers/MRZ_Entry-Controller";
+import { addEntry } from "../dbController.js";
 
 export default {
   props: {
     entry: Object,
   },
+  data() {
+    return {
+      alertErr: false,
+      errMsg: null,
+    };
+  },
   methods: {
+    handleErr(err) {
+      console.error(err);
+      this.alertErr = true;
+      this.errMsg = err.message;
+    },
     async insertNewEntry() {
-      // try {
-      //   const entry = await createEntry(this.entry);
-      //   console.log(entry);
-      // } catch (err) {
-      //   console.error(err);
-      // }
-      console.log(this.entry);
+      const result = await addEntry(this.entry);
+
+      if (result instanceof Error) {
+        this.handleErr(result);
+      }
     },
   },
 };

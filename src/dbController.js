@@ -30,4 +30,4 @@ async function addEntry(entry) {
   }
 }
 
-export default { addEntry };
+export { addEntry };
