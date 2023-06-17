@@ -3,7 +3,7 @@
     :headers="headers"
     :items="cards"
     class="elevation-5"
-    item-key="docNum"
+    item-value="docNum"
   ></v-data-table>
 </template>
 <script>
