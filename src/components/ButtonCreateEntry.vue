@@ -32,12 +32,19 @@ export default {
         message: err.message,
       };
     },
-
+    handleSuccess(id) {
+      this.alert = {
+        show: true,
+        type: "success",
+        message: `Успешно добавен документ с №: ${id}`,
+      };
+    },
     async insertNewEntry() {
       const result = await addEntry(this.entry);
-
       if (result instanceof Error) {
         this.handleErr(result);
+      } else {
+        this.handleSuccess(result);
       }
     },
   },
