@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/valid-v-slot -->
 <template>
   <v-container cols="12" v-if="alert.show">
     <v-alert :type="alert.type">{{ alert.message }}</v-alert>
@@ -12,7 +13,11 @@
       items-per-page-text="Документи на страница"
       :items-per-page-options="itemsPerPageOptions"
       page-text="{0}-{1} от {2}"
-    />
+    >
+      <template v-slot:item.updatedAt="{ item }">
+        {{ convertTimestampToLocaleDatetime(item.columns.updatedAt) }}
+      </template>
+    </v-data-table>
   </v-container>
 </template>
 <script>
@@ -81,11 +86,7 @@ export default {
           key: "notes",
         },
         {
-          title: "Добавено на",
-          key: "createdAt",
-        },
-        {
-          title: "Обновено на",
+          title: "Последно обновен",
           key: "updatedAt",
         },
       ],
@@ -104,11 +105,26 @@ export default {
     };
   },
   methods: {
+    convertTimestampToLocaleDatetime(timestamp) {
+      const date = new Date(timestamp);
+      const options = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+        hour12: false,
+      };
+      const localizedDatetime = date.toLocaleString("bg-BG", options);
+
+      return localizedDatetime;
+    },
     // modifyNotes(notes) {
     //   const result =
     //     notes === null || notes === "" ? "Не е въведено нищо." : notes;
     //   return result;
-    // },
+    // }, //TODO
     resetAlert() {
       this.alert = {
         show: false,
