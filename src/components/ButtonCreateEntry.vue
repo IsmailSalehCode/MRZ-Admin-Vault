@@ -26,7 +26,7 @@ export default {
   <v-btn @click="insertNewEntry">Запази</v-btn>
 </template>
 <script>
-import { createEntry } from "../../controllers/MRZ_Entry-Controller";
+// import { createEntry } from "../../controllers/MRZ_Entry-Controller";
 
 export default {
   props: {
@@ -34,12 +34,13 @@ export default {
   },
   methods: {
     async insertNewEntry() {
-      try {
-        const entry = await createEntry(this.entry);
-        console.log(entry);
-      } catch (err) {
-        console.error(err);
-      }
+      // try {
+      //   const entry = await createEntry(this.entry);
+      //   console.log(entry);
+      // } catch (err) {
+      //   console.error(err);
+      // }
+      console.log(this.entry);
     },
   },
 };
