@@ -12,6 +12,7 @@ function translateErr(err) {
       bgErrMessage = "Този документ е бил добавен вече.";
       break;
     default:
+      bgErrMessage = `Възникна неочаквана грешка: ${err.message}`;
       console.error(err);
   }
   return Error(bgErrMessage);
