@@ -1,11 +1,28 @@
 <template>
   <v-container>
     <v-data-table
+      no-data-text="Няма въведени данни."
       :headers="headers"
       :items="cards"
       class="elevation-5"
       item-value="docNum"
-    ></v-data-table>
+      v-model:expanded="expanded"
+      show-expand
+    >
+      <template v-slot:expanded-row="{ columns, item }">
+        <tr>
+          <td :colspan="columns.length">
+            <v-textarea
+              v-model="item.raw.notes"
+              density="compact"
+              variant="solo"
+              readonly
+              label="Бележки"
+            ></v-textarea>
+          </td>
+        </tr>
+      </template>
+    </v-data-table>
   </v-container>
 </template>
 <script>
@@ -13,6 +30,7 @@ import { getAllEntries } from "@/dbController";
 export default {
   data() {
     return {
+      expanded: [],
       cards: [],
       headers: [
         {
@@ -70,6 +88,13 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    modifyNotes(notes) {
+      const result =
+        notes === null || notes === "" ? "Не е въведено нищо." : notes;
+      return result;
+    },
   },
   async mounted() {
     this.cards = await getAllEntries();
