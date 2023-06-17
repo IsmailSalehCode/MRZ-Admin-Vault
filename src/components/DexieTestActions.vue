@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <v-btn @click="clearAll">Clear all</v-btn>
-  </div>
+  <v-container>
+    <v-btn @click="clearAll">Изпразни всички записи</v-btn>
+  </v-container>
 </template>
 <script>
 import { clearAllEntries } from "../dbController.js";
