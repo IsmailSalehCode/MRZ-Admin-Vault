@@ -35,7 +35,6 @@ async function addEntry(entry) {
       optional1: entry.optional1,
       optional2: entry.optional2,
       notes: entry.notes,
-      createdAt: getCurrentTimestamp(),
       updatedAt: getCurrentTimestamp(),
     });
     return newEntry;
