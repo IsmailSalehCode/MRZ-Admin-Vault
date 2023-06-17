@@ -1,4 +1,7 @@
 <template>
+  <v-container cols="12" v-if="alert.show">
+    <v-alert :type="alert.type">{{ alert.message }}</v-alert>
+  </v-container>
   <v-container fluid>
     <v-data-table
       no-data-text="Няма въведени данни."
@@ -87,6 +90,11 @@ export default {
           key: "optional2",
         },
       ],
+      alert: {
+        show: false,
+        type: "",
+        message: null,
+      },
     };
   },
   methods: {
@@ -95,10 +103,34 @@ export default {
     //     notes === null || notes === "" ? "Не е въведено нищо." : notes;
     //   return result;
     // },
+    resetAlert() {
+      this.alert = {
+        show: false,
+        type: "",
+        message: null,
+      };
+    },
+    handleErr(err) {
+      this.alert = {
+        show: true,
+        type: "error",
+        message: err.message,
+      };
+    },
+    async getAllEntries() {
+      const result = await getAllEntries();
+      if (!(result instanceof Error)) {
+        this.cards = result;
+      } else {
+        this.handleErr(result);
+      }
+    },
   },
-  async mounted() {
-    this.cards = await getAllEntries();
-    console.log(this.cards);
+  mounted() {
+    if (this.alert.show == true) {
+      this.resetAlert();
+    }
+    this.getAllEntries();
   },
 };
 </script>
