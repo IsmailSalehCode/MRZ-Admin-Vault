@@ -135,7 +135,7 @@
       </v-row>
     </v-card-text>
     <v-card-actions>
-      <ButtonCreateEntry />
+      <ButtonCreateEntry :entry="mData" />
     </v-card-actions>
   </v-card>
 </template>
@@ -195,6 +195,7 @@ export default {
       const personalNum = this.rData.personalNum;
       const optional1 = this.rData.optional1;
       const optional2 = this.rData.optional2;
+      const notes = this.notes;
 
       return {
         surname,
@@ -210,6 +211,7 @@ export default {
         personalNum,
         optional1,
         optional2,
+        notes,
       };
     },
   },
