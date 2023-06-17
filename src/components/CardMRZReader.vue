@@ -16,7 +16,6 @@
         </v-card-title>
       </v-form>
       <!-- output from mrz processing below -->
-      <!-- Check for mrzData != null is not effective. The mrzData object will NEVER be null, because it always has fields. -->
       <v-card-text class="py-0" v-if="mrzData.info.length !== 0">
         <!-- Checking for mrzData.info.length!=0, because it's the first thing AlertMRZInfo.vue works with. -->
         <AlertMRZInfo :mrzInfo="mrzData.info" />
