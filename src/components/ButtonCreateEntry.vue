@@ -3,7 +3,6 @@
     <v-col cols="12" v-if="alert.show">
       <v-alert :type="alert.type">{{ alert.message }}</v-alert>
     </v-col>
-    <!--gonna send the alert up the chain mybe TODO -->
     <v-col cols="12">
       <v-btn @click="insertNewEntry">Запази</v-btn>
     </v-col>
@@ -16,7 +15,14 @@ export default {
   props: {
     entry: Object,
   },
-  // emits: ["ShowAddResult"],
+  watch: {
+    entry(newValue, oldValue) {
+      if (newValue.docNum != oldValue.docNum) {
+        // Така че когато потребителят прави промени по един entry (в бележките примерно), да не му се променя съобщението/alert-а.
+        this.resetAlert();
+      }
+    },
+  },
   data() {
     return {
       alert: {
@@ -27,6 +33,13 @@ export default {
     };
   },
   methods: {
+    resetAlert() {
+      this.alert = {
+        show: false,
+        type: "",
+        message: null,
+      };
+    },
     handleErr(err) {
       this.alert = {
         show: true,
