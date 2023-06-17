@@ -129,6 +129,7 @@
             clearable
             class="mx-auto"
             label="Бележки"
+            hint="За редакция на съществуващ запис отидете в 'Запаметени карти'"
             v-model.trim="notes"
           ></v-textarea>
         </v-col>
