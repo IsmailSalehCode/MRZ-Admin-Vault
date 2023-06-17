@@ -13,6 +13,7 @@
       show-expand
       items-per-page-text="Документи на страница"
       :items-per-page-options="itemsPerPageOptions"
+      page-text="{0}-{1} от {2}"
     >
       <template v-slot:expanded-row="{ columns, item }">
         <tr>
