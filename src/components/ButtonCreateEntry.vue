@@ -3,6 +3,7 @@
     <v-col cols="12" v-if="alert.show">
       <v-alert :type="alert.type">{{ alert.message }}</v-alert>
     </v-col>
+    <!--gonna send the alert up the chain mybe TODO -->
     <v-col cols="12">
       <v-btn @click="insertNewEntry">Запази</v-btn>
     </v-col>
@@ -15,6 +16,7 @@ export default {
   props: {
     entry: Object,
   },
+  // emits: ["ShowAddResult"],
   data() {
     return {
       alert: {
@@ -46,6 +48,7 @@ export default {
       } else {
         this.handleSuccess(result);
       }
+      // this.$emit("ShowAddResult", this.alert);
     },
   },
 };
