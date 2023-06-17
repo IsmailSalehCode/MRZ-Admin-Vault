@@ -11,6 +11,8 @@ function translateErr(err) {
     case 0:
       bgErrMessage = "Този документ е бил добавен вече.";
       break;
+    default:
+      console.error(err);
   }
   return Error(bgErrMessage);
 }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-btn @click="clearAllEntries()">Clear all</v-btn>
+    <v-btn @click="clearAll">Clear all</v-btn>
   </div>
 </template>
 <script>
