@@ -6,6 +6,12 @@ const sequelize = new Sequelize({
 });
 
 const MRZ_Entry = sequelize.define("MRZ_Entry", {
+  docNum: {
+    primaryKey: true,
+    autoIncrement: false,
+    type: DataTypes.STRING(20),
+    allowNull: false,
+  },
   surname: {
     type: DataTypes.STRING(39),
     allowNull: false,
@@ -20,10 +26,6 @@ const MRZ_Entry = sequelize.define("MRZ_Entry", {
   },
   format: {
     type: DataTypes.STRING(15),
-    allowNull: false,
-  },
-  docNum: {
-    type: DataTypes.STRING(20),
     allowNull: false,
   },
   issuingOrg: {
