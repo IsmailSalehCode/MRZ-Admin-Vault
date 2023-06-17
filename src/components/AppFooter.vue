@@ -4,7 +4,7 @@
       <v-row align="center" justify="space-evenly">
         <v-col>
           <v-btn
-            variant="outlined"
+            variant="plain"
             size="small"
             @click="openDoc('terms-and-conditions')"
             >Общи Условия</v-btn
@@ -22,10 +22,7 @@
           <strong>Исмаил Салех @ ТУ-София</strong>
         </v-col>
         <v-col>
-          <v-btn
-            variant="outlined"
-            size="small"
-            @click="openDoc('contact-info')"
+          <v-btn variant="plain" size="small" @click="openDoc('contact-info')"
             >Поддръжка</v-btn
           >
         </v-col>
