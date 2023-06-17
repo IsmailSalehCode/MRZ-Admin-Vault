@@ -1,7 +1,18 @@
 <template>
-  <div>hi</div>
+  <div>{{ cards }}</div>
 </template>
 <script>
-export default {};
+import { getAllEntries } from "@/dbController";
+export default {
+  data() {
+    return {
+      cards: [],
+    };
+  },
+  mounted() {
+    this.cards = getAllEntries();
+    console.log(this.cards);
+  },
+};
 </script>
 <style></style>

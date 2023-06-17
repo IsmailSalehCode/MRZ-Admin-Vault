@@ -44,6 +44,15 @@ async function addEntry(entry) {
   }
 }
 
+async function getAllEntries() {
+  try {
+    const entries = await db.mrzEntries.toArray();
+    return entries;
+  } catch (err) {
+    return translateErr(err);
+  }
+}
+
 async function clearAllEntries() {
   await db.mrzEntries
     .clear()
@@ -55,4 +64,4 @@ async function clearAllEntries() {
     });
 }
 
-export { addEntry, clearAllEntries };
+export { addEntry, clearAllEntries, getAllEntries };
