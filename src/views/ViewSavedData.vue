@@ -1,10 +1,12 @@
 <template>
-  <v-data-table
-    :headers="headers"
-    :items="cards"
-    class="elevation-5"
-    item-value="docNum"
-  ></v-data-table>
+  <v-container>
+    <v-data-table
+      :headers="headers"
+      :items="cards"
+      class="elevation-5"
+      item-value="docNum"
+    ></v-data-table>
+  </v-container>
 </template>
 <script>
 import { getAllEntries } from "@/dbController";
@@ -45,6 +47,18 @@ export default {
         {
           title: "Пол",
           key: "sex",
+        },
+        {
+          title: "Рожд. дата",
+          key: "birthDate",
+        },
+        {
+          title: "Валидност",
+          key: "expDate",
+        },
+        {
+          title: "Личен №",
+          key: "personalNum",
         },
       ],
     };
