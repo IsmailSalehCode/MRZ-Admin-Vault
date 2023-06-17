@@ -134,6 +134,9 @@
         </v-col>
       </v-row>
     </v-card-text>
+    <v-card-actions>
+      <ButtonCreateEntry />
+    </v-card-actions>
   </v-card>
 </template>
 
@@ -141,12 +144,14 @@
 import CountryCodes from "../ICAO-constants/CountryCodes.json";
 import DocumentTypes from "../ICAO-constants/DocumentTypes.json";
 import SexCodes from "../ICAO-constants/SexCodes.json";
+import ButtonCreateEntry from "./ButtonCreateEntry.vue";
 
 export default {
   props: {
     // rData = render data
     rData: Object,
   },
+  components: { ButtonCreateEntry },
   data() {
     return {
       dateFieldHint: "Година-Месец-Ден",
