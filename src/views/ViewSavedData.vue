@@ -60,6 +60,14 @@ export default {
           title: "Личен №",
           key: "personalNum",
         },
+        {
+          title: "Опц. поле 1",
+          key: "optional1",
+        },
+        {
+          title: "Опц. поле 2",
+          key: "optional2",
+        },
       ],
     };
   },
