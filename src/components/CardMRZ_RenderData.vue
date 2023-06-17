@@ -181,7 +181,7 @@ export default {
   },
   computed: {
     mData() {
-      // mData = modified data (to be human-readable)
+      // mData = modified data (to be human-readable). Excellent approach for future-proofing cuz i can add variables such as notes, room number (if software is repurposed for the hotel industry),
       const surname = this.rData.surname;
       const givenNames = this.rData.givenNames;
       const type = this.translateDocType(this.rData.type);
