@@ -11,8 +11,8 @@
       item-value="docNum"
       v-model:expanded="expanded"
       show-expand
-      items-per-page="-1"
       items-per-page-text="Документи на страница"
+      :items-per-page-options="itemsPerPageOptions"
     >
       <template v-slot:expanded-row="{ columns, item }">
         <tr>
@@ -97,6 +97,13 @@ export default {
         type: "",
         message: null,
       },
+      itemsPerPageOptions: [
+        { title: "5", value: 5 },
+        { title: "10", value: 10 },
+        { title: "15", value: 15 },
+        { title: "20", value: 20 },
+        { title: "Всички", value: -1 },
+      ],
     };
   },
   methods: {
