@@ -90,11 +90,11 @@ export default {
     };
   },
   methods: {
-    modifyNotes(notes) {
-      const result =
-        notes === null || notes === "" ? "Не е въведено нищо." : notes;
-      return result;
-    },
+    // modifyNotes(notes) {
+    //   const result =
+    //     notes === null || notes === "" ? "Не е въведено нищо." : notes;
+    //   return result;
+    // },
   },
   async mounted() {
     this.cards = await getAllEntries();
