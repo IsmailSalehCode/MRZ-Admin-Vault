@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-data-table
       no-data-text="Няма въведени данни."
       :headers="headers"
