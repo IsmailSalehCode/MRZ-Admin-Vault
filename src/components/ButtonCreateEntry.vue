@@ -17,10 +17,10 @@ export default {
   },
   methods: {
     handleErr(err) {
-      console.error(err);
       this.alertErr = true;
       this.errMsg = err.message;
     },
+
     async insertNewEntry() {
       const result = await addEntry(this.entry);
 

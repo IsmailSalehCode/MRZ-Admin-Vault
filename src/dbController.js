@@ -4,6 +4,17 @@ function getCurrentTimestamp() {
   return new Date().getTime();
 }
 
+function translateErr(err) {
+  // returns Error containing a message in Bulgarian for the UI
+  let bgErrMessage;
+  switch (err.inner.code) {
+    case 0:
+      bgErrMessage = "Този документ е бил добавен вече.";
+      break;
+  }
+  return Error(bgErrMessage);
+}
+
 async function addEntry(entry) {
   try {
     const newEntry = await db.mrzEntries.add({
@@ -26,7 +37,7 @@ async function addEntry(entry) {
     });
     return newEntry;
   } catch (err) {
-    return err;
+    return translateErr(err);
   }
 }
 
