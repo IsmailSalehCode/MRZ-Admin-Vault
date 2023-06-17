@@ -4,7 +4,7 @@
       <v-alert :type="alert.type">{{ alert.message }}</v-alert>
     </v-col>
     <v-col cols="12">
-      <v-btn @click="insertNewEntry">Запази</v-btn>
+      <v-btn variant="outlined" @click="insertNewEntry">Запази</v-btn>
     </v-col>
   </v-row>
 </template>
