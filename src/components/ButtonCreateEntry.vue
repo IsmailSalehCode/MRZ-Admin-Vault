@@ -1,6 +1,12 @@
 <template>
-  <v-alert v-if="alertErr" type="error">{{ errMsg }}</v-alert>
-  <v-btn @click="insertNewEntry">Запази</v-btn>
+  <v-row justify="center" align="center">
+    <v-col cols="12" v-if="alert.show">
+      <v-alert :type="alert.type">{{ alert.message }}</v-alert>
+    </v-col>
+    <v-col cols="12">
+      <v-btn @click="insertNewEntry">Запази</v-btn>
+    </v-col>
+  </v-row>
 </template>
 <script>
 import { addEntry } from "../dbController.js";
@@ -11,14 +17,20 @@ export default {
   },
   data() {
     return {
-      alertErr: false,
-      errMsg: null,
+      alert: {
+        show: false,
+        type: "",
+        message: null,
+      },
     };
   },
   methods: {
     handleErr(err) {
-      this.alertErr = true;
-      this.errMsg = err.message;
+      this.alert = {
+        show: true,
+        type: "error",
+        message: err.message,
+      };
     },
 
     async insertNewEntry() {
