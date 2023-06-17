@@ -14,6 +14,9 @@
       :items-per-page-options="itemsPerPageOptions"
       page-text="{0}-{1} от {2}"
     >
+      <template v-slot:item.notes="{ item }">
+        {{ indicateIfEmpty(item.columns.notes) }}
+      </template>
       <template v-slot:item.updatedAt="{ item }">
         {{ convertTimestampToLocaleDatetime(item.columns.updatedAt) }}
       </template>
@@ -120,11 +123,10 @@ export default {
 
       return localizedDatetime;
     },
-    // modifyNotes(notes) {
-    //   const result =
-    //     notes === null || notes === "" ? "Не е въведено нищо." : notes;
-    //   return result;
-    // }, //TODO
+    indicateIfEmpty(str) {
+      const result = str == null || str == "" ? "╳" : str;
+      return result;
+    },
     resetAlert() {
       this.alert = {
         show: false,
