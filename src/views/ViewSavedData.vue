@@ -41,6 +41,7 @@ export default {
         {
           title: "Док. №",
           align: "start",
+          sortable: false,
           key: "docNum",
         },
         {
