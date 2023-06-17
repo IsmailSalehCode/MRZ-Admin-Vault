@@ -11,6 +11,8 @@
       item-value="docNum"
       v-model:expanded="expanded"
       show-expand
+      items-per-page="-1"
+      items-per-page-text="Документи на страница"
     >
       <template v-slot:expanded-row="{ columns, item }">
         <tr>
