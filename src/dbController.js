@@ -41,4 +41,15 @@ async function addEntry(entry) {
   }
 }
 
-export { addEntry };
+async function clearAllEntries() {
+  await db.mrzEntries
+    .clear()
+    .then(() => {
+      console.log("Data cleared successfully.");
+    })
+    .catch((error) => {
+      console.error("Failed to clear data:", error);
+    });
+}
+
+export { addEntry, clearAllEntries };
