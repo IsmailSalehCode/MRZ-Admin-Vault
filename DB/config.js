@@ -10,7 +10,6 @@ const MRZ_Entry = sequelize.define("MRZ_Entry", {
     primaryKey: true,
     autoIncrement: false,
     type: DataTypes.STRING(20),
-    allowNull: false,
   },
   surname: {
     type: DataTypes.STRING(39),
