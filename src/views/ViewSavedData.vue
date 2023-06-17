@@ -9,26 +9,10 @@
       :items="cards"
       class="elevation-5"
       item-value="docNum"
-      v-model:expanded="expanded"
-      show-expand
       items-per-page-text="Документи на страница"
       :items-per-page-options="itemsPerPageOptions"
       page-text="{0}-{1} от {2}"
-    >
-      <template v-slot:expanded-row="{ columns, item }">
-        <tr>
-          <td :colspan="columns.length">
-            <v-textarea
-              v-model="item.raw.notes"
-              density="compact"
-              variant="solo"
-              readonly
-              label="Бележки"
-            ></v-textarea>
-          </td>
-        </tr>
-      </template>
-    </v-data-table>
+    />
   </v-container>
 </template>
 <script>
@@ -36,7 +20,6 @@ import { getAllEntries } from "@/dbController";
 export default {
   data() {
     return {
-      expanded: [],
       cards: [],
       headers: [
         {
@@ -92,6 +75,18 @@ export default {
         {
           title: "Опц. поле 2",
           key: "optional2",
+        },
+        {
+          title: "Бележки",
+          key: "notes",
+        },
+        {
+          title: "Добавено на",
+          key: "createdAt",
+        },
+        {
+          title: "Обновено на",
+          key: "updatedAt",
         },
       ],
       alert: {
