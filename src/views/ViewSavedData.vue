@@ -33,14 +33,8 @@
       </template>
     </v-data-table>
   </v-container>
-  <v-container>
-    <v-row
-      style="
-        text-align: center;
-        max-width: fit-content;
-        justify-content: center;
-      "
-    >
+  <v-container fluid>
+    <v-row style="text-align: center; max-width: fit-content">
       <v-col>
         <v-btn
           icon="mdi-delete-forever"
