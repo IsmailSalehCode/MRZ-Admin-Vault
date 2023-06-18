@@ -13,6 +13,8 @@
       items-per-page-text="Документи на страница"
       :items-per-page-options="itemsPerPageOptions"
       page-text="{0}-{1} от {2}"
+      v-model="selected"
+      show-select
     >
       <template v-slot:item.personalNum="{ item }">
         {{ indicateIfEmpty(item.columns.personalNum) }}
@@ -30,6 +32,16 @@
         {{ convertTimestampToLocaleDatetime(item.columns.updatedAt) }}
       </template>
     </v-data-table>
+  </v-container>
+  <v-container>
+    <v-row justify="center" style="text-align: center">
+      <v-col>
+        <v-btn color="error" :disabled="!isAtLeastOneSelected">Изтрий</v-btn>
+      </v-col>
+      <v-col>
+        <v-btn color="warning" :disabled="!isOneSelected">Редактирай</v-btn>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 <script>
@@ -98,7 +110,7 @@ export default {
           key: "notes",
         },
         {
-          title: "Последно обновен",
+          title: "Последна промяна",
           key: "updatedAt",
         },
       ],
@@ -114,6 +126,10 @@ export default {
         { title: "20", value: 20 },
         { title: "Всички", value: -1 },
       ],
+      selected: [],
+      isOneSelected: false,
+      isAtLeastOneSelected: false,
+      isMoreThanOneSelected: false,
     };
   },
   methods: {
@@ -164,6 +180,25 @@ export default {
       this.resetAlert();
     }
     this.getAllEntries();
+  },
+  watch: {
+    selected() {
+      const len = this.selected.length;
+      // reset values
+      this.isOneSelected = false;
+      this.isAtLeastOneSelected = false;
+      this.isMoreThanOneSelected = false;
+      // end of reset values
+      if (len == 1) {
+        this.isOneSelected = true;
+      }
+      if (len >= 1) {
+        this.isAtLeastOneSelected = true;
+      }
+      if (len > 1) {
+        this.isMoreThanOneSelected = true;
+      }
+    },
   },
 };
 </script>
