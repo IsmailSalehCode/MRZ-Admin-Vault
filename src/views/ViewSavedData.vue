@@ -145,7 +145,6 @@ export default {
       selected: [],
       isOneSelected: false,
       isAtLeastOneSelected: false,
-      isMoreThanOneSelected: false,
     };
   },
   methods: {
@@ -212,7 +211,6 @@ export default {
       // reset values
       this.isOneSelected = false;
       this.isAtLeastOneSelected = false;
-      this.isMoreThanOneSelected = false;
       // end of reset values
       if (len == 1) {
         this.isOneSelected = true;
@@ -220,9 +218,9 @@ export default {
       if (len >= 1) {
         this.isAtLeastOneSelected = true;
       }
-      if (len > 1) {
-        this.isMoreThanOneSelected = true;
-      }
+      // if (this.cards.length == 0) {
+      // this.selected = [];
+      // }
     },
   },
 };
