@@ -19,22 +19,24 @@ function translateErr(err) {
 }
 
 async function addEntry(entry) {
+  const mrzData = entry.mrzData;
+  const entryNotes = entry.notes;
   try {
     const newEntry = await db.mrzEntries.add({
-      docNum: entry.docNum,
-      surname: entry.surname,
-      givenNames: entry.givenNames,
-      type: entry.type,
-      format: entry.format,
-      issuingOrg: entry.issuingOrg,
-      nationality: entry.nationality,
-      sex: entry.sex,
-      birthDate: entry.birthDate,
-      expDate: entry.expDate,
-      personalNum: entry.personalNum,
-      optional1: entry.optional1,
-      optional2: entry.optional2,
-      notes: entry.notes,
+      docNum: mrzData.docNum,
+      surname: mrzData.surname,
+      givenNames: mrzData.givenNames,
+      type: mrzData.type,
+      format: mrzData.format,
+      issuingOrg: mrzData.issuingOrg,
+      nationality: mrzData.nationality,
+      sex: mrzData.sex,
+      birthDate: mrzData.birthDate,
+      expDate: mrzData.expDate,
+      personalNum: mrzData.personalNum,
+      optional1: mrzData.optional1,
+      optional2: mrzData.optional2,
+      notes: entryNotes,
       updatedAt: getCurrentTimestamp(),
     });
     return newEntry;
