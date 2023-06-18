@@ -13,7 +13,6 @@ function translateErr(err) {
       break;
     default:
       bgErrMessage = `Възникна неочаквана грешка: ${err.message}`;
-      console.error(err);
   }
   return Error(bgErrMessage);
 }
