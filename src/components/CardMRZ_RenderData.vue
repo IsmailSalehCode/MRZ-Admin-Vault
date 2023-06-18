@@ -1,7 +1,6 @@
 <template>
-  <!-- <div>{{ JSON.stringify(rData) }}</div> -->
   <v-card elevation="1" variant="outlined" rounded="lg">
-    <v-card-title>{{ mData.surname }}, {{ mData.givenNames }}</v-card-title>
+    <v-card-title>{{ uiData.surname }}, {{ uiData.givenNames }}</v-card-title>
     <v-card-subtitle>Фамилия, дадени имена</v-card-subtitle>
     <v-card-text>
       <v-row justify="center">
@@ -10,12 +9,9 @@
             style="max-width: 800px"
             class="mx-auto"
             label="Тип на документа"
-            v-model="mData.type"
+            v-model="uiData.type"
             readonly
           >
-            <v-tooltip activator="parent" location="end">
-              {{ rData.type }}
-            </v-tooltip>
           </v-text-field>
         </v-col>
         <v-col cols="6" sm="4">
@@ -23,7 +19,7 @@
             style="max-width: 160px"
             class="mx-auto centered-input"
             label="Формат на документа"
-            v-model.trim="mData.format"
+            v-model.trim="uiData.format"
             readonly
           ></v-text-field>
         </v-col>
@@ -32,7 +28,7 @@
             style="max-width: 150px"
             class="mx-auto centered-input"
             label="№ на документа"
-            v-model.trim="mData.docNum"
+            v-model.trim="uiData.docNum"
             readonly
           />
         </v-col>
@@ -40,7 +36,7 @@
           <v-text-field
             class="mx-auto centered-input"
             label="Издаваща държава или организация"
-            v-model="mData.issuingOrg"
+            v-model="uiData.issuingOrg"
             readonly
           />
         </v-col>
@@ -48,7 +44,7 @@
           <v-text-field
             class="mx-auto centered-input"
             label="Националност"
-            v-model="mData.nationality"
+            v-model="uiData.nationality"
             readonly
           />
         </v-col>
@@ -57,7 +53,7 @@
             style="max-width: 130px"
             class="mx-auto centered-input"
             label="Пол"
-            v-model="mData.sex"
+            v-model="uiData.sex"
             readonly
           />
         </v-col>
@@ -68,7 +64,7 @@
             class="mx-auto centered-input"
             style="max-width: 170px"
             label="Дата на раждане"
-            v-model="mData.birthDate"
+            v-model="uiData.birthDate"
             :hint="dateFieldHint"
             persistent-hint
           />
@@ -80,22 +76,22 @@
             class="mx-auto centered-input"
             style="max-width: 170px"
             label="Валидност"
-            v-model="mData.expDate"
+            v-model="uiData.expDate"
             :hint="dateFieldHint"
             persistent-hint
           />
         </v-col>
-        <v-col v-if="mData.personalNum" cols="12" md="4">
+        <v-col v-if="uiData.personalNum" cols="12" md="4">
           <v-text-field
             readonly
             class="mx-auto centered-input"
             style="max-width: 170px"
             label="ЕГН/Личен номер"
-            v-model="mData.personalNum"
+            v-model="uiData.personalNum"
           />
         </v-col>
         <v-col
-          v-if="mData.optional1"
+          v-if="uiData.optional1"
           cols="12"
           md="6"
           style="max-width: fit-content"
@@ -103,12 +99,12 @@
           <v-text-field
             class="mx-auto centered-input"
             label="Незадължителни данни 1ви ред"
-            v-model.trim="mData.optional1"
+            v-model.trim="uiData.optional1"
             readonly
           />
         </v-col>
         <v-col
-          v-if="mData.optional2"
+          v-if="uiData.optional2"
           cols="12"
           md="6"
           style="max-width: fit-content"
@@ -116,7 +112,7 @@
           <v-text-field
             class="mx-auto centered-input"
             label="Незадължителни данни 2ри ред"
-            v-model.trim="mData.optional2"
+            v-model.trim="uiData.optional2"
             persistent-hint
             hint="ЕГН за български TD1 документи"
             readonly
@@ -136,7 +132,12 @@
       </v-row>
     </v-card-text>
     <v-card-actions>
-      <ButtonCreateEntry :entry="mData" />
+      <ButtonCreateEntry
+        :entry="{
+          mrzData: mrzData,
+          notes: this.notes,
+        }"
+      />
     </v-card-actions>
   </v-card>
 </template>
@@ -149,8 +150,7 @@ import ButtonCreateEntry from "./ButtonCreateEntry.vue";
 
 export default {
   props: {
-    // rData = render data
-    rData: Object,
+    mrzData: Object,
   },
   components: { ButtonCreateEntry },
   data() {
@@ -181,22 +181,21 @@ export default {
     },
   },
   computed: {
-    mData() {
-      // mData = modified data (to be human-readable). Excellent approach for future-proofing cuz i can add variables such as notes, room number (if software is repurposed for the hotel industry),
-      const surname = this.rData.surname;
-      const givenNames = this.rData.givenNames;
-      const type = this.translateDocType(this.rData.type);
-      const format = this.rData.format;
-      const docNum = this.rData.docNum;
-      const issuingOrg = this.translateCountryCode(this.rData.issuingOrg);
-      const nationality = this.translateCountryCode(this.rData.nationality);
-      const sex = this.translateSexCode(this.rData.sex);
-      const birthDate = this.rData.birthDate;
-      const expDate = this.rData.expDate;
-      const personalNum = this.rData.personalNum;
-      const optional1 = this.rData.optional1;
-      const optional2 = this.rData.optional2;
-      const notes = this.notes;
+    uiData() {
+      // uiData = user interface data (to be displayed)
+      const surname = this.mrzData.surname;
+      const givenNames = this.mrzData.givenNames;
+      const type = this.translateDocType(this.mrzData.type);
+      const format = this.mrzData.format;
+      const docNum = this.mrzData.docNum;
+      const issuingOrg = this.translateCountryCode(this.mrzData.issuingOrg);
+      const nationality = this.translateCountryCode(this.mrzData.nationality);
+      const sex = this.translateSexCode(this.mrzData.sex);
+      const birthDate = this.mrzData.birthDate;
+      const expDate = this.mrzData.expDate;
+      const personalNum = this.mrzData.personalNum;
+      const optional1 = this.mrzData.optional1;
+      const optional2 = this.mrzData.optional2;
 
       return {
         surname,
@@ -212,7 +211,6 @@ export default {
         personalNum,
         optional1,
         optional2,
-        notes,
       };
     },
   },

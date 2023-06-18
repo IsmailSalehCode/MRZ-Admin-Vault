@@ -22,7 +22,7 @@
       </v-card-text>
       <v-card-text v-if="mrzData.type != null">
         <!-- Checking for mrzData.type!=null, because it's the first thing CardMRZ_RenderData.vue works with. -->
-        <CardMRZ_RenderData :rData="mrzData" />
+        <CardMRZ_RenderData :mrzData="mrzData" />
       </v-card-text>
     </v-card>
   </v-container>
