@@ -56,9 +56,9 @@ async function getAllEntries() {
   }
 }
 
-async function deleteEntry(entryId) {
+async function deleteEntries(entryDocNums) {
   try {
-    const result = await db.mrzEntries.where("docNum").equals(entryId).delete();
+    const result = await db.mrzEntries.bulkDelete(entryDocNums);
     return result;
   } catch (err) {
     return translateErr(err);
@@ -76,4 +76,4 @@ async function clearAllEntries() {
     });
 }
 
-export { addEntry, clearAllEntries, getAllEntries, deleteEntry };
+export { addEntry, clearAllEntries, getAllEntries, deleteEntries };

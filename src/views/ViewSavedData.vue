@@ -61,7 +61,7 @@
   </v-container>
 </template>
 <script>
-import { getAllEntries, deleteEntry } from "@/dbController";
+import { getAllEntries, deleteEntries } from "@/dbController";
 export default {
   data() {
     return {
@@ -191,11 +191,8 @@ export default {
       }
     },
     async deleteSelected() {
-      const arrToDelete = this.selected;
-      let result;
-      for (const entryDocNum of arrToDelete) {
-        result = await deleteEntry(entryDocNum);
-      }
+      const entriesToDelete = this.selected;
+      const result = await deleteEntries(entriesToDelete);
       if (!(result instanceof Error)) {
         this.getAllEntries();
       } else {
