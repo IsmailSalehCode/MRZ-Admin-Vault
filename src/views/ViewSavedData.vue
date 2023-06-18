@@ -181,10 +181,14 @@ export default {
         message: err.message,
       };
     },
+    resetArrSelected() {
+      this.selected = [];
+    },
     async getAllEntries() {
       const result = await getAllEntries();
       if (!(result instanceof Error)) {
         this.cards = result;
+        this.resetArrSelected();
       } else {
         this.handleErr(result);
       }
