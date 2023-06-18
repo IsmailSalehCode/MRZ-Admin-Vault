@@ -36,10 +36,18 @@
   <v-container>
     <v-row justify="center" style="text-align: center">
       <v-col>
-        <v-btn color="error" :disabled="!isAtLeastOneSelected">Изтрий</v-btn>
+        <v-btn
+          icon="mdi-delete-forever"
+          color="error"
+          :disabled="!isAtLeastOneSelected"
+        ></v-btn>
       </v-col>
       <v-col>
-        <v-btn color="warning" :disabled="!isOneSelected">Редактирай</v-btn>
+        <v-btn
+          icon="mdi-note-edit"
+          color="warning"
+          :disabled="!isOneSelected"
+        ></v-btn>
       </v-col>
     </v-row>
   </v-container>

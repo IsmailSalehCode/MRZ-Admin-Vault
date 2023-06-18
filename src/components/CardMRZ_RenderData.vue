@@ -121,7 +121,7 @@
         <v-col cols="12" class="pb-0">
           <v-textarea
             variant="outlined"
-            prepend-icon="mdi-notebook"
+            prepend-icon="mdi-note"
             clearable
             class="mx-auto"
             label="Бележки"
