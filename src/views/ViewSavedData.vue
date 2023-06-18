@@ -14,6 +14,15 @@
       :items-per-page-options="itemsPerPageOptions"
       page-text="{0}-{1} от {2}"
     >
+      <template v-slot:item.personalNum="{ item }">
+        {{ indicateIfEmpty(item.columns.personalNum) }}
+      </template>
+      <template v-slot:item.optional1="{ item }">
+        {{ indicateIfEmpty(item.columns.optional1) }}
+      </template>
+      <template v-slot:item.optional2="{ item }">
+        {{ indicateIfEmpty(item.columns.optional2) }}
+      </template>
       <template v-slot:item.notes="{ item }">
         {{ indicateIfEmpty(item.columns.notes) }}
       </template>
