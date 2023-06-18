@@ -47,6 +47,7 @@
           icon="mdi-delete-forever"
           color="error"
           :disabled="!isAtLeastOneSelected"
+          @click="deleteSelected"
         ></v-btn>
       </v-col>
       <v-col>
@@ -60,7 +61,7 @@
   </v-container>
 </template>
 <script>
-import { getAllEntries } from "@/dbController";
+import { getAllEntries, deleteEntry } from "@/dbController";
 export default {
   data() {
     return {
@@ -185,6 +186,18 @@ export default {
       const result = await getAllEntries();
       if (!(result instanceof Error)) {
         this.cards = result;
+      } else {
+        this.handleErr(result);
+      }
+    },
+    async deleteSelected() {
+      const arrToDelete = this.selected;
+      let result;
+      for (const entryDocNum of arrToDelete) {
+        result = await deleteEntry(entryDocNum);
+      }
+      if (!(result instanceof Error)) {
+        this.getAllEntries();
       } else {
         this.handleErr(result);
       }

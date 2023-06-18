@@ -5,10 +5,13 @@ function getCurrentTimestamp() {
 }
 
 function translateErr(err) {
+  // FOR DEV TODO: DELETE WHEN DONE
+  console.log("Err in translateErr:");
+  console.error(err);
   // returns Error containing a message in Bulgarian for the UI
   let bgErrMessage;
-  switch (err.inner.code) {
-    case 0:
+  switch (err.inner.message) {
+    case "Key already exists in the object store.":
       bgErrMessage = "Този документ е бил добавен вече.";
       break;
     default:
@@ -53,6 +56,15 @@ async function getAllEntries() {
   }
 }
 
+async function deleteEntry(entryId) {
+  try {
+    const result = await db.mrzEntries.where("docNum").equals(entryId).delete();
+    return result;
+  } catch (err) {
+    return translateErr(err);
+  }
+}
+
 async function clearAllEntries() {
   await db.mrzEntries
     .clear()
@@ -64,4 +76,4 @@ async function clearAllEntries() {
     });
 }
 
-export { addEntry, clearAllEntries, getAllEntries };
+export { addEntry, clearAllEntries, getAllEntries, deleteEntry };
