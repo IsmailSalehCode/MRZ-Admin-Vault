@@ -34,7 +34,13 @@
     </v-data-table>
   </v-container>
   <v-container>
-    <v-row justify="center" style="text-align: center">
+    <v-row
+      style="
+        text-align: center;
+        max-width: fit-content;
+        justify-content: center;
+      "
+    >
       <v-col>
         <v-btn
           icon="mdi-delete-forever"
