@@ -5,7 +5,7 @@
   </v-container>
   <v-container fluid>
     <v-data-table
-      no-data-text="Няма въведени данни."
+      no-data-text="Няма данни."
       :headers="headers"
       :items="cards"
       class="elevation-5"
