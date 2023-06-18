@@ -218,9 +218,6 @@ export default {
       if (len >= 1) {
         this.isAtLeastOneSelected = true;
       }
-      // if (this.cards.length == 0) {
-      // this.selected = [];
-      // }
     },
   },
 };
