@@ -19,7 +19,7 @@ export default {
   },
   watch: {
     entry(newValue, oldValue) {
-      if (newValue.docNum != oldValue.docNum) {
+      if (newValue.mrzData.docNum != oldValue.mrzData.docNum) {
         // Когато имаме прочит на нов документ, да се рестартира състоянието/state на компонента
         // Когато потребителят прави промени по един entry (в бележките примерно), да не му се променя съобщението/alert-а.
         this.resetAlert();
