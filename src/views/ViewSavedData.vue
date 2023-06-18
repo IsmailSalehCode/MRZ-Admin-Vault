@@ -16,6 +16,12 @@
       v-model="selected"
       show-select
     >
+      <template v-slot:item.birthDate="{ item }">
+        {{ convertYYMMDD_toBG(item.columns.birthDate) }}
+      </template>
+      <template v-slot:item.expDate="{ item }">
+        {{ convertYYMMDD_toBG(item.columns.expDate) }}
+      </template>
       <template v-slot:item.personalNum="{ item }">
         {{ indicateIfEmpty(item.columns.personalNum) }}
       </template>
@@ -148,6 +154,10 @@ export default {
     };
   },
   methods: {
+    convertYYMMDD_toBG(dateString) {
+      const [year, month, day] = dateString.split("-");
+      return `${day}.${month}.${year} г.`;
+    },
     convertTimestampToLocaleDatetime(timestamp) {
       const date = new Date(timestamp);
       const options = {
