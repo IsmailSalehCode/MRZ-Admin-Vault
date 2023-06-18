@@ -7,9 +7,9 @@
           <v-icon>mdi-close</v-icon>
         </v-btn>
       </v-toolbar>
-      <v-card-title>{{ data.title }}</v-card-title>
+      <v-card-title>{{ docData.title }}</v-card-title>
       <v-card-text>
-        <div v-html="data.message"></div>
+        <div v-html="docData.message"></div>
       </v-card-text>
     </v-card>
   </v-dialog>
@@ -45,7 +45,7 @@ export default {
       }
       return result;
     },
-    data() {
+    docData() {
       let data = {};
       switch (this.topic) {
         case "terms-and-conditions":
