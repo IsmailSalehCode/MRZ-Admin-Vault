@@ -1,7 +1,7 @@
 <template>
   <v-footer bottom absolute app theme="dark">
     <v-col style="text-align: center">
-      <v-row align="center" justify="space-evenly">
+      <v-row justify="space-evenly">
         <v-col>
           <v-btn
             variant="plain"
@@ -13,7 +13,6 @@
         <v-col
           cols="12"
           sm="4"
-          align="center"
           justify="center"
           class="text-center"
           style="font-size: 0.8rem"
