@@ -425,21 +425,17 @@ export default {
       }
     },
     showResult(format, data) {
-      //Unsupported missing dates from travel documents: If all or part of the date of birth is unknown, the relevant character positions shall be completed with filler characters (<).
-      //make sure all regex have the same group names!!!
       console.log(format, data);
       this.mrzData.format = format;
       this.mrzData.type = this.removeFiller(data.type);
-      // -TODO verify it all works
       this.mrzData.issuingOrg = data.issuing_org;
       //===================================
       this.extractNames(data.names);
       this.mrzData.docNum = this.removeFiller(data.doc_num);
-      // -TODO verify it all works
       this.mrzData.nationality = data.nationality;
       //===================================
       this.mrzData.birthDate = this.toDate(data.birth_date);
-      // -TODO verify it all works
+      //===================================
       this.mrzData.sex = data.sex;
       //===================================
       this.mrzData.expDate = this.toDate(data.exp_date);
