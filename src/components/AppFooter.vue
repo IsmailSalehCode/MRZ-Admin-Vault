@@ -29,7 +29,6 @@
     </v-col>
   </v-footer>
   <DialogDoc ref="doc" :topic="docTopicChoice" />
-  <!-- TODO check the red words -->
 </template>
 <script>
 import DialogDoc from "./DialogDoc.vue";
