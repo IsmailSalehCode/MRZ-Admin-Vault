@@ -55,12 +55,7 @@ export default {
       this.loadingCurrentNotes = false;
     },
     submit() {
-      console.log(this.newNotes);
-    },
-  },
-  computed: {
-    newNotes() {
-      return this.currentNotes;
+      console.log(this.currentNotes);
     },
   },
 };
