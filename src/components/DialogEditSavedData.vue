@@ -73,6 +73,7 @@ export default {
       this.loadingCurrentNotes = false;
     },
     async submitEdit() {
+      // Note: checking for redundant update invocations is unnecessary as this app is offline and works with local IndexedDB
       const id = this.cardDocNum;
       this.loadingUpdate = true;
       const result = await updateEntryNotesById(id, this.currentNotes);
