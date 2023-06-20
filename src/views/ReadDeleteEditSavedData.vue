@@ -63,14 +63,20 @@
           icon="mdi-note-edit"
           color="warning"
           :disabled="!isOneSelected"
+          @click="startEdit"
         ></v-btn>
       </v-col>
     </v-row>
+    <DialogEditSavedData ref="edit_dialog" :card-doc-num="selected[0]" />
   </v-container>
 </template>
 <script>
 import { getAllEntries, deleteEntries } from "@/dbController";
+import DialogEditSavedData from "@/components/DialogEditSavedData.vue";
 export default {
+  components: {
+    DialogEditSavedData,
+  },
   data() {
     return {
       loadingCards: false,
@@ -216,6 +222,9 @@ export default {
       } else {
         this.handleErr(result);
       }
+    },
+    startEdit() {
+      this.$refs.edit_dialog.open();
     },
   },
   mounted() {

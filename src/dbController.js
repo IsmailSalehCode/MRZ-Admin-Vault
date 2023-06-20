@@ -65,6 +65,14 @@ async function deleteEntries(entryDocNums) {
   }
 }
 
+async function getEntryNotesById(docNum) {
+  const entry = await db.mrzEntries.get(docNum);
+  if (entry) {
+    return entry["notes"];
+  }
+  return Error("Документът не съществува.");
+}
+
 async function clearAllEntries() {
   await db.mrzEntries
     .clear()
@@ -112,4 +120,5 @@ export {
   getAllEntries,
   deleteEntries,
   addAllEntries,
+  getEntryNotesById,
 };
