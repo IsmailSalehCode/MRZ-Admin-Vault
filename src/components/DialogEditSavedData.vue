@@ -7,26 +7,30 @@
           <v-icon>mdi-close</v-icon>
         </v-btn>
       </v-toolbar>
-      <v-card-title>Бележките на документ № {{ cardDocNum }}:</v-card-title>
-      <v-card-text>
-        <v-textarea
-          :loading="loadingCurrentNotes"
-          variant="outlined"
-          prepend-icon="mdi-note"
-          clearable
-          label="Бележки"
-          v-model.trim="currentNotes"
-        ></v-textarea>
-      </v-card-text>
-      <v-card-actions>
-        <v-btn @click="submit">Редактирай</v-btn>
-      </v-card-actions>
+      <v-alert v-if="alert.show" :type="alert.type">{{
+        alert.message
+      }}</v-alert>
+      <div v-if="!alert.show">
+        <v-card-title>Бележките на документ № {{ cardDocNum }}:</v-card-title>
+        <v-card-text>
+          <v-textarea
+            :loading="loadingCurrentNotes"
+            variant="outlined"
+            prepend-icon="mdi-note"
+            clearable
+            label="Бележки"
+            v-model.trim="currentNotes"
+          ></v-textarea>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn @click="submit">Редактирай</v-btn>
+        </v-card-actions>
+      </div>
     </v-card>
   </v-dialog>
 </template>
 <script>
 import { getEntryNotesById } from "../dbController.js";
-import { dialog } from "electron";
 
 export default {
   props: {
@@ -37,6 +41,11 @@ export default {
       loadingCurrentNotes: false,
       dialogEdit: false,
       currentNotes: "",
+      alert: {
+        show: false,
+        type: "",
+        message: null,
+      },
     };
   },
   methods: {
@@ -44,6 +53,7 @@ export default {
       if (this.cardDocNum) {
         this.dialogEdit = true;
         this.getCurrentNotesById(this.cardDocNum);
+        this.handleErr(Error("Heya"));
       }
     },
     close() {
@@ -63,12 +73,11 @@ export default {
       console.log(this.currentNotes);
     },
     handleErr(err) {
-      dialog.showMessageBox({
+      this.alert = {
+        show: true,
         type: "error",
-        title: "Възникна проблем...",
         message: err.message,
-        buttons: ["OK"],
-      });
+      };
     },
   },
 };
