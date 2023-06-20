@@ -73,6 +73,15 @@ async function getEntryNotesById(docNum) {
   return Error("Документът не съществува.");
 }
 
+async function updateEntryNotesById(docNum, newNotes) {
+  try {
+    const result = await db.mrzEntries.update(docNum, { notes: newNotes });
+    return result;
+  } catch (err) {
+    return translateErr(err);
+  }
+}
+
 async function clearAllEntries() {
   await db.mrzEntries
     .clear()
@@ -121,4 +130,5 @@ export {
   deleteEntries,
   addAllEntries,
   getEntryNotesById,
+  updateEntryNotesById,
 };

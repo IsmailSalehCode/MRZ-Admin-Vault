@@ -15,6 +15,7 @@
         <v-card-text>
           <v-textarea
             :loading="loadingCurrentNotes"
+            :disabled="loadingUpdate"
             variant="outlined"
             prepend-icon="mdi-note"
             clearable
@@ -23,22 +24,26 @@
           ></v-textarea>
         </v-card-text>
         <v-card-actions>
-          <v-btn @click="submit">Редактирай</v-btn>
+          <v-btn :loading="loadingUpdate" class="success" @click="submitEdit"
+            >Редактирай</v-btn
+          >
         </v-card-actions>
       </div>
     </v-card>
   </v-dialog>
 </template>
 <script>
-import { getEntryNotesById } from "../dbController.js";
+import { getEntryNotesById, updateEntryNotesById } from "../dbController.js";
 
 export default {
+  emits: ["displayUpdatedData"],
   props: {
     cardDocNum: String,
   },
   data() {
     return {
       loadingCurrentNotes: false,
+      loadingUpdate: false,
       dialog: false,
       currentNotes: "",
       alert: {
@@ -68,8 +73,19 @@ export default {
       }
       this.loadingCurrentNotes = false;
     },
-    submit() {
-      console.log(this.currentNotes);
+    async submitEdit() {
+      const id = this.cardDocNum;
+      this.loadingUpdate = true;
+      const result = await updateEntryNotesById(id, this.currentNotes);
+      if (result instanceof Error) {
+        this.handleErr(result);
+      }
+      this.loadingUpdate = false;
+      this.emitUpdateParent();
+    },
+    emitUpdateParent() {
+      this.close();
+      this.$emit("displayUpdatedData");
     },
     handleErr(err) {
       this.alert = {
