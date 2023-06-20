@@ -1,5 +1,10 @@
 <template>
-  <v-dialog theme="dark" :max-width="docWidth" v-model="dialog">
+  <v-dialog
+    v-if="topic"
+    theme="dark"
+    :max-width="documentData.cardWidth"
+    v-model="dialog"
+  >
     <v-card>
       <v-toolbar density="compact">
         <v-spacer></v-spacer>
@@ -7,14 +12,16 @@
           <v-icon>mdi-close</v-icon>
         </v-btn>
       </v-toolbar>
-      <v-card-title>{{ docData.title }}</v-card-title>
+      <v-card-title>{{ documentData.title }}</v-card-title>
       <v-card-text>
-        <div v-html="docData.message"></div>
+        <div v-html="documentData.content"></div>
       </v-card-text>
     </v-card>
   </v-dialog>
 </template>
 <script>
+import Documents from "../info-docs.json";
+
 export default {
   props: {
     topic: String,
@@ -33,35 +40,12 @@ export default {
     },
   },
   computed: {
-    docWidth() {
-      let result = null;
-      switch (this.topic) {
-        case "terms-and-conditions":
-          result = "900px";
-          break;
-        case "contact-info":
-          result = "400px";
-          break;
-      }
+    documentData() {
+      const topic = this.topic;
+      const result = Documents.find(function (obj) {
+        return obj.id == topic;
+      });
       return result;
-    },
-    docData() {
-      let data = {};
-      switch (this.topic) {
-        case "terms-and-conditions":
-          data = {
-            title: "Общи Условия",
-            message: "<p>Това е демо (todo)</p>",
-          };
-          break;
-        case "contact-info":
-          data = {
-            title: "Поддръжка",
-            message:
-              "<p><strong>Тел, Вайбър</strong>: <a href='tel:0889907045'>088 990 7045</a></p> <p><strong>E-mail</strong>: <a href='mailto:isaleh@tu-sofia.bg'>isaleh@tu-sofia.bg</a></p> <p><strong>Фейсбук</strong>: <a href='https://www.facebook.com/ismail.saleh.921230' target='_blank'>ismail.saleh.921230</a></p>",
-          };
-      }
-      return data;
     },
   },
 };
