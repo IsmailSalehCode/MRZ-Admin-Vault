@@ -6,6 +6,8 @@
   <v-container fluid>
     <v-data-table
       no-data-text="Няма данни."
+      loading-text="Зареждат се данните."
+      :loading="loadingCards"
       :headers="headers"
       :items="cards"
       class="elevation-5"
@@ -71,6 +73,7 @@ import { getAllEntries, deleteEntries } from "@/dbController";
 export default {
   data() {
     return {
+      loadingCards: false,
       cards: [],
       headers: [
         {
@@ -195,6 +198,7 @@ export default {
       this.selected = [];
     },
     async getAllEntries() {
+      this.loadingCards = true;
       const result = await getAllEntries();
       if (!(result instanceof Error)) {
         this.cards = result;
@@ -202,6 +206,7 @@ export default {
       } else {
         this.handleErr(result);
       }
+      this.loadingCards = false;
     },
     async deleteSelected() {
       const entriesToDelete = this.selected;
