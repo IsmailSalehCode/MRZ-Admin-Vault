@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog">
+  <v-dialog v-model="dialog" max-width="900">
     <v-card>
       <v-toolbar density="compact">
         <v-spacer></v-spacer>
@@ -7,9 +7,7 @@
           <v-icon>mdi-close</v-icon>
         </v-btn>
       </v-toolbar>
-      <v-card-title
-        >Редакция на бележката на документ {{ cardDocNum }}</v-card-title
-      >
+      <v-card-title>Бележките на документ № {{ cardDocNum }}:</v-card-title>
       <v-card-text>
         <v-textarea
           :loading="loadingCurrentNotes"
@@ -21,7 +19,7 @@
         ></v-textarea>
       </v-card-text>
       <v-card-actions>
-        <v-btn @click="submit">Готово</v-btn>
+        <v-btn @click="submit">Редактирай</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
