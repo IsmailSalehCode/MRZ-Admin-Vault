@@ -28,13 +28,13 @@
       </v-row>
     </v-col>
   </v-footer>
-  <DialogDoc ref="doc" :topic="docTopicChoice" />
+  <DialogInfoDoc ref="doc" :topic="docTopicChoice" />
 </template>
 <script>
-import DialogDoc from "./DialogDoc.vue";
+import DialogInfoDoc from "./DialogInfoDoc.vue";
 
 export default {
-  components: { DialogDoc },
+  components: { DialogInfoDoc },
   data() {
     return {
       docTopicChoice: null,
