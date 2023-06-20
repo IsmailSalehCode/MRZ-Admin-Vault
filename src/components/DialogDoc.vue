@@ -1,4 +1,5 @@
 <template>
+  <!-- v-if='topic' check is the shortest solution to: 'undefined.cardWidth' error which is breaking the app -->
   <v-dialog
     v-if="topic"
     theme="dark"
