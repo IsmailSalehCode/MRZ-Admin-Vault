@@ -67,8 +67,8 @@
         ></v-btn>
       </v-col>
     </v-row>
-    <DialogEditSavedData ref="edit_dialog" :card-doc-num="selected[0]" />
   </v-container>
+  <DialogEditSavedData ref="edit_dialog" :card-doc-num="selected[0]" />
 </template>
 <script>
 import { getAllEntries, deleteEntries } from "@/dbController";
