@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialogEdit" max-width="900">
+  <v-dialog v-model="dialog" max-width="900">
     <v-card>
       <v-toolbar density="compact">
         <v-spacer></v-spacer>
@@ -39,7 +39,7 @@ export default {
   data() {
     return {
       loadingCurrentNotes: false,
-      dialogEdit: false,
+      dialog: false,
       currentNotes: "",
       alert: {
         show: false,
@@ -51,12 +51,12 @@ export default {
   methods: {
     open() {
       if (this.cardDocNum) {
-        this.dialogEdit = true;
+        this.dialog = true;
         this.getCurrentNotesById(this.cardDocNum);
       }
     },
     close() {
-      this.dialogEdit = false;
+      this.dialog = false;
     },
     async getCurrentNotesById(id) {
       this.loadingCurrentNotes = true;
