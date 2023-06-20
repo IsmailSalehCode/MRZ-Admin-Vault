@@ -1,7 +1,7 @@
 // Composables
 import { createRouter, createWebHistory } from "vue-router";
 import ReadAddMRZ from "../views/ReadAddMRZ.vue";
-import ViewSavedData from "../views/ViewSavedData.vue";
+import ReadDeleteEditSavedData from "../views/ReadDeleteEditSavedData.vue";
 
 const routes = [
   {
@@ -10,7 +10,7 @@ const routes = [
   },
   {
     path: "/saved",
-    component: ViewSavedData,
+    component: ReadDeleteEditSavedData,
   },
 ];
 
