@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" max-width="900">
+  <v-dialog v-model="dialog" persistent max-width="900">
     <v-card>
       <v-toolbar density="compact">
         <v-spacer></v-spacer>
@@ -19,12 +19,11 @@
             variant="outlined"
             prepend-icon="mdi-note"
             clearable
-            label="Бележки"
             v-model.trim="currentNotes"
           ></v-textarea>
         </v-card-text>
         <v-card-actions>
-          <v-btn :loading="loadingUpdate" class="success" @click="submitEdit"
+          <v-btn :loading="loadingUpdate" color="success" @click="submitEdit"
             >Редактирай</v-btn
           >
         </v-card-actions>
