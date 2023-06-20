@@ -76,4 +76,40 @@ async function clearAllEntries() {
     });
 }
 
-export { addEntry, clearAllEntries, getAllEntries, deleteEntries };
+async function addAllEntries() {
+  const entries = [
+    {
+      docNum: "1",
+      surname: "Lancelot",
+      givenNames: "Gary Smith",
+      type: "TD1",
+      format: "Idk lol",
+      issuingOrg: "GBR",
+      nationality: "JAP",
+      sex: "M",
+      birthDate: "98-01-02",
+      expDate: "70-05-12",
+      personalNum: "Example personal num",
+      optional1: "Example optional 1",
+      optional2: "Example optional 2",
+      notes: "Likes horse-riding",
+      updatedAt: getCurrentTimestamp(),
+    },
+  ];
+  await db.mrzEntries
+    .bulkAdd(entries)
+    .then(() => {
+      console.log("Entries added successfully");
+    })
+    .catch((error) => {
+      console.error("Error occurred while adding entries:", error);
+    });
+}
+
+export {
+  addEntry,
+  clearAllEntries,
+  getAllEntries,
+  deleteEntries,
+  addAllEntries,
+};
