@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" max-width="900">
+  <v-dialog v-model="dialogEdit" max-width="900">
     <v-card>
       <v-toolbar density="compact">
         <v-spacer></v-spacer>
@@ -26,6 +26,7 @@
 </template>
 <script>
 import { getEntryNotesById } from "../dbController.js";
+import { dialog } from "electron";
 
 export default {
   props: {
@@ -34,28 +35,40 @@ export default {
   data() {
     return {
       loadingCurrentNotes: false,
-      dialog: false,
+      dialogEdit: false,
       currentNotes: "",
     };
   },
   methods: {
     open() {
       if (this.cardDocNum) {
-        this.dialog = true;
+        this.dialogEdit = true;
         this.getCurrentNotesById(this.cardDocNum);
       }
     },
     close() {
-      this.dialog = false;
+      this.dialogEdit = false;
     },
     async getCurrentNotesById(id) {
       this.loadingCurrentNotes = true;
       const result = await getEntryNotesById(id);
-      this.currentNotes = result;
+      if (result instanceof Error) {
+        this.handleErr(result);
+      } else {
+        this.currentNotes = result;
+      }
       this.loadingCurrentNotes = false;
     },
     submit() {
       console.log(this.currentNotes);
+    },
+    handleErr(err) {
+      dialog.showMessageBox({
+        type: "error",
+        title: "Възникна проблем...",
+        message: err.message,
+        buttons: ["OK"],
+      });
     },
   },
 };
