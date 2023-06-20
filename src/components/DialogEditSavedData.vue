@@ -53,7 +53,6 @@ export default {
       if (this.cardDocNum) {
         this.dialogEdit = true;
         this.getCurrentNotesById(this.cardDocNum);
-        this.handleErr(Error("Heya"));
       }
     },
     close() {
