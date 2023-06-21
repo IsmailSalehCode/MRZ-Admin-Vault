@@ -143,10 +143,13 @@
 </template>
 
 <script>
-import CountryCodes from "../ICAO-constants/CountryCodes.json";
-import DocumentTypes from "../ICAO-constants/DocumentTypes.json";
-import SexCodes from "../ICAO-constants/SexCodes.json";
 import ButtonCreateEntry from "./ButtonCreateEntry.vue";
+import {
+  transcribeDocType,
+  transcribeCountryCode,
+  transcribeSexCode,
+  convertYYMMDD_toBG,
+} from "@/uxFunctions";
 
 export default {
   props: {
@@ -157,42 +160,25 @@ export default {
     return {
       dateFieldHint: "Година-Месец-Ден",
       notes: null,
+      convertYYMMDD_toBG: convertYYMMDD_toBG,
+      transcribeDocType: transcribeDocType,
+      transcribeCountryCode: transcribeCountryCode,
+      transcribeSexCode: transcribeSexCode,
     };
-  },
-  methods: {
-    translateDocType(type) {
-      let result = DocumentTypes[type.toString()];
-      if (result == null) {
-        //Reason: i.e. P indicates the document is a passport. One additional character may be used to further identify the document at the discretion of the issuing State [https://developers.mobbeel.com/docs/mobbscan-icao-document-types/]. That means that if i have a 'PA', I would still want to indicate that it is a passport. DocumentTypes would return null.
-        const firstChar = type.charAt(0);
-        const secondChar = type.charAt(1);
-        result = DocumentTypes[firstChar];
-        result = result.concat(", " + secondChar);
-      }
-      return result;
-    },
-    translateCountryCode(countryCode) {
-      const result = CountryCodes[countryCode.toString()];
-      return result;
-    },
-    translateSexCode(sexCode) {
-      const result = SexCodes[sexCode.toString()];
-      return result;
-    },
   },
   computed: {
     uiData() {
       // uiData = user interface data (to be displayed)
       const surname = this.mrzData.surname;
       const givenNames = this.mrzData.givenNames;
-      const type = this.translateDocType(this.mrzData.type);
+      const type = this.transcribeDocType(this.mrzData.type);
       const format = this.mrzData.format;
       const docNum = this.mrzData.docNum;
-      const issuingOrg = this.translateCountryCode(this.mrzData.issuingOrg);
-      const nationality = this.translateCountryCode(this.mrzData.nationality);
-      const sex = this.translateSexCode(this.mrzData.sex);
-      const birthDate = this.mrzData.birthDate;
-      const expDate = this.mrzData.expDate;
+      const issuingOrg = this.transcribeCountryCode(this.mrzData.issuingOrg);
+      const nationality = this.transcribeCountryCode(this.mrzData.nationality);
+      const sex = this.transcribeSexCode(this.mrzData.sex);
+      const birthDate = this.convertYYMMDD_toBG(this.mrzData.birthDate);
+      const expDate = this.convertYYMMDD_toBG(this.mrzData.expDate);
       const personalNum = this.mrzData.personalNum;
       const optional1 = this.mrzData.optional1;
       const optional2 = this.mrzData.optional2;
