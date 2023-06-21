@@ -18,6 +18,18 @@
       v-model="selected"
       show-select
     >
+      <template v-slot:item.type="{ item }">
+        {{ transcribeDocType(item.columns.type) }}
+      </template>
+      <template v-slot:item.issuingOrg="{ item }">
+        {{ transcribeCountryCode(item.columns.issuingOrg) }}
+      </template>
+      <template v-slot:item.nationality="{ item }">
+        {{ transcribeCountryCode(item.columns.nationality) }}
+      </template>
+      <template v-slot:item.sex="{ item }">
+        {{ transcribeSexCode(item.columns.sex) }}
+      </template>
       <template v-slot:item.birthDate="{ item }">
         {{ convertYYMMDD_toBG(item.columns.birthDate) }}
       </template>
@@ -78,6 +90,9 @@
 import { getAllEntries, deleteEntries } from "@/dbController";
 import DialogEditSavedData from "@/components/DialogEditSavedData.vue";
 import {
+  transcribeDocType,
+  transcribeCountryCode,
+  transcribeSexCode,
   convertYYMMDD_toBG,
   convertTimestampToLocaleDatetime,
   indicateIfStrEmpty,
@@ -173,6 +188,9 @@ export default {
       convertYYMMDD_toBG: convertYYMMDD_toBG,
       convertTimestampToLocaleDatetime: convertTimestampToLocaleDatetime,
       indicateIfStrEmpty: indicateIfStrEmpty,
+      transcribeDocType: transcribeDocType,
+      transcribeCountryCode: transcribeCountryCode,
+      transcribeSexCode: transcribeSexCode,
     };
   },
   methods: {
