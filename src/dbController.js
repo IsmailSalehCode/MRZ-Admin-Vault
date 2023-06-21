@@ -74,8 +74,12 @@ async function getEntryNotesById(docNum) {
 }
 
 async function updateEntryNotesById(docNum, newNotes) {
+  const currentTimestamp = getCurrentTimestamp();
   try {
-    const result = await db.mrzEntries.update(docNum, { notes: newNotes });
+    const result = await db.mrzEntries.update(docNum, {
+      notes: newNotes,
+      updatedAt: currentTimestamp,
+    });
     return result;
   } catch (err) {
     return translateErr(err);
