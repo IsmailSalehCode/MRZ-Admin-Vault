@@ -25,16 +25,16 @@
         {{ convertYYMMDD_toBG(item.columns.expDate) }}
       </template>
       <template v-slot:item.personalNum="{ item }">
-        {{ indicateIfEmpty(item.columns.personalNum) }}
+        {{ indicateIfStrEmpty(item.columns.personalNum) }}
       </template>
       <template v-slot:item.optional1="{ item }">
-        {{ indicateIfEmpty(item.columns.optional1) }}
+        {{ indicateIfStrEmpty(item.columns.optional1) }}
       </template>
       <template v-slot:item.optional2="{ item }">
-        {{ indicateIfEmpty(item.columns.optional2) }}
+        {{ indicateIfStrEmpty(item.columns.optional2) }}
       </template>
       <template v-slot:item.notes="{ item }">
-        {{ indicateIfEmpty(item.columns.notes) }}
+        {{ indicateIfStrEmpty(item.columns.notes) }}
       </template>
       <template v-slot:item.updatedAt="{ item }">
         {{ convertTimestampToLocaleDatetime(item.columns.updatedAt) }}
@@ -77,6 +77,12 @@
 <script>
 import { getAllEntries, deleteEntries } from "@/dbController";
 import DialogEditSavedData from "@/components/DialogEditSavedData.vue";
+import {
+  convertYYMMDD_toBG,
+  convertTimestampToLocaleDatetime,
+  indicateIfStrEmpty,
+} from "@/uxFunctions";
+
 export default {
   components: {
     DialogEditSavedData,
@@ -164,32 +170,12 @@ export default {
       selected: [],
       isOneSelected: false,
       isAtLeastOneSelected: false,
+      convertYYMMDD_toBG: convertYYMMDD_toBG,
+      convertTimestampToLocaleDatetime: convertTimestampToLocaleDatetime,
+      indicateIfStrEmpty: indicateIfStrEmpty,
     };
   },
   methods: {
-    convertYYMMDD_toBG(dateString) {
-      const [year, month, day] = dateString.split("-");
-      return `${day}.${month}.${year} г.`;
-    },
-    convertTimestampToLocaleDatetime(timestamp) {
-      const date = new Date(timestamp);
-      const options = {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-        second: "numeric",
-        hour12: false,
-      };
-      const localizedDatetime = date.toLocaleString("bg-BG", options);
-
-      return localizedDatetime;
-    },
-    indicateIfEmpty(str) {
-      const result = str == null || str == "" ? "╳" : str;
-      return result;
-    },
     resetAlert() {
       this.alert = {
         show: false,
