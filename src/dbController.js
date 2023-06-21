@@ -109,7 +109,7 @@ async function addAllEntries() {
       personalNum: "Example personal num",
       optional1: "Example optional 1",
       optional2: "Example optional 2",
-      notes: "Likes horse-riding",
+      notes: "Likes golfing",
       updatedAt: getCurrentTimestamp(),
     },
   ];
