@@ -4,6 +4,7 @@
       <v-form ref="mrzForm" @submit.prevent>
         <v-card-title>
           <v-text-field
+            ref="mrzField"
             label="Машинен код"
             v-model.trim="machineCode"
             :rules="[mrzRules.validLength, mrzRules.validCharacters]"
@@ -38,6 +39,9 @@ export default {
   components: {
     AlertMRZInfo,
     CardMRZ_RenderData,
+  },
+  mounted() {
+    this.focusMrzField();
   },
   watch: {
     machineCode() {
@@ -77,6 +81,10 @@ export default {
   methods: {
     resetForm() {
       this.$refs.mrzForm.reset();
+      this.focusMrzField();
+    },
+    focusMrzField() {
+      this.$refs.mrzField.focus();
     },
     resetMRZData() {
       this.mrzData = {

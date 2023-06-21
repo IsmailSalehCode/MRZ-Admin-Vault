@@ -36,6 +36,7 @@ function createWindow() {
   // Open the DevTools.
   // if (isDev) {
   mainWindow.webContents.openDevTools();
+  //opening dev tools prevents mrzField foucs (mounted(){} hook in ReadAddMRZ.vue)
   // }
 }
 
