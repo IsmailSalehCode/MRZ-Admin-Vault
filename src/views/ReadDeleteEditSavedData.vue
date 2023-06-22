@@ -9,8 +9,32 @@
       :no-data-text="noDataText"
       :loading-text="loadingText"
       v-model="searchDocNum"
-      label="Търси по Док. №"
+      label="Търси по док. №"
       :items="itemsSearchDocNum"
+      clearable
+    ></v-select>
+    <v-select
+      :no-data-text="noDataText"
+      :loading-text="loadingText"
+      v-model="searchSurname"
+      label="Търси по фамилно име"
+      :items="itemsSearchSurname"
+      clearable
+    ></v-select>
+    <v-select
+      :no-data-text="noDataText"
+      :loading-text="loadingText"
+      v-model="searchGivenNames"
+      label="Търси по дадени имена"
+      :items="itemsSearchGivenNames"
+      clearable
+    ></v-select>
+    <v-select
+      :no-data-text="noDataText"
+      :loading-text="loadingText"
+      v-model="searchDocType"
+      label="Търси по док. тип"
+      :items="itemsSearchDocTypes"
       clearable
     ></v-select>
   </v-container>
@@ -207,6 +231,9 @@ export default {
       transcribeSexCode: transcribeSexCode,
       // BEGIN search vars
       searchDocNum: null,
+      searchSurname: null,
+      searchGivenNames: null,
+      searchDocType: null,
       // END search vars
     };
   },
@@ -251,6 +278,17 @@ export default {
     startEdit() {
       this.$refs.edit_dialog.open();
     },
+    getAllUniqueValuesFromArr(fieldName) {
+      return [...new Set(this.cards.map((c) => c[fieldName]))];
+    },
+    filterCards(query, filteredField) {
+      // if we have a query
+      if (query != null) {
+        this.cards = this.cards.filter((c) => c[filteredField] == query);
+      } else {
+        this.getAllEntries();
+      }
+    },
   },
   mounted() {
     if (this.alert.show == true) {
@@ -261,6 +299,16 @@ export default {
   computed: {
     itemsSearchDocNum() {
       return this.cards.map((c) => c.docNum);
+    },
+    itemsSearchSurname() {
+      return [...new Set(this.cards.map((c) => c.surname))];
+    },
+    itemsSearchGivenNames() {
+      return [...new Set(this.cards.map((c) => c.givenNames))];
+    },
+    itemsSearchDocTypes() {
+      // todo test it
+      return this.getAllUniqueValuesFromArr("type");
     },
   },
   watch: {
@@ -277,11 +325,34 @@ export default {
         this.isAtLeastOneSelected = true;
       }
     },
+    searchDocType() {
+      const desiredDocType = this.searchDocType;
+      const filteredField = "type";
+      this.filterCards(desiredDocType, filteredField);
+    },
     searchDocNum() {
       // if we have a query
       const desiredDocNum = this.searchDocNum;
       if (desiredDocNum != null) {
         this.cards = this.cards.filter((c) => c.docNum == desiredDocNum);
+      } else {
+        this.getAllEntries();
+      }
+    },
+    searchSurname() {
+      const desiredSurname = this.searchSurname;
+      if (desiredSurname != null) {
+        this.cards = this.cards.filter((c) => c.surname == desiredSurname);
+      } else {
+        this.getAllEntries();
+      }
+    },
+    searchGivenNames() {
+      const desiredGivenNames = this.searchGivenNames;
+      if (desiredGivenNames != null) {
+        this.cards = this.cards.filter(
+          (c) => c.givenNames == desiredGivenNames
+        );
       } else {
         this.getAllEntries();
       }
