@@ -342,7 +342,11 @@ export default {
       this.$refs.edit_dialog.open();
     },
     getAllUniqueValuesFromArr(fieldName) {
-      return [...new Set(this.cards.map((c) => c[fieldName]))];
+      return [
+        ...new Set(
+          this.cards.map((c) => c[fieldName]).filter((value) => value !== null)
+        ),
+      ];
     },
     filterCards(query, filteredField) {
       // if we have a query
@@ -350,6 +354,7 @@ export default {
         this.cards = this.cards.filter((c) => c[filteredField] == query);
       } else {
         this.getAllEntries();
+        // todo: BUG: upon clear of v-select, other filters get ignored
       }
     },
   },
