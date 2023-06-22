@@ -53,6 +53,46 @@
       :items="itemsSearchIssuingOrgs"
       clearable
     ></v-select>
+    <v-select
+      :no-data-text="noDataText"
+      :loading-text="loadingText"
+      v-model="searchNationality"
+      label="Търси по националност"
+      :items="itemsSearchNationality"
+      clearable
+    ></v-select>
+    <v-select
+      :no-data-text="noDataText"
+      :loading-text="loadingText"
+      v-model="searchSex"
+      label="Търси по пол"
+      :items="itemsSearchSex"
+      clearable
+    ></v-select>
+    <v-select
+      :no-data-text="noDataText"
+      :loading-text="loadingText"
+      v-model="searchPersonalNum"
+      label="Търси по личен №"
+      :items="itemsSearchPersonalNum"
+      clearable
+    ></v-select>
+    <v-select
+      :no-data-text="noDataText"
+      :loading-text="loadingText"
+      v-model="searchOptional1"
+      label="Търси по опц. поле 1"
+      :items="itemsSearchOptional1"
+      clearable
+    ></v-select>
+    <v-select
+      :no-data-text="noDataText"
+      :loading-text="loadingText"
+      v-model="searchOptional2"
+      label="Търси по опц. поле 2"
+      :items="itemsSearchOptional2"
+      clearable
+    ></v-select>
   </v-container>
   <v-container fluid>
     <!-- not all -text props are extracted to a variable. Only the ones that are reused -->
@@ -252,6 +292,11 @@ export default {
       searchDocType: null,
       searchDocFormat: null,
       searchIssuingOrg: null,
+      searchNationality: null,
+      searchSex: null,
+      searchPersonalNum: null,
+      searchOptional1: null,
+      searchOptional2: null,
       // END search vars
     };
   },
@@ -333,6 +378,21 @@ export default {
     },
     itemsSearchIssuingOrgs() {
       return this.getAllUniqueValuesFromArr("issuingOrg");
+    },
+    itemsSearchNationality() {
+      return this.getAllUniqueValuesFromArr("nationality");
+    },
+    itemsSearchSex() {
+      return this.getAllUniqueValuesFromArr("sex");
+    },
+    itemsSearchPersonalNum() {
+      return this.getAllUniqueValuesFromArr("personalNum");
+    },
+    itemsSearchOptional1() {
+      return this.getAllUniqueValuesFromArr("optional1");
+    },
+    itemsSearchOptional2() {
+      return this.getAllUniqueValuesFromArr("optional2");
     },
   },
   watch: {
