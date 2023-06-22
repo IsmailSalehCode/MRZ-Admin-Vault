@@ -106,7 +106,7 @@ async function addAllEntries() {
       type: "AC",
       format: "TD1",
       issuingOrg: "GBR",
-      nationality: "JAP",
+      nationality: "JAM",
       sex: "M",
       birthDate: "98-01-02",
       expDate: "70-05-12",
