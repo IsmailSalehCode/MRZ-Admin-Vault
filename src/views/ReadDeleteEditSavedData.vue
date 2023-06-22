@@ -298,16 +298,16 @@ export default {
   },
   computed: {
     itemsSearchDocNum() {
+      // docNum is unique by design
       return this.cards.map((c) => c.docNum);
     },
     itemsSearchSurname() {
-      return [...new Set(this.cards.map((c) => c.surname))];
+      return this.getAllUniqueValuesFromArr("surname");
     },
     itemsSearchGivenNames() {
-      return [...new Set(this.cards.map((c) => c.givenNames))];
+      return this.getAllUniqueValuesFromArr("givenNames");
     },
     itemsSearchDocTypes() {
-      // todo test it
       return this.getAllUniqueValuesFromArr("type");
     },
   },
@@ -331,31 +331,19 @@ export default {
       this.filterCards(desiredDocType, filteredField);
     },
     searchDocNum() {
-      // if we have a query
       const desiredDocNum = this.searchDocNum;
-      if (desiredDocNum != null) {
-        this.cards = this.cards.filter((c) => c.docNum == desiredDocNum);
-      } else {
-        this.getAllEntries();
-      }
+      const filteredField = "docNum";
+      this.filterCards(desiredDocNum, filteredField);
     },
     searchSurname() {
       const desiredSurname = this.searchSurname;
-      if (desiredSurname != null) {
-        this.cards = this.cards.filter((c) => c.surname == desiredSurname);
-      } else {
-        this.getAllEntries();
-      }
+      const filteredField = "surname";
+      this.filterCards(desiredSurname, filteredField);
     },
     searchGivenNames() {
       const desiredGivenNames = this.searchGivenNames;
-      if (desiredGivenNames != null) {
-        this.cards = this.cards.filter(
-          (c) => c.givenNames == desiredGivenNames
-        );
-      } else {
-        this.getAllEntries();
-      }
+      const filteredField = "givenNames";
+      this.filterCards(desiredGivenNames, filteredField);
     },
   },
 };
