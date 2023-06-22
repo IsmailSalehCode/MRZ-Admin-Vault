@@ -281,7 +281,6 @@ export default {
       // if we have a query
       const desiredDocNum = this.searchDocNum;
       if (desiredDocNum != null) {
-        console.log(desiredDocNum + "!");
         this.cards = this.cards.filter((c) => c.docNum == desiredDocNum);
       } else {
         this.getAllEntries();
