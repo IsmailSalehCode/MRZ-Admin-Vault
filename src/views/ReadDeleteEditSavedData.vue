@@ -3,6 +3,16 @@
   <v-container cols="12" v-if="alert.show">
     <v-alert :type="alert.type">{{ alert.message }}</v-alert>
   </v-container>
+  <v-container>
+    <!-- todo: extract no-data-text to a var -->
+    <v-select
+      no-data-text="Няма данни"
+      v-model="searchDocNum"
+      label="Търси по Док. №"
+      :items="itemsSearchDocNum"
+      clearable
+    ></v-select>
+  </v-container>
   <v-container fluid>
     <v-data-table
       no-data-text="Няма данни."
@@ -191,6 +201,9 @@ export default {
       transcribeDocType: transcribeDocType,
       transcribeCountryCode: transcribeCountryCode,
       transcribeSexCode: transcribeSexCode,
+      // BEGIN search vars
+      searchDocNum: null,
+      // END search vars
     };
   },
   methods: {
@@ -241,6 +254,11 @@ export default {
     }
     this.getAllEntries();
   },
+  computed: {
+    itemsSearchDocNum() {
+      return this.cards.map((c) => c.docNum);
+    },
+  },
   watch: {
     selected() {
       const len = this.selected.length;
@@ -253,6 +271,16 @@ export default {
       }
       if (len >= 1) {
         this.isAtLeastOneSelected = true;
+      }
+    },
+    searchDocNum() {
+      // if we have a query
+      const desiredDocNum = this.searchDocNum;
+      if (desiredDocNum != null) {
+        console.log(desiredDocNum + "!");
+        this.cards = this.cards.filter((c) => c.docNum == desiredDocNum);
+      } else {
+        this.getAllEntries();
       }
     },
   },
