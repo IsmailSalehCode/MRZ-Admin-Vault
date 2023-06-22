@@ -37,6 +37,22 @@
       :items="itemsSearchDocTypes"
       clearable
     ></v-select>
+    <v-select
+      :no-data-text="noDataText"
+      :loading-text="loadingText"
+      v-model="searchDocFormat"
+      label="Търси по док. формат"
+      :items="itemsSearchDocFormats"
+      clearable
+    ></v-select>
+    <v-select
+      :no-data-text="noDataText"
+      :loading-text="loadingText"
+      v-model="searchIssuingOrg"
+      label="Търси по издател"
+      :items="itemsSearchIssuingOrgs"
+      clearable
+    ></v-select>
   </v-container>
   <v-container fluid>
     <!-- not all -text props are extracted to a variable. Only the ones that are reused -->
@@ -234,6 +250,8 @@ export default {
       searchSurname: null,
       searchGivenNames: null,
       searchDocType: null,
+      searchDocFormat: null,
+      searchIssuingOrg: null,
       // END search vars
     };
   },
@@ -310,6 +328,12 @@ export default {
     itemsSearchDocTypes() {
       return this.getAllUniqueValuesFromArr("type");
     },
+    itemsSearchDocFormats() {
+      return this.getAllUniqueValuesFromArr("format");
+    },
+    itemsSearchIssuingOrgs() {
+      return this.getAllUniqueValuesFromArr("issuingOrg");
+    },
   },
   watch: {
     selected() {
@@ -326,24 +350,60 @@ export default {
       }
     },
     searchDocType() {
-      const desiredDocType = this.searchDocType;
+      const desiredVal = this.searchDocType;
       const filteredField = "type";
-      this.filterCards(desiredDocType, filteredField);
+      this.filterCards(desiredVal, filteredField);
     },
     searchDocNum() {
-      const desiredDocNum = this.searchDocNum;
+      const desiredVal = this.searchDocNum;
       const filteredField = "docNum";
-      this.filterCards(desiredDocNum, filteredField);
+      this.filterCards(desiredVal, filteredField);
     },
     searchSurname() {
-      const desiredSurname = this.searchSurname;
+      const desiredVal = this.searchSurname;
       const filteredField = "surname";
-      this.filterCards(desiredSurname, filteredField);
+      this.filterCards(desiredVal, filteredField);
     },
     searchGivenNames() {
-      const desiredGivenNames = this.searchGivenNames;
+      const desiredVal = this.searchGivenNames;
       const filteredField = "givenNames";
-      this.filterCards(desiredGivenNames, filteredField);
+      this.filterCards(desiredVal, filteredField);
+    },
+    searchDocFormat() {
+      const desiredVal = this.searchDocFormat;
+      const filteredField = "format";
+      this.filterCards(desiredVal, filteredField);
+    },
+    searchIssuingOrg() {
+      const desiredVal = this.searchIssuingOrg;
+      const filteredField = "issuingOrg";
+      this.filterCards(desiredVal, filteredField);
+    },
+    searchNationality() {
+      const desiredVal = this.searchNationality;
+      const filteredField = "nationality";
+      this.filterCards(desiredVal, filteredField);
+    },
+    searchSex() {
+      const desiredVal = this.searchSex;
+      const filteredField = "sex";
+      this.filterCards(desiredVal, filteredField);
+    },
+    // todo birthDate
+    searchPersonalNum() {
+      const desiredVal = this.searchPersonalNum;
+      const filteredField = "personalNum";
+      this.filterCards(desiredVal, filteredField);
+    },
+    searchOptional1() {
+      const desiredVal = this.searchOptional1;
+      const filteredField = "optional1";
+      this.filterCards(desiredVal, filteredField);
+    },
+    searchOptional2() {
+      const desiredVal = this.searchOptional2;
+      const filteredField = "optional2";
+      this.filterCards(desiredVal, filteredField);
     },
   },
 };
