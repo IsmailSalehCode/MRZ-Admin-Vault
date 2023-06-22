@@ -4,9 +4,9 @@
     <v-alert :type="alert.type">{{ alert.message }}</v-alert>
   </v-container>
   <v-container>
-    <!-- todo: extract no-data-text to a var -->
     <v-select
-      no-data-text="Няма данни"
+      :no-data-text="noDataText"
+      :loading-text="loadingText"
       v-model="searchDocNum"
       label="Търси по Док. №"
       :items="itemsSearchDocNum"
@@ -14,9 +14,10 @@
     ></v-select>
   </v-container>
   <v-container fluid>
+    <!-- not all -text props are extracted to a variable. Only the ones that are reused -->
     <v-data-table
-      no-data-text="Няма данни."
-      loading-text="Зареждат се данните."
+      :no-data-text="noDataText"
+      :loading-text="loadingText"
       :loading="loadingCards"
       :headers="headers"
       :items="cards"
@@ -114,6 +115,8 @@ export default {
   },
   data() {
     return {
+      noDataText: "Няма данни",
+      loadingText: "Зареждат се ...",
       loadingCards: false,
       cards: [],
       headers: [
