@@ -4,6 +4,7 @@
     <v-alert :type="alert.type">{{ alert.message }}</v-alert>
   </v-container>
   <v-container>
+    <!-- todo: styling -->
     <v-select
       :no-data-text="noDataText"
       :loading-text="loadingText"
