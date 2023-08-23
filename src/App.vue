@@ -16,6 +16,10 @@ import AppFooter from "./components/AppFooter.vue";
 
 export default {
   components: { AppBar, AppFooter },
+  created() {
+    // prevent blank page in Electron build
+    this.$router.push("/");
+  },
 };
 </script>
 
