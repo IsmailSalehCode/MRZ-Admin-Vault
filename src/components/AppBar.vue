@@ -9,11 +9,11 @@
         variant="outlined"
       >
         MRZ Админ
-        <v-icon right class="ml-2"> mdi-card-account-details-outline </v-icon>
+        <v-icon right class="ml-1"> mdi-card-account-details-outline </v-icon>
       </v-btn>
     </v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-toolbar-items class="hidden-sm-and-down">
+    <v-toolbar-items class="hidden-xs">
       <v-btn
         color="white"
         text
@@ -24,7 +24,7 @@
         {{ item.title }}
       </v-btn>
     </v-toolbar-items>
-    <span class="hidden-md-and-up">
+    <span class="hidden-sm-and-up">
       <v-app-bar-nav-icon dark right @click="drawer = !drawer">
       </v-app-bar-nav-icon>
     </span>
