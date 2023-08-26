@@ -90,6 +90,8 @@
       :loading-text="loadingText"
       v-model="searchOptional2"
       label="Търси по опц. поле 2"
+      :persistent-hint="true"
+      hint="ЕГН за български лични карти"
       :items="itemsSearchOptional2"
       clearable
     ></v-select>
