@@ -8,7 +8,7 @@
         rounded
         variant="outlined"
       >
-        MRZ Админ
+        M.A.V.
         <v-icon right class="ml-1"> mdi-card-account-details-outline </v-icon>
       </v-btn>
     </v-toolbar-title>

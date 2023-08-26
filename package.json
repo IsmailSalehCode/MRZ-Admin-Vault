@@ -1,5 +1,5 @@
 {
-  "name": "mrz-doc-administrator-uni",
+  "name": "mrz-admin-vault",
   "version": "0.0.0",
   "author": "Ismail Saleh",
   "main": "electron/electron.js",
@@ -38,9 +38,9 @@
     "wait-on": "^7.0.1"
   },
   "build": {
-    "appId": "com.ismailsalehcode.mrz-administrator",
-    "productName": "MRZ Administrator",
-    "copyright": "Copyright © 2023 ${author}",
+    "appId": "com.ismailsalehcode.mrz-admin-vault",
+    "productName": "MRZ Admin Vault",
+    "copyright": "Copyright © 2023 Ismail Saleh",
     "mac": {
       "category": "public.app-category.utilities"
     },
