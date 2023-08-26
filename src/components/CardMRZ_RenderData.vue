@@ -124,7 +124,7 @@
             prepend-icon="mdi-note"
             clearable
             class="mx-auto"
-            label="Бележки"
+            label="Бележка"
             hint="За редакция на съществуващ запис отидете в 'Запаметени карти'"
             v-model.trim="notes"
           ></v-textarea>

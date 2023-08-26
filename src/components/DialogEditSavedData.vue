@@ -11,7 +11,7 @@
         alert.message
       }}</v-alert>
       <div v-if="!alert.show">
-        <v-card-title>Бележките на документ № {{ cardDocNum }}:</v-card-title>
+        <v-card-title>Бележката на документ № {{ cardDocNum }}:</v-card-title>
         <v-card-text>
           <v-textarea
             :loading="loadingCurrentNotes"
