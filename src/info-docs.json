@@ -7,7 +7,7 @@
   },
   {
     "id": "contact-info",
-    "title": "Контакт",
+    "title": "Свържете се с разработчика",
     "content": "<p><strong>Тел</strong>: <a href='tel:0889907045'>088 990 7045</a></p> <p><strong>Електронна поща</strong>: <a href='mailto:isaleh@tu-sofia.bg'>isaleh@tu-sofia.bg</a></p> <p><strong>Фейсбук</strong>: <a href='https://www.facebook.com/ismail.saleh.921230' target='_blank'>ismail.saleh.921230</a></p>",
     "cardWidth": "480px"
   }

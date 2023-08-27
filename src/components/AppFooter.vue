@@ -22,7 +22,7 @@
         </v-col>
         <v-col>
           <v-btn variant="plain" size="small" @click="openDoc('contact-info')"
-            >Поддръжка</v-btn
+            >Контакт</v-btn
           >
         </v-col>
       </v-row>
