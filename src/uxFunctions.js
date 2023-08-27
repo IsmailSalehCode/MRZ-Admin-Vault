@@ -41,9 +41,11 @@ function convertTimestampToLocaleDatetime(timestamp) {
 
   return localizedDatetime;
 }
-function indicateIfStrEmpty(str) {
-  const result = str == null || str == "" ? "╳" : str;
-  return result;
+function indicateEmpty(str) {
+  if (str == null || str == "") {
+    return '<span style="color:red">╳</span>';
+  }
+  return str;
 }
 
 export {
@@ -52,5 +54,5 @@ export {
   transcribeSexCode,
   convertYYMMDD_toBG,
   convertTimestampToLocaleDatetime,
-  indicateIfStrEmpty,
+  indicateEmpty,
 };

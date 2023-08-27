@@ -131,16 +131,16 @@
         {{ convertYYMMDD_toBG(item.columns.expDate) }}
       </template>
       <template v-slot:item.personalNum="{ item }">
-        {{ indicateIfStrEmpty(item.columns.personalNum) }}
+        <div v-html="indicateEmpty(item.columns.personalNum)"></div>
       </template>
       <template v-slot:item.optional1="{ item }">
-        {{ indicateIfStrEmpty(item.columns.optional1) }}
+        <div v-html="indicateEmpty(item.columns.optional1)"></div>
       </template>
       <template v-slot:item.optional2="{ item }">
-        {{ indicateIfStrEmpty(item.columns.optional2) }}
+        <div v-html="indicateEmpty(item.columns.optional2)"></div>
       </template>
       <template v-slot:item.notes="{ item }">
-        {{ indicateIfStrEmpty(item.columns.notes) }}
+        <div v-html="indicateEmpty(item.columns.notes)"></div>
       </template>
       <template v-slot:item.updatedAt="{ item }">
         {{ convertTimestampToLocaleDatetime(item.columns.updatedAt) }}
@@ -189,7 +189,7 @@ import {
   transcribeSexCode,
   convertYYMMDD_toBG,
   convertTimestampToLocaleDatetime,
-  indicateIfStrEmpty,
+  indicateEmpty,
 } from "@/uxFunctions";
 
 export default {
@@ -283,7 +283,7 @@ export default {
       isAtLeastOneSelected: false,
       convertYYMMDD_toBG: convertYYMMDD_toBG,
       convertTimestampToLocaleDatetime: convertTimestampToLocaleDatetime,
-      indicateIfStrEmpty: indicateIfStrEmpty,
+      indicateEmpty: indicateEmpty,
       transcribeDocType: transcribeDocType,
       transcribeCountryCode: transcribeCountryCode,
       transcribeSexCode: transcribeSexCode,
