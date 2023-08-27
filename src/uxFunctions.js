@@ -2,7 +2,7 @@ import CountryCodes from "./ICAO-constants/CountryCodes.json";
 import DocumentTypes from "./ICAO-constants/DocumentTypes.json";
 import SexCodes from "./ICAO-constants/SexCodes.json";
 
-function transcribeDocType(type) {
+function expandDocType(type) {
   let result = DocumentTypes[type.toString()];
   if (result == null) {
     //Reason: i.e. P indicates the document is a passport. One additional character may be used to further identify the document at the discretion of the issuing State [https://developers.mobbeel.com/docs/mobbscan-icao-document-types/]. That means that if i have a 'PA', I would still want to indicate that it is a passport. DocumentTypes would return null.
@@ -13,11 +13,11 @@ function transcribeDocType(type) {
   }
   return result;
 }
-function transcribeCountryCode(countryCode) {
+function expandCountryCode(countryCode) {
   const result = CountryCodes[countryCode.toString()];
   return result;
 }
-function transcribeSexCode(sexCode) {
+function expandSexCode(sexCode) {
   const result = SexCodes[sexCode.toString()];
   return result;
 }
@@ -49,9 +49,9 @@ function indicateEmpty(str) {
 }
 
 export {
-  transcribeDocType,
-  transcribeCountryCode,
-  transcribeSexCode,
+  expandDocType,
+  expandCountryCode,
+  expandSexCode,
   convertYYMMDD_toBG,
   convertTimestampToLocaleDatetime,
   indicateEmpty,

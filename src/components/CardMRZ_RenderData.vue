@@ -145,9 +145,9 @@
 <script>
 import ButtonCreateEntry from "./ButtonCreateEntry.vue";
 import {
-  transcribeDocType,
-  transcribeCountryCode,
-  transcribeSexCode,
+  expandDocType,
+  expandCountryCode,
+  expandSexCode,
   convertYYMMDD_toBG,
 } from "@/uxFunctions";
 
@@ -161,9 +161,9 @@ export default {
       dateFieldHint: "Година-Месец-Ден",
       notes: null,
       convertYYMMDD_toBG: convertYYMMDD_toBG,
-      transcribeDocType: transcribeDocType,
-      transcribeCountryCode: transcribeCountryCode,
-      transcribeSexCode: transcribeSexCode,
+      expandDocType: expandDocType,
+      expandCountryCode: expandCountryCode,
+      expandSexCode: expandSexCode,
     };
   },
   computed: {
@@ -171,12 +171,12 @@ export default {
       // uiData = user interface data (to be displayed)
       const surname = this.mrzData.surname;
       const givenNames = this.mrzData.givenNames;
-      const type = this.transcribeDocType(this.mrzData.type);
+      const type = this.expandDocType(this.mrzData.type);
       const format = this.mrzData.format;
       const docNum = this.mrzData.docNum;
-      const issuingOrg = this.transcribeCountryCode(this.mrzData.issuingOrg);
-      const nationality = this.transcribeCountryCode(this.mrzData.nationality);
-      const sex = this.transcribeSexCode(this.mrzData.sex);
+      const issuingOrg = this.expandCountryCode(this.mrzData.issuingOrg);
+      const nationality = this.expandCountryCode(this.mrzData.nationality);
+      const sex = this.expandSexCode(this.mrzData.sex);
       const birthDate = this.convertYYMMDD_toBG(this.mrzData.birthDate);
       const expDate = this.convertYYMMDD_toBG(this.mrzData.expDate);
       const personalNum = this.mrzData.personalNum;

@@ -113,16 +113,16 @@
       show-select
     >
       <template v-slot:item.type="{ item }">
-        {{ transcribeDocType(item.columns.type) }}
+        {{ expandDocType(item.columns.type) }}
       </template>
       <template v-slot:item.issuingOrg="{ item }">
-        {{ transcribeCountryCode(item.columns.issuingOrg) }}
+        {{ expandCountryCode(item.columns.issuingOrg) }}
       </template>
       <template v-slot:item.nationality="{ item }">
-        {{ transcribeCountryCode(item.columns.nationality) }}
+        {{ expandCountryCode(item.columns.nationality) }}
       </template>
       <template v-slot:item.sex="{ item }">
-        {{ transcribeSexCode(item.columns.sex) }}
+        {{ expandSexCode(item.columns.sex) }}
       </template>
       <template v-slot:item.birthDate="{ item }">
         {{ convertYYMMDD_toBG(item.columns.birthDate) }}
@@ -184,9 +184,9 @@
 import { getAllEntries, deleteEntries } from "@/dbController";
 import DialogEditSavedData from "@/components/DialogEditSavedData.vue";
 import {
-  transcribeDocType,
-  transcribeCountryCode,
-  transcribeSexCode,
+  expandDocType,
+  expandCountryCode,
+  expandSexCode,
   convertYYMMDD_toBG,
   convertTimestampToLocaleDatetime,
   indicateEmpty,
@@ -284,9 +284,9 @@ export default {
       convertYYMMDD_toBG: convertYYMMDD_toBG,
       convertTimestampToLocaleDatetime: convertTimestampToLocaleDatetime,
       indicateEmpty: indicateEmpty,
-      transcribeDocType: transcribeDocType,
-      transcribeCountryCode: transcribeCountryCode,
-      transcribeSexCode: transcribeSexCode,
+      expandDocType: expandDocType,
+      expandCountryCode: expandCountryCode,
+      expandSexCode: expandSexCode,
       // BEGIN search vars
       searchDocNum: null,
       searchSurname: null,
