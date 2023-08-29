@@ -16,15 +16,14 @@
       item-value="key"
       clearable
     ></v-select>
-    <div v-if="searchQueryField != null">
-      <v-select
-        :no-data-text="noDataText"
-        :loading-text="loadingText"
-        v-model="searchQueryValue"
-        placeholder="Налични стойности"
-        :items="itemsSearchQuery"
-      ></v-select>
-    </div>
+    <v-select
+      :disabled="searchQueryField == null"
+      :no-data-text="noDataText"
+      :loading-text="loadingText"
+      v-model="searchQueryValue"
+      placeholder="Налични стойности"
+      :items="itemsSearchQuery"
+    ></v-select>
     <!-- <v-select
       :no-data-text="noDataText"
       :loading-text="loadingText"
