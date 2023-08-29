@@ -10,24 +10,22 @@
       <v-alert v-if="alert.show" :type="alert.type">{{
         alert.message
       }}</v-alert>
-      <div v-if="!alert.show">
-        <v-card-title>Бележките на документ № {{ cardDocNum }}:</v-card-title>
-        <v-card-text>
-          <v-textarea
-            :loading="loadingCurrentNotes"
-            :disabled="loadingUpdate"
-            variant="outlined"
-            prepend-icon="mdi-note"
-            clearable
-            v-model.trim="currentNotes"
-          ></v-textarea>
-        </v-card-text>
-        <v-card-actions>
-          <v-btn :loading="loadingUpdate" color="success" @click="submitEdit"
-            >Редактирай</v-btn
-          >
-        </v-card-actions>
-      </div>
+      <v-card-title>Бележките на документ № {{ cardDocNum }}:</v-card-title>
+      <v-card-text>
+        <v-textarea
+          :loading="loadingCurrentNotes"
+          :disabled="loadingUpdate"
+          variant="outlined"
+          prepend-icon="mdi-note"
+          clearable
+          v-model.trim="currentNotes"
+        ></v-textarea>
+      </v-card-text>
+      <v-card-actions>
+        <v-btn :loading="loadingUpdate" color="success" @click="submitEdit"
+          >Редактирай</v-btn
+        >
+      </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
@@ -44,19 +42,22 @@ export default {
     cardDocNum: String,
   },
   data() {
-    return {
-      loadingCurrentNotes: false,
-      loadingUpdate: false,
-      dialog: false,
-      currentNotes: "",
-      alert: {
-        show: false,
-        type: "",
-        message: null,
-      },
-    };
+    return this.initialState();
   },
   methods: {
+    initialState() {
+      return {
+        loadingCurrentNotes: false,
+        loadingUpdate: false,
+        dialog: false,
+        currentNotes: "",
+        alert: {
+          show: false,
+          type: "",
+          message: null,
+        },
+      };
+    },
     open() {
       if (this.cardDocNum) {
         this.dialog = true;
@@ -64,7 +65,7 @@ export default {
       }
     },
     close() {
-      this.dialog = false;
+      Object.assign(this.$data, this.initialState());
     },
     async getCurrentNotesById(id) {
       this.loadingCurrentNotes = true;
@@ -83,24 +84,29 @@ export default {
         id,
         this.currentNotes
       );
-      if (!isUpdateRedundant) {
-        const result = await updateEntryNotesById(id, this.currentNotes);
-        if (result instanceof Error) {
-          this.handleErr(result);
-        }
-        this.emitUpdateParent();
+      if (isUpdateRedundant) {
+        this.showAlert("info", "Не сте направили промени.");
+        this.loadingUpdate = false;
+        return;
       }
+      const result = await updateEntryNotesById(id, this.currentNotes);
+      if (result instanceof Error) {
+        this.showAlert("error", result.message);
+        this.loadingUpdate = false;
+        return;
+      }
+      this.emitUpdateParent();
       this.loadingUpdate = false;
     },
     emitUpdateParent() {
       this.close();
       this.$emit("displayUpdatedData");
     },
-    handleErr(err) {
+    showAlert(type, message) {
       this.alert = {
         show: true,
-        type: "error",
-        message: err.message,
+        type: type,
+        message: message,
       };
     },
   },
