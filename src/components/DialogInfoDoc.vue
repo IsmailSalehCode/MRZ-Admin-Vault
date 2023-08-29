@@ -1,19 +1,13 @@
 <template>
   <!-- v-if='topic' check is the shortest solution to: 'undefined.cardWidth' error which is breaking the app -->
-  <v-dialog
-    v-if="topic"
-    theme="dark"
-    :max-width="documentData.cardWidth"
-    v-model="dialog"
-  >
+  <v-dialog v-if="topic" :max-width="documentData.cardWidth" v-model="dialog">
     <v-card>
       <v-toolbar density="compact">
         <v-spacer></v-spacer>
-        <v-btn icon @click="close">
-          <v-icon>mdi-close</v-icon>
-        </v-btn>
+        <v-btn icon @click="close" color="red"> ╳ </v-btn>
       </v-toolbar>
       <v-card-title>{{ documentData.title }}</v-card-title>
+      <hr />
       <v-card-text>
         <div v-html="documentData.content"></div>
       </v-card-text>

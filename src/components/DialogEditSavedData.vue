@@ -3,9 +3,7 @@
     <v-card>
       <v-toolbar density="compact">
         <v-spacer></v-spacer>
-        <v-btn icon @click="close">
-          <v-icon>mdi-close</v-icon>
-        </v-btn>
+        <v-btn icon @click="close" color="red"> ╳ </v-btn>
       </v-toolbar>
       <v-alert v-if="alert.show" :type="alert.type">{{
         alert.message
