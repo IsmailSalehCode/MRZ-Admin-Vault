@@ -5,9 +5,11 @@
         <v-spacer></v-spacer>
         <v-btn icon @click="close" color="red"> ╳ </v-btn>
       </v-toolbar>
-      <v-alert v-if="alert.show" :type="alert.type">{{
-        alert.message
-      }}</v-alert>
+      <v-expand-transition>
+        <v-sheet v-show="alert.show">
+          <v-alert rounded="0" :type="alert.type">{{ alert.message }}</v-alert>
+        </v-sheet>
+      </v-expand-transition>
       <v-card-title>Бележките на документ № {{ cardDocNum }}:</v-card-title>
       <v-card-text>
         <v-textarea
@@ -51,7 +53,7 @@ export default {
         currentNotes: "",
         alert: {
           show: false,
-          type: "",
+          type: "info",
           message: null,
         },
       };
