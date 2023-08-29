@@ -43,7 +43,7 @@ function convertTimestampToLocaleDatetime(timestamp) {
 }
 function indicateIfEmpty(str) {
   if (str == null || str == "") {
-    return "╳";
+    return "❌";
   }
   return str;
 }
