@@ -23,6 +23,8 @@
       v-model="searchQueryValue"
       placeholder="Налични стойности"
       :items="itemsSearchQuery"
+      ref="selectSearchQuery"
+      clearable
     ></v-select>
   </v-container>
   <v-container fluid>
@@ -286,8 +288,8 @@ export default {
     },
     searchQueryField() {
       const filteredField = this.searchQueryField;
-      if (!filteredField) {
-        this.searchQueryValue == null;
+      if (filteredField == null) {
+        this.$refs.selectSearchQuery.reset();
       }
     },
     searchQueryValue() {
