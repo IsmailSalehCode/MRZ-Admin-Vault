@@ -65,7 +65,6 @@
             style="max-width: 170px"
             label="Дата на раждане"
             v-model="uiData.birthDate"
-            :hint="dateFieldHint"
             persistent-hint
           />
         </v-col>
@@ -77,7 +76,6 @@
             style="max-width: 170px"
             label="Валидност"
             v-model="uiData.expDate"
-            :hint="dateFieldHint"
             persistent-hint
           />
         </v-col>
@@ -158,7 +156,6 @@ export default {
   components: { ButtonCreateEntry },
   data() {
     return {
-      dateFieldHint: "Година-Месец-Ден",
       notes: null,
       convertYYMMDD_toBG: convertYYMMDD_toBG,
       expandDocType: expandDocType,
