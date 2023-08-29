@@ -168,7 +168,7 @@ export default {
           key: "optional2",
         },
         {
-          title: "Бележка",
+          title: "Бележки",
           key: "notes",
         },
         {
