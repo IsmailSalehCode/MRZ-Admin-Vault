@@ -343,12 +343,12 @@ export default {
     },
     async getAllEntries() {
       this.loadingCards = true;
-      const result = await getAllEntries();
-      if (!(result instanceof Error)) {
-        this.cards = result;
+      const entries = await getAllEntries();
+      if (!(entries instanceof Error)) {
+        this.cards = this.improveReadability(entries);
         this.resetArrSelected();
       } else {
-        this.handleErr(result);
+        this.handleErr(entries);
       }
       this.loadingCards = false;
     },
