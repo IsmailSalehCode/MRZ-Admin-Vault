@@ -20,7 +20,6 @@
       <v-select
         hide-details
         v-show="searchQueryFieldIsNotNull"
-        :disabled="searchQueryField == null"
         :no-data-text="noDataText"
         :loading-text="loadingText"
         v-model="searchQueryValue"
