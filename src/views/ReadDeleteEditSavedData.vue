@@ -261,12 +261,10 @@ export default {
       ];
     },
     filterCards(query, filteredField) {
-      // if we have a query
       if (query != null) {
         this.cards = this.cards.filter((c) => c[filteredField] == query);
       } else {
         this.getAllEntries();
-        // todo: BUG: upon clear of v-select, other filters get ignored
       }
     },
   },
