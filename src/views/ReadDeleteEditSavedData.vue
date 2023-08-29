@@ -5,12 +5,11 @@
   </v-container>
   <v-container>
     <!-- todo: styling -->
-    Търси по
     <v-select
       :no-data-text="noDataText"
       :loading-text="loadingText"
       v-model="searchQueryField"
-      placeholder="Избери поле"
+      placeholder="🔍 Избери поле"
       :items="headers"
       item-title="title"
       item-value="key"
