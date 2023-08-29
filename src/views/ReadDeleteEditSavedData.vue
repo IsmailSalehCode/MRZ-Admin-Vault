@@ -15,16 +15,19 @@
       item-value="key"
       clearable
     ></v-select>
-    <v-select
-      :disabled="searchQueryField == null"
-      :no-data-text="noDataText"
-      :loading-text="loadingText"
-      v-model="searchQueryValue"
-      placeholder="Налични стойности"
-      :items="itemsSearchQuery"
-      ref="selectSearchQuery"
-      clearable
-    ></v-select>
+    <v-expand-transition>
+      <v-select
+        v-show="searchQueryFieldIsNotNull"
+        :disabled="searchQueryField == null"
+        :no-data-text="noDataText"
+        :loading-text="loadingText"
+        v-model="searchQueryValue"
+        placeholder="Налични стойности"
+        :items="itemsSearchQuery"
+        ref="selectSearchQuery"
+        clearable
+      ></v-select>
+    </v-expand-transition>
   </v-container>
   <v-container fluid>
     <!-- not all -text props are extracted to a variable. Only the ones that are reused -->
@@ -266,6 +269,9 @@ export default {
     },
   },
   computed: {
+    searchQueryFieldIsNotNull() {
+      return this.searchQueryField != null;
+    },
     itemsSearchQuery() {
       const searchQueryField = this.searchQueryField;
       return this.getAllUniqueValuesFromArr(searchQueryField);
