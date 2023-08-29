@@ -6,6 +6,7 @@
   <v-container>
     <!-- todo: styling -->
     <v-select
+      hide-details
       :no-data-text="noDataText"
       :loading-text="loadingText"
       v-model="searchQueryField"
@@ -17,6 +18,7 @@
     ></v-select>
     <v-expand-transition>
       <v-select
+        hide-details
         v-show="searchQueryFieldIsNotNull"
         :disabled="searchQueryField == null"
         :no-data-text="noDataText"
