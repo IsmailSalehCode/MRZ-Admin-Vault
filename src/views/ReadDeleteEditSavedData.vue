@@ -5,7 +5,27 @@
   </v-container>
   <v-container>
     <!-- todo: styling -->
+    Търси по
     <v-select
+      :no-data-text="noDataText"
+      :loading-text="loadingText"
+      v-model="searchQueryField"
+      placeholder="Избери поле"
+      :items="headers"
+      item-title="title"
+      item-value="key"
+      clearable
+    ></v-select>
+    <div v-if="searchQueryField != null">
+      <v-select
+        :no-data-text="noDataText"
+        :loading-text="loadingText"
+        v-model="searchQueryValue"
+        placeholder="Налични стойности"
+        :items="itemsSearchQuery"
+      ></v-select>
+    </div>
+    <!-- <v-select
       :no-data-text="noDataText"
       :loading-text="loadingText"
       v-model="searchDocNum"
@@ -94,7 +114,7 @@
       hint="ЕГН за български лични карти"
       :items="itemsSearchOptional2"
       clearable
-    ></v-select>
+    ></v-select> -->
   </v-container>
   <v-container fluid>
     <!-- not all -text props are extracted to a variable. Only the ones that are reused -->
@@ -198,6 +218,8 @@ export default {
   },
   data() {
     return {
+      searchQueryField: null,
+      searchQueryValue: null,
       noDataText: "Няма данни",
       loadingText: "Зареждат се ...",
       loadingCards: false,
@@ -344,6 +366,7 @@ export default {
       this.$refs.edit_dialog.open();
     },
     getAllUniqueValuesFromArr(fieldName) {
+      console.log(fieldName);
       return [
         ...new Set(
           this.cards.map((c) => c[fieldName]).filter((value) => value !== null)
@@ -367,6 +390,10 @@ export default {
     this.getAllEntries();
   },
   computed: {
+    itemsSearchQuery() {
+      const searchQueryField = this.searchQueryField;
+      return this.getAllUniqueValuesFromArr(searchQueryField);
+    },
     itemsSearchDocNum() {
       // docNum is unique by design
       return this.cards.map((c) => c.docNum);
