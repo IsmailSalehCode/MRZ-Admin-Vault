@@ -6,9 +6,9 @@
         <v-btn icon @click="close" color="red"> ╳ </v-btn>
       </v-toolbar>
       <v-expand-transition>
-        <v-sheet v-show="alert.show">
+        <div v-show="alert.show">
           <v-alert rounded="0" :type="alert.type">{{ alert.message }}</v-alert>
-        </v-sheet>
+        </div>
       </v-expand-transition>
       <v-card-title>Бележките на документ № {{ cardDocNum }}:</v-card-title>
       <v-card-text>
