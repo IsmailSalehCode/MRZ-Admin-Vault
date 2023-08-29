@@ -41,9 +41,9 @@ function convertTimestampToLocaleDatetime(timestamp) {
 
   return localizedDatetime;
 }
-function indicateEmpty(str) {
+function indicateIfEmpty(str) {
   if (str == null || str == "") {
-    return '<span style="color:red">╳</span>';
+    return "╳";
   }
   return str;
 }
@@ -54,5 +54,5 @@ export {
   expandSexCode,
   convertYYMMDD_toBG,
   convertTimestampToLocaleDatetime,
-  indicateEmpty,
+  indicateIfEmpty,
 };
