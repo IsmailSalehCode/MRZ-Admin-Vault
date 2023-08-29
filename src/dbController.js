@@ -86,6 +86,14 @@ async function updateEntryNotesById(docNum, newNotes) {
   }
 }
 
+async function isNotesUpdateRedundant(docNum, inputNotes) {
+  const existingNotes = await getEntryNotesById(docNum);
+  if (existingNotes == inputNotes) {
+    return true;
+  }
+  return false;
+}
+
 async function clearAllEntries() {
   await db.mrzEntries
     .clear()
@@ -135,4 +143,5 @@ export {
   addAllEntries,
   getEntryNotesById,
   updateEntryNotesById,
+  isNotesUpdateRedundant,
 };

@@ -32,7 +32,11 @@
   </v-dialog>
 </template>
 <script>
-import { getEntryNotesById, updateEntryNotesById } from "../dbController.js";
+import {
+  getEntryNotesById,
+  updateEntryNotesById,
+  isNotesUpdateRedundant,
+} from "../dbController.js";
 
 export default {
   emits: ["displayUpdatedData"],
@@ -73,15 +77,20 @@ export default {
       this.loadingCurrentNotes = false;
     },
     async submitEdit() {
-      // Note: checking for redundant update invocations is unnecessary as this app is offline and works with local IndexedDB
       const id = this.cardDocNum;
       this.loadingUpdate = true;
-      const result = await updateEntryNotesById(id, this.currentNotes);
-      if (result instanceof Error) {
-        this.handleErr(result);
+      const isUpdateRedundant = await isNotesUpdateRedundant(
+        id,
+        this.currentNotes
+      );
+      if (!isUpdateRedundant) {
+        const result = await updateEntryNotesById(id, this.currentNotes);
+        if (result instanceof Error) {
+          this.handleErr(result);
+        }
+        this.emitUpdateParent();
       }
       this.loadingUpdate = false;
-      this.emitUpdateParent();
     },
     emitUpdateParent() {
       this.close();
