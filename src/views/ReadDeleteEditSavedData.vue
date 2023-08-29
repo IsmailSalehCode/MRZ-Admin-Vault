@@ -24,96 +24,6 @@
       placeholder="Налични стойности"
       :items="itemsSearchQuery"
     ></v-select>
-    <!-- <v-select
-      :no-data-text="noDataText"
-      :loading-text="loadingText"
-      v-model="searchDocNum"
-      label="Търси по док. №"
-      :items="itemsSearchDocNum"
-      clearable
-    ></v-select>
-    <v-select
-      :no-data-text="noDataText"
-      :loading-text="loadingText"
-      v-model="searchSurname"
-      label="Търси по фамилно име"
-      :items="itemsSearchSurname"
-      clearable
-    ></v-select>
-    <v-select
-      :no-data-text="noDataText"
-      :loading-text="loadingText"
-      v-model="searchGivenNames"
-      label="Търси по дадени имена"
-      :items="itemsSearchGivenNames"
-      clearable
-    ></v-select>
-    <v-select
-      :no-data-text="noDataText"
-      :loading-text="loadingText"
-      v-model="searchDocType"
-      label="Търси по док. тип"
-      :items="itemsSearchDocTypes"
-      clearable
-    ></v-select>
-    <v-select
-      :no-data-text="noDataText"
-      :loading-text="loadingText"
-      v-model="searchDocFormat"
-      label="Търси по док. формат"
-      :items="itemsSearchDocFormats"
-      clearable
-    ></v-select>
-    <v-select
-      :no-data-text="noDataText"
-      :loading-text="loadingText"
-      v-model="searchIssuingOrg"
-      label="Търси по издател"
-      :items="itemsSearchIssuingOrgs"
-      clearable
-    ></v-select>
-    <v-select
-      :no-data-text="noDataText"
-      :loading-text="loadingText"
-      v-model="searchNationality"
-      label="Търси по националност"
-      :items="itemsSearchNationality"
-      clearable
-    ></v-select>
-    <v-select
-      :no-data-text="noDataText"
-      :loading-text="loadingText"
-      v-model="searchSex"
-      label="Търси по пол"
-      :items="itemsSearchSex"
-      clearable
-    ></v-select>
-    <v-select
-      :no-data-text="noDataText"
-      :loading-text="loadingText"
-      v-model="searchPersonalNum"
-      label="Търси по личен №"
-      :items="itemsSearchPersonalNum"
-      clearable
-    ></v-select>
-    <v-select
-      :no-data-text="noDataText"
-      :loading-text="loadingText"
-      v-model="searchOptional1"
-      label="Търси по опц. поле 1"
-      :items="itemsSearchOptional1"
-      clearable
-    ></v-select>
-    <v-select
-      :no-data-text="noDataText"
-      :loading-text="loadingText"
-      v-model="searchOptional2"
-      label="Търси по опц. поле 2"
-      :persistent-hint="true"
-      hint="ЕГН за български лични карти"
-      :items="itemsSearchOptional2"
-      clearable
-    ></v-select> -->
   </v-container>
   <v-container fluid>
     <!-- not all -text props are extracted to a variable. Only the ones that are reused -->
@@ -131,39 +41,6 @@
       v-model="selected"
       show-select
     >
-      <template v-slot:item.type="{ item }">
-        {{ expandDocType(item.columns.type) }}
-      </template>
-      <template v-slot:item.issuingOrg="{ item }">
-        {{ expandCountryCode(item.columns.issuingOrg) }}
-      </template>
-      <template v-slot:item.nationality="{ item }">
-        {{ expandCountryCode(item.columns.nationality) }}
-      </template>
-      <template v-slot:item.sex="{ item }">
-        {{ expandSexCode(item.columns.sex) }}
-      </template>
-      <template v-slot:item.birthDate="{ item }">
-        {{ convertYYMMDD_toBG(item.columns.birthDate) }}
-      </template>
-      <template v-slot:item.expDate="{ item }">
-        {{ convertYYMMDD_toBG(item.columns.expDate) }}
-      </template>
-      <template v-slot:item.personalNum="{ item }">
-        <div v-html="indicateEmpty(item.columns.personalNum)"></div>
-      </template>
-      <template v-slot:item.optional1="{ item }">
-        <div v-html="indicateEmpty(item.columns.optional1)"></div>
-      </template>
-      <template v-slot:item.optional2="{ item }">
-        <div v-html="indicateEmpty(item.columns.optional2)"></div>
-      </template>
-      <template v-slot:item.notes="{ item }">
-        <div v-html="indicateEmpty(item.columns.notes)"></div>
-      </template>
-      <template v-slot:item.updatedAt="{ item }">
-        {{ convertTimestampToLocaleDatetime(item.columns.updatedAt) }}
-      </template>
     </v-data-table>
   </v-container>
   <v-container>
@@ -208,7 +85,7 @@ import {
   expandSexCode,
   convertYYMMDD_toBG,
   convertTimestampToLocaleDatetime,
-  indicateEmpty,
+  indicateIfEmpty,
 } from "@/uxFunctions";
 
 export default {
@@ -302,25 +179,6 @@ export default {
       selected: [],
       isOneSelected: false,
       isAtLeastOneSelected: false,
-      convertYYMMDD_toBG: convertYYMMDD_toBG,
-      convertTimestampToLocaleDatetime: convertTimestampToLocaleDatetime,
-      indicateEmpty: indicateEmpty,
-      expandDocType: expandDocType,
-      expandCountryCode: expandCountryCode,
-      expandSexCode: expandSexCode,
-      // BEGIN search vars
-      searchDocNum: null,
-      searchSurname: null,
-      searchGivenNames: null,
-      searchDocType: null,
-      searchDocFormat: null,
-      searchIssuingOrg: null,
-      searchNationality: null,
-      searchSex: null,
-      searchPersonalNum: null,
-      searchOptional1: null,
-      searchOptional2: null,
-      // END search vars
     };
   },
   methods: {
@@ -352,6 +210,25 @@ export default {
       }
       this.loadingCards = false;
     },
+    improveReadability(entries) {
+      let readableEntries = [];
+      for (let i = 0; i < entries.length; i++) {
+        let entry = entries[i];
+        entry.type = expandDocType(entry.type);
+        entry.issuingOrg = expandCountryCode(entry.issuingOrg);
+        entry.nationality = expandCountryCode(entry.nationality);
+        entry.sex = expandSexCode(entry.sex);
+        entry.birthDate = convertYYMMDD_toBG(entry.birthDate);
+        entry.expDate = convertYYMMDD_toBG(entry.expDate);
+        entry.updatedAt = convertTimestampToLocaleDatetime(entry.updatedAt);
+        entry.personalNum = indicateIfEmpty(entry.personalNum);
+        entry.optional1 = indicateIfEmpty(entry.optional1);
+        entry.optional2 = indicateIfEmpty(entry.optional2);
+        entry.notes = indicateIfEmpty(entry.notes);
+        readableEntries.push(entry);
+      }
+      return readableEntries;
+    },
     async deleteSelected() {
       const entriesToDelete = this.selected;
       const result = await deleteEntries(entriesToDelete);
@@ -365,7 +242,6 @@ export default {
       this.$refs.edit_dialog.open();
     },
     getAllUniqueValuesFromArr(fieldName) {
-      console.log(fieldName);
       return [
         ...new Set(
           this.cards.map((c) => c[fieldName]).filter((value) => value !== null)
@@ -393,40 +269,6 @@ export default {
       const searchQueryField = this.searchQueryField;
       return this.getAllUniqueValuesFromArr(searchQueryField);
     },
-    itemsSearchDocNum() {
-      // docNum is unique by design
-      return this.cards.map((c) => c.docNum);
-    },
-    itemsSearchSurname() {
-      return this.getAllUniqueValuesFromArr("surname");
-    },
-    itemsSearchGivenNames() {
-      return this.getAllUniqueValuesFromArr("givenNames");
-    },
-    itemsSearchDocTypes() {
-      return this.getAllUniqueValuesFromArr("type");
-    },
-    itemsSearchDocFormats() {
-      return this.getAllUniqueValuesFromArr("format");
-    },
-    itemsSearchIssuingOrgs() {
-      return this.getAllUniqueValuesFromArr("issuingOrg");
-    },
-    itemsSearchNationality() {
-      return this.getAllUniqueValuesFromArr("nationality");
-    },
-    itemsSearchSex() {
-      return this.getAllUniqueValuesFromArr("sex");
-    },
-    itemsSearchPersonalNum() {
-      return this.getAllUniqueValuesFromArr("personalNum");
-    },
-    itemsSearchOptional1() {
-      return this.getAllUniqueValuesFromArr("optional1");
-    },
-    itemsSearchOptional2() {
-      return this.getAllUniqueValuesFromArr("optional2");
-    },
   },
   watch: {
     selected() {
@@ -442,60 +284,15 @@ export default {
         this.isAtLeastOneSelected = true;
       }
     },
-    searchDocType() {
-      const desiredVal = this.searchDocType;
-      const filteredField = "type";
-      this.filterCards(desiredVal, filteredField);
+    searchQueryField() {
+      const filteredField = this.searchQueryField;
+      if (!filteredField) {
+        this.searchQueryValue == null;
+      }
     },
-    searchDocNum() {
-      const desiredVal = this.searchDocNum;
-      const filteredField = "docNum";
-      this.filterCards(desiredVal, filteredField);
-    },
-    searchSurname() {
-      const desiredVal = this.searchSurname;
-      const filteredField = "surname";
-      this.filterCards(desiredVal, filteredField);
-    },
-    searchGivenNames() {
-      const desiredVal = this.searchGivenNames;
-      const filteredField = "givenNames";
-      this.filterCards(desiredVal, filteredField);
-    },
-    searchDocFormat() {
-      const desiredVal = this.searchDocFormat;
-      const filteredField = "format";
-      this.filterCards(desiredVal, filteredField);
-    },
-    searchIssuingOrg() {
-      const desiredVal = this.searchIssuingOrg;
-      const filteredField = "issuingOrg";
-      this.filterCards(desiredVal, filteredField);
-    },
-    searchNationality() {
-      const desiredVal = this.searchNationality;
-      const filteredField = "nationality";
-      this.filterCards(desiredVal, filteredField);
-    },
-    searchSex() {
-      const desiredVal = this.searchSex;
-      const filteredField = "sex";
-      this.filterCards(desiredVal, filteredField);
-    },
-    // todo birthDate
-    searchPersonalNum() {
-      const desiredVal = this.searchPersonalNum;
-      const filteredField = "personalNum";
-      this.filterCards(desiredVal, filteredField);
-    },
-    searchOptional1() {
-      const desiredVal = this.searchOptional1;
-      const filteredField = "optional1";
-      this.filterCards(desiredVal, filteredField);
-    },
-    searchOptional2() {
-      const desiredVal = this.searchOptional2;
-      const filteredField = "optional2";
+    searchQueryValue() {
+      const desiredVal = this.searchQueryValue;
+      const filteredField = this.searchQueryField;
       this.filterCards(desiredVal, filteredField);
     },
   },
