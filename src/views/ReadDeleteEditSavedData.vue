@@ -89,6 +89,12 @@ import {
 } from "@/uxFunctions";
 
 export default {
+  mounted() {
+    if (this.alert.show == true) {
+      this.resetAlert();
+    }
+    this.getAllEntries();
+  },
   components: {
     DialogEditSavedData,
   },
@@ -257,12 +263,6 @@ export default {
         // todo: BUG: upon clear of v-select, other filters get ignored
       }
     },
-  },
-  mounted() {
-    if (this.alert.show == true) {
-      this.resetAlert();
-    }
-    this.getAllEntries();
   },
   computed: {
     itemsSearchQuery() {
