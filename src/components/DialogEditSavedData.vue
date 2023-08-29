@@ -71,7 +71,7 @@ export default {
       this.loadingCurrentNotes = true;
       const result = await getEntryNotesById(id);
       if (result instanceof Error) {
-        this.handleErr(result);
+        this.showAlert("error", result.message);
       } else {
         this.currentNotes = result;
       }
