@@ -85,7 +85,7 @@ export default {
         this.currentNotes
       );
       if (isUpdateRedundant) {
-        this.showAlert("info", "Не сте направили промени.");
+        this.showAlert("info", "Не сте направили промяна.");
         this.loadingUpdate = false;
         return;
       }
