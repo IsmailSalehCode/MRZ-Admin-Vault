@@ -128,8 +128,7 @@ export default {
     alertInvalidDoc() {
       this.mrzData.info.push({
         type: "error",
-        message:
-          "Невалиден документ. Моля сканирайте отново или коригирайте ръчно.",
+        message: "Невалиден документ.",
       });
     },
     convertAllToDigits(arr) {
@@ -160,8 +159,7 @@ export default {
     alertCheckSumError() {
       this.mrzData.info.push({
         type: "warning",
-        message:
-          "Засечена е грешка спрямо контролните цифри. Моля сканирайте отново или коригирайте ръчно.",
+        message: "Засечена е грешка спрямо контролните цифри.",
       });
     },
     validCheckSum(chars, checkDigit) {
