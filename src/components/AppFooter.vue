@@ -28,22 +28,22 @@
       </v-row>
     </v-col>
   </v-footer>
-  <DialogInfoDoc ref="doc" :topic="docTopicChoice" />
+  <DialogMiscInfo ref="dialog_misc_info" :topic="topicChoice" />
 </template>
 <script>
-import DialogInfoDoc from "./DialogInfoDoc.vue";
+import DialogMiscInfo from "./DialogMiscInfo.vue";
 
 export default {
-  components: { DialogInfoDoc },
+  components: { DialogMiscInfo },
   data() {
     return {
-      docTopicChoice: null,
+      topicChoice: null,
     };
   },
   methods: {
     openDoc(topic) {
-      this.docTopicChoice = topic;
-      this.$refs.doc.open();
+      this.topicChoice = topic;
+      this.$refs.dialog_misc_info.open();
     },
   },
 };
