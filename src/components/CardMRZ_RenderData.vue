@@ -157,10 +157,6 @@ export default {
   data() {
     return {
       notes: null,
-      convertYYMMDD_toBG: convertYYMMDD_toBG,
-      expandDocType: expandDocType,
-      expandCountryCode: expandCountryCode,
-      expandSexCode: expandSexCode,
     };
   },
   computed: {
@@ -168,14 +164,14 @@ export default {
       // uiData = user interface data (to be displayed)
       const surname = this.mrzData.surname;
       const givenNames = this.mrzData.givenNames;
-      const type = this.expandDocType(this.mrzData.type);
+      const type = expandDocType(this.mrzData.type);
       const format = this.mrzData.format;
       const docNum = this.mrzData.docNum;
-      const issuingOrg = this.expandCountryCode(this.mrzData.issuingOrg);
-      const nationality = this.expandCountryCode(this.mrzData.nationality);
-      const sex = this.expandSexCode(this.mrzData.sex);
-      const birthDate = this.convertYYMMDD_toBG(this.mrzData.birthDate);
-      const expDate = this.convertYYMMDD_toBG(this.mrzData.expDate);
+      const issuingOrg = expandCountryCode(this.mrzData.issuingOrg);
+      const nationality = expandCountryCode(this.mrzData.nationality);
+      const sex = expandSexCode(this.mrzData.sex);
+      const birthDate = convertYYMMDD_toBG(this.mrzData.birthDate);
+      const expDate = convertYYMMDD_toBG(this.mrzData.expDate);
       const personalNum = this.mrzData.personalNum;
       const optional1 = this.mrzData.optional1;
       const optional2 = this.mrzData.optional2;
