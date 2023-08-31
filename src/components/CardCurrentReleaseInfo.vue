@@ -56,7 +56,7 @@ export default {
           content: this.appRepo,
         },
         {
-          label: "Предназначение",
+          label: "Описание",
           content: this.appDescription,
         },
       ];
