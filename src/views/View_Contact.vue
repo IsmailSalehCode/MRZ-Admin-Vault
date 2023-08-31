@@ -5,7 +5,7 @@
         <v-row>
           <v-col cols="12" sm="4">
             <v-img
-              max-width="200"
+              max-width="150"
               style="margin: auto; border-radius: 3%"
               cover
               :src="imgAuthor"
@@ -56,13 +56,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 p {
   text-indent: 5px;
+  line-height: 25px;
 }
 ul {
-  padding-top: 5px;
   list-style-position: inside;
-  line-height: 25px;
+  line-height: 24px;
 }
 </style>
