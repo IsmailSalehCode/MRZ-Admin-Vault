@@ -2,6 +2,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import ReadAddMRZ from "../views/ReadAddMRZ.vue";
 import ReadDeleteEditSavedData from "../views/ReadDeleteEditSavedData.vue";
+import Page_Contact from "../views/Page_Contact.vue";
 
 const routes = [
   {
@@ -11,6 +12,10 @@ const routes = [
   {
     path: "/saved",
     component: ReadDeleteEditSavedData,
+  },
+  {
+    path: "/contact",
+    component: Page_Contact,
   },
 ];
 
