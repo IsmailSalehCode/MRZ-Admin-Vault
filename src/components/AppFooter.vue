@@ -6,7 +6,7 @@
           cols="12"
           style="font-size: 0.8rem; text-align: center; text-wrap: balance"
         >
-          &#169; 2023 - Исмаил Салех @ ТУ-София
+          &#169; 2023 - Исмаил Салех @ ТУ - София
         </v-col>
       </v-row>
     </v-col>
