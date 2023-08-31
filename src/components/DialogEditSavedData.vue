@@ -112,8 +112,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-p {
-  line-height: 25px;
-}
-</style>
