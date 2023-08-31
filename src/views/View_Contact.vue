@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card class="mx-auto" max-width="700" rounded="lg">
+    <v-card class="mx-auto" max-width="600" rounded="lg">
       <v-card-text>
         <v-row>
           <v-col cols="12" sm="4">
@@ -21,8 +21,9 @@
             </v-img>
           </v-col>
           <v-col cols="12" sm="8">
-            <h2 class="py-4">Връзка със софтуерния разработчик</h2>
-            <p v-for="contact in arrContact" :key="contact.title">
+            <h2 class="pb-5">Свържи се със софтуерния разработчик</h2>
+            <hr />
+            <p class="pt-2" v-for="contact in arrContact" :key="contact.title">
               <b>{{ contact.title }}</b
               >: <a :href="contact.href">{{ contact.content }}</a>
             </p>
