@@ -24,7 +24,12 @@
   </v-card>
 </template>
 <script>
-import { version, description, repository } from "../../package.json";
+import {
+  version,
+  description,
+  repository,
+  organization,
+} from "../../package.json";
 
 export default {
   data() {
@@ -32,6 +37,7 @@ export default {
       appVersion: version,
       appDescription: description,
       appRepo: repository,
+      appOrg: organization,
       expandInfo: false,
     };
   },
@@ -49,7 +55,7 @@ export default {
         },
         {
           label: "Организация",
-          content: "Технически университет - София",
+          content: this.appOrg,
         },
         {
           label: "Хранилище",
