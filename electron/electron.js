@@ -1,6 +1,6 @@
 // electron/electron.js
 const path = require("path");
-const { app, BrowserWindow, Menu, MenuItem } = require("electron");
+const { app, BrowserWindow, Menu, MenuItem, shell } = require("electron");
 const isDev = process.env.IS_DEV == "true" ? true : false;
 
 function createWindow() {
@@ -24,6 +24,14 @@ function createWindow() {
       menu.append(new MenuItem({ label: "Постави", role: "paste" }));
       menu.popup();
     }
+  });
+
+  /**
+   * Source: https://pradyothkukkapalli.com/tech/open-external-urls-electron/
+   * This handler prevents all window open requests from changing the URL inside your app, and instead causes the URL to open in the user’s browser. However, this only works if your links open new windows/tabs. You can have anchor tags with target="_blank", or call window.open with a _blank target */
+  mainWindow.webContents.setWindowOpenHandler((details) => {
+    shell.openExternal(details.url); // Open URL in user's browser.
+    return { action: "deny" }; // Prevent the app from opening the URL.
   });
 
   // and load the index.html of the app.
