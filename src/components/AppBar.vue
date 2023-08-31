@@ -56,6 +56,7 @@ export default {
       menuItems: [
         { title: "Прочети карта", path: "/" },
         { title: "Запаметени карти", path: "/saved" },
+        { title: "Контакт", path: "/contact" },
       ],
     };
   },
