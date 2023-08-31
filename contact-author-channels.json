@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Телефон",
+    "href": "tel:+359889907045",
+    "content": "(+359) 88 990 7045"
+  },
+  {
+    "title": "Електронна поща",
+    "href": "mailto:isaleh@tu-sofia.bg",
+    "content": "isaleh@tu-sofia.bg"
+  },
+  {
+    "title": "Фейсбук",
+    "href": "https://www.facebook.com/ismail.saleh.921230",
+    "content": "ismail.saleh.921230"
+  },
+  {
+    "title": "GitHub",
+    "href": "https://github.com/IsmailSalehCode",
+    "content": "IsmailSalehCode"
+  }
+]
