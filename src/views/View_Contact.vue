@@ -33,7 +33,6 @@
       </v-card-text>
     </v-card>
   </v-container>
-  <div>{{ arrContact }}</div>
 </template>
 <script>
 import contactAuthorChannels from "../../contact-author-channels.json";
