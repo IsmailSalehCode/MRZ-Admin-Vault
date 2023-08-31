@@ -74,7 +74,7 @@ ul {
   list-style-type: square;
 }
 .cardTitle {
-  text-wrap: wrap;
+  white-space: normal;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.4s;
