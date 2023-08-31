@@ -4,7 +4,6 @@
     <v-alert :type="alert.type">{{ alert.message }}</v-alert>
   </v-container>
   <v-container style="max-width: 700px">
-    <!-- todo: styling -->
     <v-select
       hide-details
       :no-data-text="noDataText"
