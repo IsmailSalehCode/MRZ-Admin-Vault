@@ -52,7 +52,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 p {
   text-indent: 5px;
   line-height: 25px;
