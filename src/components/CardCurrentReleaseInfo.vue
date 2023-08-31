@@ -70,6 +70,9 @@ export default {
 };
 </script>
 <style scoped>
+ul {
+  list-style-type: square;
+}
 .cardTitle {
   text-wrap: wrap;
   font-size: 1rem;
