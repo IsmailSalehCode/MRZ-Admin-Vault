@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card class="mx-auto" max-width="600" rounded="lg">
+    <v-card class="mx-auto" max-width="600" rounded="lg" elevation="5">
       <v-card-text>
         <v-row>
           <v-col cols="12" sm="4">
@@ -25,7 +25,8 @@
             <hr />
             <p class="pt-2" v-for="contact in arrContact" :key="contact.title">
               <b>{{ contact.title }}</b
-              >: <a :href="contact.href">{{ contact.content }}</a>
+              >:
+              <a :href="contact.href" target="_blank">{{ contact.content }}</a>
             </p>
           </v-col>
         </v-row>
