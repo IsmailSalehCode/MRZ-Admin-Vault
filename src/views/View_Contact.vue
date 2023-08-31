@@ -1,8 +1,9 @@
 <template>
   <v-container>
     <CardContactDeveloper />
+    <br />
+    <CardCurrentReleaseInfo />
   </v-container>
-  <v-container> <CardCurrentReleaseInfo /> </v-container>
 </template>
 <script>
 import CardContactDeveloper from "../components/CardContactDeveloper.vue";
