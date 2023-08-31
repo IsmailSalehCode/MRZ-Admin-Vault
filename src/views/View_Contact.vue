@@ -43,12 +43,8 @@ export default {
   data() {
     return {
       imgAuthor: imgAuthor,
+      arrContact: contactAuthorChannels,
     };
-  },
-  computed: {
-    arrContact() {
-      return contactAuthorChannels;
-    },
   },
 };
 </script>
