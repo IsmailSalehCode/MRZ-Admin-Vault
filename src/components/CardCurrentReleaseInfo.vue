@@ -1,12 +1,10 @@
 <template>
-  <v-card
-    class="mx-auto"
-    max-width="550"
-    rounded="lg"
-    :elevation="mainCardElevation"
-  >
-    <v-card-title class="toggleableTitle" @click="toggleInfo">
-      <v-icon>mdi-information</v-icon>&nbsp;Относно Вашия <b>M.A.V.</b>
+  <v-card class="mx-auto" max-width="550" rounded="lg">
+    <v-card-title
+      :class="expandInfo ? 'cardTitle toggled' : 'cardTitle untoggled'"
+      @click="toggleInfo"
+    >
+      <v-icon>mdi-information</v-icon>&nbsp;Относно текущия <b>M.A.V.</b>
     </v-card-title>
     <v-expand-transition>
       <div v-show="expandInfo">
@@ -68,23 +66,23 @@ export default {
       ];
       return res;
     },
-    mainCardElevation() {
-      const isExpanded = this.expandInfo;
-      if (isExpanded) {
-        return 8;
-      }
-      return 2;
-    },
   },
 };
 </script>
 <style scoped>
-.toggleableTitle {
+.cardTitle {
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.4s;
+  --focused-title-color: rgb(231, 231, 231);
 }
-.toggleableTitle:hover {
-  background-color: rgb(218, 217, 217);
+.toggled {
+  background-color: var(--focused-title-color);
+}
+.untoggled {
+  background-color: unset;
+}
+.untoggled:hover {
+  background-color: var(--focused-title-color);
 }
 </style>
