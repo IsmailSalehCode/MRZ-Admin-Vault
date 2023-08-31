@@ -16,14 +16,14 @@ function createWindow() {
 
   mainWindow.removeMenu();
 
-  mainWindow.webContents.on("context-menu", () => {
+  mainWindow.webContents.on("context-menu", (_, props) => {
     const menu = new Menu();
-    // if (props.isEditable) {
-    menu.append(new MenuItem({ label: "Изрежи", role: "cut" }));
-    menu.append(new MenuItem({ label: "Копирай", role: "copy" }));
-    menu.append(new MenuItem({ label: "Постави", role: "paste" }));
-    menu.popup();
-    // }
+    if (props.isEditable || props.selectionText) {
+      menu.append(new MenuItem({ label: "Изрежи", role: "cut" }));
+      menu.append(new MenuItem({ label: "Копирай", role: "copy" }));
+      menu.append(new MenuItem({ label: "Постави", role: "paste" }));
+      menu.popup();
+    }
   });
 
   /**
