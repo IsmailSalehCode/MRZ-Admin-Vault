@@ -21,13 +21,21 @@
             </v-img>
           </v-col>
           <v-col cols="12" sm="8">
-            <h2 class="pb-5">Свържи се със софтуерния разработчик</h2>
+            <h2 class="pb-4">Исмаил Осама Салех</h2>
             <hr />
-            <p class="pt-2" v-for="contact in arrContact" :key="contact.title">
-              <b>{{ contact.title }}</b
-              >:
-              <a :href="contact.href" target="_blank">{{ contact.content }}</a>
+            <p class="pt-2">
+              Каналите за кореспонденция с програмиста на MRZ Admin Vault са
+              следните ...
             </p>
+            <ul>
+              <li v-for="contact in arrContact" :key="contact.title">
+                <b>{{ contact.title }}</b
+                >:
+                <a :href="contact.href" target="_blank">{{
+                  contact.content
+                }}</a>
+              </li>
+            </ul>
           </v-col>
         </v-row>
       </v-card-text>
@@ -47,3 +55,14 @@ export default {
   },
 };
 </script>
+
+<style>
+p {
+  text-indent: 5px;
+}
+ul {
+  padding-top: 5px;
+  list-style-position: inside;
+  line-height: 25px;
+}
+</style>
