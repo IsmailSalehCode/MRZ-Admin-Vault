@@ -12,26 +12,26 @@
       <div v-show="expandInfo">
         <hr />
         <v-card-text>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
-          nobis illo recusandae dicta ratione eum doloribus quia beatae ullam
-          deserunt perferendis tempora, quis harum a unde omnis enim cupiditate
-          pariatur ducimus dolore totam mollitia nostrum repellendus nulla.
-          Cumque perspiciatis qui, dolores inventore quaerat aliquam similique
-          aspernatur eum harum mollitia ducimus dolorum a laudantium unde
-          tempore ea odit quo magnam reiciendis placeat officiis ratione dolore
-          obcaecati consectetur? Laboriosam reiciendis ipsum, delectus obcaecati
-          nemo numquam velit laborum. Enim quia ullam fugiat blanditiis unde
-          beatae eaque quo hic a perferendis? In corporis, provident commodi sed
-          dolores natus maxime officia. Unde dolore maxime dolorem?
+          <ul v-for="el in appInfo" :key="el.label">
+            <li>
+              <b>{{ el.label }}</b
+              >: {{ el.content }}
+            </li>
+          </ul>
         </v-card-text>
       </div>
     </v-expand-transition>
   </v-card>
 </template>
 <script>
+import { version, description, repository } from "../../package.json";
+
 export default {
   data() {
     return {
+      appVersion: version,
+      appDescription: description,
+      appRepo: repository,
       expandInfo: false,
     };
   },
@@ -41,6 +41,27 @@ export default {
     },
   },
   computed: {
+    appInfo() {
+      const res = [
+        {
+          label: "Версия",
+          content: this.appVersion,
+        },
+        {
+          label: "Организация",
+          content: "Технически университет - София",
+        },
+        {
+          label: "Хранилище",
+          content: this.appRepo,
+        },
+        {
+          label: "Предназначение",
+          content: this.appDescription,
+        },
+      ];
+      return res;
+    },
     mainCardElevation() {
       const isExpanded = this.expandInfo;
       if (isExpanded) {
@@ -51,7 +72,7 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .toggleableTitle {
   font-size: 1rem;
   cursor: pointer;
