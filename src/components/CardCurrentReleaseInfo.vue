@@ -71,6 +71,7 @@ export default {
 </script>
 <style scoped>
 .cardTitle {
+  text-wrap: wrap;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.4s;
