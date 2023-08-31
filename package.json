@@ -1,6 +1,7 @@
 {
   "name": "mrz-admin-vault",
   "version": "1.0.0",
+  "description": "ДИПЛОМНА РАБОТА - \"Софтуер за извличането и администрацията на данни от идентификационни документи, съдържащи машинно-четима зона.\".",
   "author": "Ismail Saleh",
   "main": "electron/electron.js",
   "private": true,
