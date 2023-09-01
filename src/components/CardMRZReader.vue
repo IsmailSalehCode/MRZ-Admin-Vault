@@ -142,14 +142,6 @@ export default {
       }
       return arr;
     },
-    alertTruncatedDocumentNumber(chars) {
-      console.log("truncated docnumber", chars);
-      this.mrzData.info.push({
-        type: "info",
-        message:
-          "Документният номер е бил съкратен и продължава в полетата за допълнителни данни!",
-      });
-    },
     alertCheckSumSuccess() {
       this.mrzData.info.push({
         type: "success",
@@ -163,15 +155,6 @@ export default {
       });
     },
     validCheckSum(chars, checkDigit) {
-      if (checkDigit === "<") {
-        //checkdigit has been truncated
-        if (chars.match(/[^<]/g)) {
-          //alert truncated document number, so return true
-          this.alertTruncatedDocumentNumber(chars);
-        }
-        //checkdigit could have been truncated because all chars are "<", so return true
-        return true;
-      }
       let arr = chars.split("");
       arr = this.convertAllToDigits(arr);
       let multiplier = 7;
