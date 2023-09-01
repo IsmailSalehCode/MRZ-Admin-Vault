@@ -424,11 +424,11 @@ export default {
       this.mrzData.docNum = this.removeFiller(data.doc_num);
       this.mrzData.nationality = data.nationality;
       //===================================
-      this.mrzData.birthDate = this.toDate(data.birth_date);
+      this.mrzData.birthDate = this.toISO_Date(data.birth_date);
       //===================================
       this.mrzData.sex = data.sex;
       //===================================
-      this.mrzData.expDate = this.toDate(data.exp_date);
+      this.mrzData.expDate = this.toISO_Date(data.exp_date);
       //re6enie pri printvane: ako ima null poleta, ne se rendervat
       if (
         data.first_row_optional_data &&
@@ -454,7 +454,7 @@ export default {
       //Засега: Check digit-овете могат да са '<' при TD2 doc_num_check_digit, TD1 doc_num_check_digit
       console.log("mrzdata->", this.mrzData);
     },
-    toDate(str) {
+    toISO_Date(str) {
       str = str.split("");
       let yearDigits = str[0] + str[1];
       const monthDigits = str[2] + str[3];
