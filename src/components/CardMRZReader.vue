@@ -1,4 +1,5 @@
 <template>
+  <!-- todo спри валидацията при превключване на страници -->
   <v-container style="max-width: 1015px">
     <v-card elevation="5" rounded="lg">
       <v-form ref="mrzForm" @submit.prevent>
