@@ -4,7 +4,7 @@
       :class="expandInfo ? 'cardTitle toggled' : 'cardTitle untoggled'"
       @click="toggleInfo"
     >
-      <v-icon>mdi-information</v-icon>&nbsp;Относно текущия <b>M.A.V.</b>
+      <v-icon>mdi-information</v-icon>&nbsp;Относно Вашия <b>M.A.V.</b>
     </v-card-title>
     <v-expand-transition>
       <div v-show="expandInfo">
