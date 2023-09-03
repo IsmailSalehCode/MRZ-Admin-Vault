@@ -12,10 +12,10 @@ function createWindow() {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: true,
     },
+    icon: path.join(__dirname, "../assets/icon.ico"),
   });
 
   mainWindow.removeMenu();
-
   mainWindow.webContents.on("context-menu", (_, props) => {
     const menu = new Menu();
     if (props.isEditable || props.selectionText) {
