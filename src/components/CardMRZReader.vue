@@ -149,6 +149,10 @@ export default {
         message: "Успешен MRZ прочит!",
       });
     },
+    proceed(format, resultGroups) {
+      this.alertCheckSumSuccess();
+      this.showResult(format, resultGroups);
+    },
     alertCheckSumError() {
       this.mrzData.info.push({
         type: "warning",
@@ -223,12 +227,10 @@ export default {
             result.groups.big_check_digit
           )
         ) {
-          this.alertCheckSumSuccess();
+          this.proceed(format, result.groups);
         } else {
           this.alertCheckSumError();
         }
-        //show result regardless of error in checksum calcs
-        this.showResult(format, result.groups);
       } else {
         this.alertInvalidDoc();
       }
@@ -279,12 +281,10 @@ export default {
             result.groups.big_check_digit
           )
         ) {
-          this.alertCheckSumSuccess();
+          this.proceed(format, result.groups);
         } else {
           this.alertCheckSumError();
         }
-        //show result regardless of error in checksum calcs
-        this.showResult(format, result.groups);
       } else {
         this.alertInvalidDoc();
       }
@@ -310,12 +310,10 @@ export default {
             result.groups.exp_date_check_digit
           )
         ) {
-          this.alertCheckSumSuccess();
+          this.proceed(format, result.groups);
         } else {
           this.alertCheckSumError();
         }
-        //show result regardless of error in checksum calcs
-        this.showResult(format, result.groups);
       } else {
         this.alertInvalidDoc();
       }
@@ -351,12 +349,10 @@ export default {
             result.groups.exp_date_check_digit
           )
         ) {
-          this.alertCheckSumSuccess();
+          this.proceed(format, result.groups);
         } else {
           this.alertCheckSumError();
         }
-        //show result regardless of error in checksum calcs
-        this.showResult(format, result.groups);
       } else {
         this.alertInvalidDoc();
       }
@@ -404,12 +400,10 @@ export default {
             result.groups.big_check_digit
           )
         ) {
-          this.alertCheckSumSuccess();
+          this.proceed(format, result.groups);
         } else {
           this.alertCheckSumError();
         }
-        //show result regardless of error in checksum calcs
-        this.showResult(format, result.groups);
       } else {
         this.alertInvalidDoc();
       }
