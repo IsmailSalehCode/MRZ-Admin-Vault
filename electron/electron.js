@@ -67,3 +67,4 @@ app.on("window-all-closed", () => {
     app.quit();
   }
 });
+// TODO: remove locales folder from final build
