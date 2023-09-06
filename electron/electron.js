@@ -68,3 +68,29 @@ app.on("window-all-closed", () => {
   }
 });
 // TODO: remove locales folder from final build
+/**
+ * When using electron-builder, you can default to the locale en-US via
+app.commandLine.appendSwitch('lang', 'en-US'); // before app.on('ready', ...)
+and remove the unused locales from your electron project via the "afterPack" hook in the package.json
+"build": { "afterPack": "./removeLocales.js", ... }
+which could look like
+
+//https://www.electron.build/configuration/configuration#afterpack
+exports.default = async function(context) {
+	//console.log(context)
+	var fs = require('fs');
+	var localeDir = context.appOutDir+'/locales/';
+
+	fs.readdir(localeDir, function(err, files){
+		//files is array of filenames (basename form)
+		if(!(files && files.length)) return;
+		for (var i = 0, len = files.length; i < len; i++) {
+			var match = files[i].match(/en-US\.pak/); 
+      //добави и bg-BG.pak
+			if(match === null){
+				fs.unlinkSync(localeDir+files[i]);
+			}
+		}
+	});
+}
+ */
