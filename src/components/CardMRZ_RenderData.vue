@@ -11,6 +11,7 @@
             label="Тип на документа"
             v-model="uiData.type"
             readonly
+            hide-details
           >
           </v-text-field>
         </v-col>
@@ -21,6 +22,7 @@
             label="Формат на документа"
             v-model.trim="uiData.format"
             readonly
+            hide-details
           ></v-text-field>
         </v-col>
         <v-col cols="6" sm="4">
@@ -30,6 +32,7 @@
             label="№ на документа"
             v-model.trim="uiData.docNum"
             readonly
+            hide-details
           />
         </v-col>
         <v-col cols="12" sm="6" md="4">
@@ -38,6 +41,7 @@
             label="Издаваща държава или организация"
             v-model="uiData.issuingOrg"
             readonly
+            hide-details
           />
         </v-col>
         <v-col cols="12" sm="6" md="4">
@@ -46,6 +50,7 @@
             label="Националност"
             v-model="uiData.nationality"
             readonly
+            hide-details
           />
         </v-col>
         <v-col cols="12" sm="4">
@@ -55,6 +60,7 @@
             label="Пол"
             v-model="uiData.sex"
             readonly
+            hide-details
           />
         </v-col>
         <v-col cols="6" sm="4">
@@ -65,7 +71,7 @@
             style="max-width: 170px"
             label="Дата на раждане"
             v-model="uiData.birthDate"
-            persistent-hint
+            hide-details
           />
         </v-col>
         <v-col cols="6" sm="4">
@@ -76,7 +82,7 @@
             style="max-width: 170px"
             label="Валидност"
             v-model="uiData.expDate"
-            persistent-hint
+            hide-details
           />
         </v-col>
         <v-col v-if="uiData.personalNum" cols="12" md="4">
@@ -86,6 +92,7 @@
             style="max-width: 170px"
             label="ЕГН/Личен номер"
             v-model="uiData.personalNum"
+            hide-details
           />
         </v-col>
         <v-col
@@ -99,6 +106,7 @@
             label="Незадължителни данни 1ви ред"
             v-model.trim="uiData.optional1"
             readonly
+            hide-details
           />
         </v-col>
         <v-col
