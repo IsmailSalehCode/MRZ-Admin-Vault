@@ -170,6 +170,10 @@ export default {
   computed: {
     uiData() {
       // uiData = user interface data (to be displayed)
+      /**
+       * Защо uiData е отделето от mrzData, при положение че има прилики?
+       * Защото в бъдеще се очаква да има още повече промени по начина, по който се интерпретират данните, извлечени от MRZ (mrzData в случая)
+       */
       const surname = this.mrzData.surname;
       const givenNames = this.mrzData.givenNames;
       const type = expandDocType(this.mrzData.type);
