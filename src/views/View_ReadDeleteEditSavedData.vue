@@ -90,7 +90,7 @@ import {
   convertYYMMDD_toBG,
   convertTimestampToLocaleDatetime,
   indicateIfEmpty,
-} from "@/uxFunctions";
+} from "@/readabilityFuncs";
 
 export default {
   mounted() {
