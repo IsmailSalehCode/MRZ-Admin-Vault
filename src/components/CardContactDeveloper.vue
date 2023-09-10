@@ -40,7 +40,7 @@
 </template>
 <script>
 import contactAuthorChannels from "../../contact-author-channels.json";
-import imgAuthor from "../assets/images/ismail.jpg";
+import imgAuthor from "../../assets/images/ismail.jpg";
 
 export default {
   data() {
