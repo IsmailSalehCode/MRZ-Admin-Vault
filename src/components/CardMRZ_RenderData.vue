@@ -126,8 +126,7 @@
         </v-col>
         <v-col cols="12" class="pb-0">
           <v-textarea
-            variant="outlined"
-            prepend-icon="mdi-note"
+            prepend-icon="mdi-note-multiple"
             clearable
             class="mx-auto"
             label="Бележки"

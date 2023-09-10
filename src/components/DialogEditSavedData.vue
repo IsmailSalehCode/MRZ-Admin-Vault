@@ -16,7 +16,7 @@
           :loading="loadingCurrentNotes"
           :disabled="loadingUpdate"
           variant="outlined"
-          prepend-icon="mdi-note"
+          prepend-icon="mdi-note-multiple"
           clearable
           v-model.trim="currentNotes"
         ></v-textarea>
