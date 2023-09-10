@@ -7,7 +7,7 @@
 </template>
 <script>
 import CardContactDeveloper from "../components/CardContactDeveloper.vue";
-import CardCurrentReleaseInfo from "@/components/CardCurrentReleaseInfo.vue";
+import CardCurrentReleaseInfo from "../components/CardCurrentReleaseInfo.vue";
 
 export default {
   components: {

@@ -81,8 +81,8 @@
   />
 </template>
 <script>
-import { getAllEntries, deleteEntries } from "@/dbController";
-import DialogEditSavedData from "@/components/DialogEditSavedData.vue";
+import { getAllEntries, deleteEntries } from "../dbController";
+import DialogEditSavedData from "../components/DialogEditSavedData.vue";
 import {
   expandDocType,
   expandCountryCode,
@@ -90,7 +90,7 @@ import {
   convertYYMMDD_toBG,
   convertTimestampToLocaleDatetime,
   indicateIfEmpty,
-} from "@/readabilityFuncs";
+} from "../readabilityFuncs";
 
 export default {
   mounted() {

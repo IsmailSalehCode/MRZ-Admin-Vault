@@ -155,7 +155,7 @@ import {
   expandCountryCode,
   expandSexCode,
   convertYYMMDD_toBG,
-} from "@/readabilityFuncs";
+} from "../readabilityFuncs";
 
 export default {
   props: {
