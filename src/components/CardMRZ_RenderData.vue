@@ -131,8 +131,8 @@
             clearable
             class="mx-auto"
             label="Бележки"
-            hint="За редакция на съществуващ запис отидете в 'Запаметени карти'"
             v-model.trim="notes"
+            :disabled="disabledNotes"
           ></v-textarea>
         </v-col>
       </v-row>
@@ -143,6 +143,7 @@
           mrzData: mrzData,
           notes: this.notes,
         }"
+        @disable-notes="disableNotes"
       />
     </v-card-actions>
   </v-card>
@@ -165,7 +166,16 @@ export default {
   data() {
     return {
       notes: null,
+      disabledNotes: false,
     };
+  },
+  methods: {
+    disableNotes() {
+      this.disabledNotes = true;
+    },
+    enableNotes() {
+      this.disabledNotes = false;
+    },
   },
   computed: {
     uiData() {
@@ -203,6 +213,11 @@ export default {
         optional1,
         optional2,
       };
+    },
+  },
+  watch: {
+    mrzData() {
+      this.enableNotes();
     },
   },
 };

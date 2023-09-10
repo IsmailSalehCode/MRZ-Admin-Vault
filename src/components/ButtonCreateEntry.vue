@@ -17,6 +17,7 @@ export default {
   props: {
     entry: Object,
   },
+  emits: ["disable-notes"],
   watch: {
     entry(newValue, oldValue) {
       if (newValue.mrzData.docNum != oldValue.mrzData.docNum) {
@@ -64,6 +65,7 @@ export default {
       } else {
         this.handleSuccess(result);
       }
+      this.$emit("disable-notes");
     },
   },
 };
