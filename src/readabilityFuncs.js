@@ -29,12 +29,11 @@ function convertYYMMDD_toBG(dateString) {
 function convertTimestampToLocaleDatetime(timestamp) {
   const date = new Date(timestamp);
   const options = {
-    year: "numeric",
-    month: "long",
+    year: "2-digit",
+    month: "numeric",
     day: "numeric",
     hour: "numeric",
     minute: "numeric",
-    second: "numeric",
     hour12: false,
   };
   const localizedDatetime = date.toLocaleString("bg-BG", options);
