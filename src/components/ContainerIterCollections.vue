@@ -6,7 +6,7 @@
     <v-progress-circular color="green" indeterminate></v-progress-circular>
   </v-container>
   <v-container v-if="collections.length > 0">
-    <v-sheet elevation="4" rounded="lg" class="pa-2">
+    <v-sheet rounded="lg" class="pa-2" style="border-bottom: black solid 2px">
       <v-row style="text-align: start; max-width: fit-content">
         <v-col>
           <v-btn @click="deselectSelected" icon variant="outlined" class="mr-2">
