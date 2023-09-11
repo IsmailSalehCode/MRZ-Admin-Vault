@@ -1,5 +1,5 @@
 <template>
-  <v-container cols="12" v-if="alert.show">
+  <v-container v-if="alert.show">
     <v-alert :type="alert.type">{{ alert.message }}</v-alert>
   </v-container>
   <div v-if="!alert.show">
