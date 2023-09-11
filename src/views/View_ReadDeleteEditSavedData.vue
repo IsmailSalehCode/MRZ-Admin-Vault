@@ -73,12 +73,25 @@
           @click="startEdit"
         ></v-btn>
       </v-col>
+      <v-col>
+        <v-btn
+          icon="mdi-file-send"
+          color="info"
+          :disabled="!isAtLeastOneSelected"
+          @click="changeSelectedDocsCollection"
+        ></v-btn>
+      </v-col>
     </v-row>
   </v-container>
   <DialogEditSavedData
     @display-updated-data="getEntries"
     ref="edit_dialog"
     :card-doc-num="selected[0]"
+  />
+  <DialogChangeDocsCollection
+    @display-updated-data="getEntries"
+    ref="move_dialog"
+    :docs="selected"
   />
 </template>
 <script>
@@ -88,6 +101,7 @@ import {
   getAllEntriesFromCollection,
 } from "../dbController";
 import DialogEditSavedData from "../components/DialogEditSavedData.vue";
+import DialogChangeDocsCollection from "../components/DialogChangeDocsCollection.vue";
 import {
   expandDocType,
   expandCountryCode,
@@ -108,6 +122,7 @@ export default {
   components: {
     DialogEditSavedData,
     ContainerIterCollections,
+    DialogChangeDocsCollection,
   },
   data() {
     return {
@@ -200,6 +215,9 @@ export default {
     };
   },
   methods: {
+    changeSelectedDocsCollection() {
+      this.$refs.move_dialog.open();
+    },
     resetAlert() {
       this.alert = {
         show: false,
