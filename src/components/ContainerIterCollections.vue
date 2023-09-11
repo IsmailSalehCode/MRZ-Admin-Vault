@@ -9,7 +9,7 @@
     <v-sheet rounded="lg" class="pa-2" style="border-bottom: black solid 2px">
       <v-row style="text-align: start; max-width: fit-content">
         <v-col>
-          <v-btn @click="deselectSelected" icon variant="outlined" class="mr-2">
+          <v-btn @click="deselectSelected" icon variant="outlined">
             <v-icon size="large">mdi-home</v-icon>
           </v-btn>
         </v-col>
@@ -25,13 +25,19 @@
             >{{ collection.name }}</v-chip
           >
         </v-col>
+        <v-col>
+          <ButtonCreateCollection @refresh-collections="getAllCollections" />
+        </v-col>
       </v-row>
     </v-sheet>
   </v-container>
 </template>
 <script>
 import { getAllCollections } from "../dbController.js";
+import ButtonCreateCollection from "./ButtonCreateCollection.vue";
+
 export default {
+  components: { ButtonCreateCollection },
   props: {
     modelValue: Number,
   },
