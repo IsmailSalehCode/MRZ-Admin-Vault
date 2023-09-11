@@ -20,7 +20,7 @@
         >
           <v-chip
             @click="selectCollection(collection.id)"
-            prepend-icon="mdi-folder"
+            :prepend-icon="determineIcon(collection.id)"
             size="large"
             >{{ collection.name }}</v-chip
           >
@@ -54,6 +54,14 @@ export default {
     };
   },
   methods: {
+    determineIcon(id) {
+      const iterId = id;
+      const selectedId = this.selectedCollection;
+      if (iterId == selectedId) {
+        return "mdi-folder-open";
+      }
+      return "mdi-folder";
+    },
     selectCollection(id) {
       this.selectedCollection = id;
     },
