@@ -3,6 +3,7 @@
   <v-container cols="12" v-if="alert.show">
     <v-alert :type="alert.type">{{ alert.message }}</v-alert>
   </v-container>
+  <ContainerIterCollections />
   <v-container style="max-width: 700px">
     <v-select
       hide-details
@@ -91,6 +92,7 @@ import {
   convertTimestampToLocaleDatetime,
   indicateIfEmpty,
 } from "../readabilityFuncs";
+import ContainerIterCollections from "../components/ContainerIterCollections.vue";
 
 export default {
   mounted() {
@@ -101,6 +103,7 @@ export default {
   },
   components: {
     DialogEditSavedData,
+    ContainerIterCollections,
   },
   data() {
     return {
