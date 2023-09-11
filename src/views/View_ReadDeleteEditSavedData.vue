@@ -76,13 +76,17 @@
     </v-row>
   </v-container>
   <DialogEditSavedData
-    @display-updated-data="getAllEntries"
+    @display-updated-data="getEntries"
     ref="edit_dialog"
     :card-doc-num="selected[0]"
   />
 </template>
 <script>
-import { getAllEntries, deleteEntries } from "../dbController";
+import {
+  getAllEntries,
+  deleteEntries,
+  getAllEntriesFromCollection,
+} from "../dbController";
 import DialogEditSavedData from "../components/DialogEditSavedData.vue";
 import {
   expandDocType,
@@ -99,7 +103,7 @@ export default {
     if (this.alert.show == true) {
       this.resetAlert();
     }
-    this.getAllEntries();
+    this.getEntries();
   },
   components: {
     DialogEditSavedData,
@@ -213,17 +217,45 @@ export default {
     resetArrSelected() {
       this.selected = [];
     },
-    async getAllEntries() {
+    async getEntries() {
       this.loadingCards = true;
-      const entries = await getAllEntries();
-      if (!(entries instanceof Error)) {
-        this.cards = this.improveReadability(entries);
+      let result;
+      const collectionId = this.selectedCollection;
+      if (!collectionId) {
+        result = await getAllEntries();
+      } else {
+        result = await getAllEntriesFromCollection(collectionId);
+      }
+      if (!(result instanceof Error)) {
+        this.cards = this.improveReadability(result);
         this.resetArrSelected();
       } else {
-        this.handleErr(entries);
+        this.handleErr(result);
       }
       this.loadingCards = false;
     },
+    // async getAllEntries() {
+    //   this.loadingCards = true;
+    //   const entries = await getAllEntries();
+    //   if (!(entries instanceof Error)) {
+    //     this.cards = this.improveReadability(entries);
+    //     this.resetArrSelected();
+    //   } else {
+    //     this.handleErr(entries);
+    //   }
+    //   this.loadingCards = false;
+    // },
+    // async getAllEntriesFromCollection(collectionId) {
+    //   this.loadingCards = true;
+    //   const result = await getAllEntriesFromCollection(collectionId);
+    //   if (!(result instanceof Error)) {
+    //     this.cards = this.improveReadability(result);
+    //     this.resetArrSelected();
+    //   } else {
+    //     this.handleErr(result);
+    //   }
+    //   this.loadingCards = false;
+    // },
     improveReadability(entries) {
       let readableEntries = [];
       for (let i = 0; i < entries.length; i++) {
@@ -247,7 +279,7 @@ export default {
       const entriesToDelete = this.selected;
       const result = await deleteEntries(entriesToDelete);
       if (!(result instanceof Error)) {
-        this.getAllEntries();
+        this.getEntries();
       } else {
         this.handleErr(result);
       }
@@ -266,8 +298,12 @@ export default {
       if (query != null) {
         this.cards = this.cards.filter((c) => c[filteredField] == query);
       } else {
-        this.getAllEntries();
+        this.getEntries();
       }
+    },
+    resetSearch() {
+      this.searchQueryValue = null;
+      this.searchQueryField = null;
     },
   },
   computed: {
@@ -282,6 +318,15 @@ export default {
   watch: {
     selectedCollection() {
       console.log(this.selectedCollection);
+      // reset search interactions
+      this.resetSearch();
+      // end of reset search interactions
+      // const val = this.selectedCollection;
+      // if (val == null) {
+      //   this.getAllEntries();
+      // } else {
+      //   this.getAllEntriesFromCollection(val); }
+      this.getEntries();
     },
     selected() {
       const len = this.selected.length;

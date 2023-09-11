@@ -79,6 +79,18 @@ async function getAllEntries() {
   }
 }
 
+async function getAllEntriesFromCollection(collectionId) {
+  try {
+    const entries = await db.mrzEntries
+      .where("collectionId")
+      .equals(collectionId)
+      .toArray();
+    return entries;
+  } catch (err) {
+    return translateErr(err);
+  }
+}
+
 async function deleteEntries(entryDocNums) {
   try {
     const result = await db.mrzEntries.bulkDelete(entryDocNums);
@@ -169,4 +181,5 @@ export {
   isNotesUpdateRedundant,
   addNewCollection,
   getAllCollections,
+  getAllEntriesFromCollection,
 };
