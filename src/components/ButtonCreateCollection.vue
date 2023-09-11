@@ -1,5 +1,7 @@
 <template>
-  <v-btn density="compact" icon variant="text" @click="open">➕</v-btn>
+  <v-btn color="success" variant="tonal" icon @click="open">
+    <v-icon>mdi-folder-plus</v-icon>
+  </v-btn>
   <v-dialog v-model="dialog" persistent max-width="450">
     <v-card>
       <v-toolbar density="compact">
