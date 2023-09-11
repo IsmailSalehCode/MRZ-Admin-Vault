@@ -124,7 +124,7 @@
             readonly
           />
         </v-col>
-        <v-col cols="12" class="pb-0">
+        <v-col cols="12">
           <v-textarea
             prepend-icon="mdi-note-multiple"
             clearable
@@ -133,6 +133,9 @@
             v-model.trim="notes"
             :disabled="disabledNotes"
           ></v-textarea>
+        </v-col>
+        <v-col cols="12">
+          <SelectorCollection v-model="selectedCollection" />
         </v-col>
       </v-row>
     </v-card-text>
@@ -150,6 +153,8 @@
 
 <script>
 import ButtonCreateEntry from "./ButtonCreateEntry.vue";
+import SelectorCollection from "./SelectorCollection.vue";
+
 import {
   expandDocType,
   expandCountryCode,
@@ -161,11 +166,12 @@ export default {
   props: {
     mrzData: Object,
   },
-  components: { ButtonCreateEntry },
+  components: { ButtonCreateEntry, SelectorCollection },
   data() {
     return {
       notes: null,
       disabledNotes: false,
+      selectedCollection: null,
     };
   },
   methods: {
@@ -215,6 +221,10 @@ export default {
     },
   },
   watch: {
+    selectedCollection() {
+      console.log(this.selectedCollection);
+    },
+
     mrzData() {
       this.enableNotes();
     },

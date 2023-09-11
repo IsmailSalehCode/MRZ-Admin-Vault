@@ -20,6 +20,27 @@ function translateErr(err) {
   return Error(bgErrMessage);
 }
 
+async function addNewCollection(collection) {
+  const data = collection;
+  try {
+    await db.collections.add({
+      name: data.name,
+      color: data.color,
+    });
+  } catch (err) {
+    return translateErr(err);
+  }
+}
+
+async function getAllCollections() {
+  try {
+    const collections = await db.collections.toArray();
+    return collections;
+  } catch (err) {
+    return translateErr(err);
+  }
+}
+
 async function addEntry(entry) {
   const mrzData = entry.mrzData;
   const entryNotes = entry.notes;
@@ -144,4 +165,6 @@ export {
   getEntryNotesById,
   updateEntryNotesById,
   isNotesUpdateRedundant,
+  addNewCollection,
+  getAllCollections,
 };
