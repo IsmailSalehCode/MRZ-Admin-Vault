@@ -7,35 +7,40 @@
   </v-container>
   <v-container v-if="collections.length > 0">
     <v-sheet elevation="4" rounded="lg" class="pa-2">
-      <!-- <v-row style="text-align: start; max-width: fit-content">
-        <v-col v-for="collection in collections" :key="collection.id">
-          <v-chip prepend-icon="mdi-folder" size="large">{{
-            collection.name
-          }}</v-chip>
+      <v-row style="text-align: start; max-width: fit-content">
+        <v-col>
+          <v-btn @click="deselectSelected" icon variant="outlined" class="mr-2">
+            <v-icon size="large">mdi-home</v-icon>
+          </v-btn>
         </v-col>
-      </v-row> -->
-      <v-chip-group
-        v-model="selectedCollection"
-        column
-        selected-class="text-info"
-      >
-        <v-btn @click="deselectSelected" icon variant="outlined" class="mr-2">
-          <v-icon size="large">mdi-home</v-icon>
-        </v-btn>
-        <v-chip
-          prepend-icon="mdi-folder"
-          size="large"
+        <v-col
           v-for="collection in collections"
           :key="collection.id"
-          >{{ collection.name }}</v-chip
+          style="align-self: center"
         >
-      </v-chip-group>
+          <v-chip
+            @click="selectCollection(collection.id)"
+            prepend-icon="mdi-folder"
+            size="large"
+            >{{ collection.name }}</v-chip
+          >
+        </v-col>
+      </v-row>
     </v-sheet>
   </v-container>
 </template>
 <script>
 import { getAllCollections } from "../dbController.js";
 export default {
+  props: {
+    modelValue: Number,
+  },
+  emits: ["update:modelValue"],
+  watch: {
+    selectedCollection() {
+      this.$emit("update:modelValue", this.selectedCollection);
+    },
+  },
   data() {
     return {
       collections: [],
@@ -49,6 +54,9 @@ export default {
     };
   },
   methods: {
+    selectCollection(id) {
+      this.selectedCollection = id;
+    },
     deselectSelected() {
       this.selectedCollection = null;
     },

@@ -3,7 +3,7 @@
   <v-container cols="12" v-if="alert.show">
     <v-alert :type="alert.type">{{ alert.message }}</v-alert>
   </v-container>
-  <ContainerIterCollections />
+  <ContainerIterCollections v-model="selectedCollection" />
   <v-container style="max-width: 700px">
     <v-select
       hide-details
@@ -107,6 +107,7 @@ export default {
   },
   data() {
     return {
+      selectedCollection: null,
       searchQueryField: null,
       searchQueryValue: null,
       noDataText: "Няма данни",
@@ -279,6 +280,9 @@ export default {
     },
   },
   watch: {
+    selectedCollection() {
+      console.log(this.selectedCollection);
+    },
     selected() {
       const len = this.selected.length;
       // reset values
