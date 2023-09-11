@@ -13,6 +13,7 @@
       item-title="name"
       clearable
       style="max-width: fit-content; min-width: 300px"
+      :disabled="disabledSelector"
     >
       <template v-slot:prepend-inner>
         <ButtonCreateCollection @refresh-collections="getAllCollections" />
@@ -28,6 +29,7 @@ export default {
   components: { ButtonCreateCollection },
   props: {
     modelValue: Number,
+    disabledSelector: Boolean,
   },
   emits: ["update:modelValue"],
   data() {

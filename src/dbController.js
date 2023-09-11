@@ -44,6 +44,7 @@ async function getAllCollections() {
 async function addEntry(entry) {
   const mrzData = entry.mrzData;
   const entryNotes = entry.notes;
+  const entryCollectionId = entry.collectionId;
   try {
     const newEntry = await db.mrzEntries.add({
       docNum: mrzData.docNum,
@@ -61,6 +62,7 @@ async function addEntry(entry) {
       optional2: mrzData.optional2,
       notes: entryNotes,
       updatedAt: getCurrentTimestamp(),
+      collectionId: entryCollectionId,
     });
     return newEntry;
   } catch (err) {

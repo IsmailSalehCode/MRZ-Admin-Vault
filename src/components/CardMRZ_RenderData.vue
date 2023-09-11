@@ -135,7 +135,10 @@
           ></v-textarea>
         </v-col>
         <v-col cols="12">
-          <SelectorCollection v-model="selectedCollection" />
+          <SelectorCollection
+            :disabledSelector="disabledSelectorCollection"
+            v-model="selectedCollection"
+          />
         </v-col>
       </v-row>
     </v-card-text>
@@ -144,8 +147,9 @@
         :entry="{
           mrzData: mrzData,
           notes: this.notes,
+          collectionId: this.selectedCollection,
         }"
-        @disable-notes="disableNotes"
+        @disable-fields="disableFields"
       />
     </v-card-actions>
   </v-card>
@@ -168,18 +172,20 @@ export default {
   },
   components: { ButtonCreateEntry, SelectorCollection },
   data() {
-    return {
-      notes: null,
-      disabledNotes: false,
-      selectedCollection: null,
-    };
+    return this.initialState();
   },
   methods: {
-    disableNotes() {
-      this.disabledNotes = true;
+    initialState() {
+      return {
+        notes: null,
+        disabledNotes: false,
+        disabledSelectorCollection: false,
+        selectedCollection: null,
+      };
     },
-    enableNotes() {
-      this.disabledNotes = false;
+    disableFields() {
+      this.disabledNotes = true;
+      this.disabledSelectorCollection = true;
     },
   },
   computed: {
@@ -221,12 +227,8 @@ export default {
     },
   },
   watch: {
-    selectedCollection() {
-      console.log(this.selectedCollection);
-    },
-
     mrzData() {
-      this.enableNotes();
+      Object.assign(this.$data, this.initialState());
     },
   },
 };
