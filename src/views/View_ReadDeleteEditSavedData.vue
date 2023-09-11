@@ -234,28 +234,6 @@ export default {
       }
       this.loadingCards = false;
     },
-    // async getAllEntries() {
-    //   this.loadingCards = true;
-    //   const entries = await getAllEntries();
-    //   if (!(entries instanceof Error)) {
-    //     this.cards = this.improveReadability(entries);
-    //     this.resetArrSelected();
-    //   } else {
-    //     this.handleErr(entries);
-    //   }
-    //   this.loadingCards = false;
-    // },
-    // async getAllEntriesFromCollection(collectionId) {
-    //   this.loadingCards = true;
-    //   const result = await getAllEntriesFromCollection(collectionId);
-    //   if (!(result instanceof Error)) {
-    //     this.cards = this.improveReadability(result);
-    //     this.resetArrSelected();
-    //   } else {
-    //     this.handleErr(result);
-    //   }
-    //   this.loadingCards = false;
-    // },
     improveReadability(entries) {
       let readableEntries = [];
       for (let i = 0; i < entries.length; i++) {
@@ -320,12 +298,7 @@ export default {
       console.log(this.selectedCollection);
       // reset search interactions
       this.resetSearch();
-      // end of reset search interactions
-      // const val = this.selectedCollection;
-      // if (val == null) {
-      //   this.getAllEntries();
-      // } else {
-      //   this.getAllEntriesFromCollection(val); }
+
       this.getEntries();
     },
     selected() {
