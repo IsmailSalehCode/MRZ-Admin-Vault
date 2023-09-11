@@ -41,11 +41,11 @@ function createWindow() {
       ? "http://localhost:3000"
       : `file://${path.join(__dirname, "../dist/index.html")}`
   );
-  // Open the DevTools. TODO uncomment
-  // if (isDev) {
-  mainWindow.webContents.openDevTools();
-  //Note: opening dev tools prevents mrzField foucs (mounted(){} hook in ReadAddMRZ.vue)
-  // }
+  // Open the DevTools.
+  if (isDev) {
+    mainWindow.webContents.openDevTools();
+    //Note: opening dev tools prevents mrzField foucs (mounted(){} hook in ReadAddMRZ.vue)
+  }
 }
 
 // This method will be called when Electron has finished
