@@ -79,6 +79,7 @@ export default {
     },
     close() {
       this.dialog = false;
+      this.resetAlert();
     },
     async getAllCollections() {
       this.loadingCollections = true;
@@ -99,6 +100,13 @@ export default {
         show: true,
         type: type,
         message: message,
+      };
+    },
+    resetAlert() {
+      this.alert = {
+        show: false,
+        type: "info",
+        message: null,
       };
     },
   },
