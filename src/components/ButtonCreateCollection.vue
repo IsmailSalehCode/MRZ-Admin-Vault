@@ -21,6 +21,7 @@
             label="Име"
             v-model.trim="name"
             :rules="collectionRules"
+            validate-on="blur"
           ></v-text-field>
         </v-card-text>
         <v-card-actions>
