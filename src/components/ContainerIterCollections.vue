@@ -29,7 +29,7 @@
           <ButtonCreateCollection @refresh-collections="getAllCollections" />
         </v-col>
         <v-col>
-          <ButtonDeleteCollection />
+          <ButtonDeleteCollection @refresh-collections="getAllCollections" />
         </v-col>
       </v-row>
     </v-sheet>
