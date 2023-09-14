@@ -15,7 +15,18 @@
         </div>
       </v-expand-transition>
       <v-card-title>Изтрийте колекция</v-card-title>
-
+      <v-card-text>
+        <v-data-table
+          :loading="loadingCollections"
+          loading-text="Зареждат се ..."
+          no-data-text="Няма създадени колекции."
+          :headers="headers"
+          :items="collections"
+          item-value="id"
+        >
+          <template #bottom></template>
+        </v-data-table>
+      </v-card-text>
       <!-- <v-form ref="form" @submit="addCollection" @submit.prevent>
         <v-card-text>
           <v-text-field
@@ -35,35 +46,43 @@
   </v-dialog>
 </template>
 <script>
-import { getAllCollections } from "../dbController.js";
+import { getAllCollectionsWithEntryCount } from "../dbController.js";
 
 export default {
   emits: ["refresh-collections"],
   data() {
-    return this.initialState();
+    return {
+      collections: [],
+      dialog: false,
+      loadingCollections: false,
+      alert: {
+        show: false,
+        type: "info",
+        message: null,
+      },
+      headers: [
+        {
+          title: "Име",
+          key: "name",
+        },
+        {
+          title: "Брой документи",
+          key: "itemCount",
+        },
+      ],
+    };
   },
   methods: {
-    initialState() {
-      return {
-        collections: [],
-        dialog: false,
-        loadingCollections: false,
-        alert: {
-          show: false,
-          type: "info",
-          message: null,
-        },
-      };
-    },
     open() {
       this.dialog = true;
+      this.getAllCollections();
     },
     close() {
-      Object.assign(this.$data, this.initialState());
+      this.dialog = false;
     },
     async getAllCollections() {
       this.loadingCollections = true;
-      const result = await getAllCollections();
+      const result = await getAllCollectionsWithEntryCount();
       if (!(result instanceof Error)) {
         this.collections = result;
       } else {
