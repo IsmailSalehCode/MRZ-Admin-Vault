@@ -85,6 +85,13 @@ export default {
         this.handleErr(result);
       }
     },
+    handleErr(err) {
+      this.alert = {
+        show: true,
+        type: "error",
+        message: err.message,
+      };
+    },
     open() {
       this.dialog = true;
       this.getAllCollectionsWithEntryCount();
