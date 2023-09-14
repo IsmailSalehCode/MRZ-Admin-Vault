@@ -41,6 +41,33 @@ async function getAllCollections() {
   }
 }
 
+async function getAllCollectionsWithEntryCount() {
+  try {
+    const collections = await getAllCollections();
+    const collectionsWithEntryCount = [];
+
+    for (let i = 0; i < collections.length; i++) {
+      const iterCollection = collections[i];
+      const entryCount = await db.mrzEntries
+        .where("collectionId")
+        .equals(iterCollection.id)
+        .count();
+
+      const collectionWithCount = {
+        id: iterCollection.id,
+        name: iterCollection.name,
+        itemCount: entryCount,
+      };
+
+      collectionsWithEntryCount.push(collectionWithCount);
+    }
+
+    return collectionsWithEntryCount;
+  } catch (err) {
+    return translateErr(err);
+  }
+}
+
 async function addEntry(entry) {
   const mrzData = entry.mrzData;
   const entryNotes = entry.notes;
@@ -201,4 +228,5 @@ export {
   getAllCollections,
   getAllEntriesFromCollection,
   updateEntriesCollection,
+  getAllCollectionsWithEntryCount,
 };
