@@ -75,7 +75,7 @@
       </v-col>
       <v-col>
         <v-btn
-          icon="mdi-file-send"
+          icon="mdi-arrow-right-bold"
           color="info"
           :disabled="!isAtLeastOneSelected"
           @click="changeSelectedDocsCollection"
