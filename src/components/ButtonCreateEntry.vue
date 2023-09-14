@@ -31,7 +31,7 @@ export default {
     return {
       alert: {
         show: false,
-        type: "",
+        type: "info",
         message: null,
       },
     };
@@ -40,7 +40,7 @@ export default {
     resetAlert() {
       this.alert = {
         show: false,
-        type: "",
+        type: "info",
         message: null,
       };
     },

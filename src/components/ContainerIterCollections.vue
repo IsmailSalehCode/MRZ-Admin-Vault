@@ -57,7 +57,7 @@ export default {
       loadingCollections: true,
       alert: {
         show: false,
-        type: "",
+        type: "info",
         message: null,
       },
       selectedCollection: null,
@@ -81,7 +81,7 @@ export default {
     resetAlert() {
       this.alert = {
         show: false,
-        type: "",
+        type: "info",
         message: null,
       };
     },

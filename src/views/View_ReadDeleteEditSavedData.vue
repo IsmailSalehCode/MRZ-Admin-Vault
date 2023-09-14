@@ -199,7 +199,7 @@ export default {
       ],
       alert: {
         show: false,
-        type: "",
+        type: "info",
         message: null,
       },
       itemsPerPageOptions: [
@@ -221,7 +221,7 @@ export default {
     resetAlert() {
       this.alert = {
         show: false,
-        type: "",
+        type: "info",
         message: null,
       };
     },
