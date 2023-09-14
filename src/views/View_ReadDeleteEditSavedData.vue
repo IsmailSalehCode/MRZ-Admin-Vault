@@ -313,7 +313,7 @@ export default {
   },
   watch: {
     selectedCollection() {
-      console.log(this.selectedCollection);
+      // console.log(this.selectedCollection);
       // reset search interactions
       this.resetSearch();
 
