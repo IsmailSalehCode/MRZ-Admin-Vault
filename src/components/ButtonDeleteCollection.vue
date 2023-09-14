@@ -23,30 +23,28 @@
           :headers="headers"
           :items="collections"
           item-value="id"
+          v-model="selected"
+          show-select
         >
           <template #bottom></template>
         </v-data-table>
       </v-card-text>
-      <!-- <v-form ref="form" @submit="addCollection" @submit.prevent>
-        <v-card-text>
-          <v-text-field
-            prepend-icon="mdi-folder"
-            label="Име"
-            v-model.trim="name"
-            :rules="collectionRules"
-          ></v-text-field>
-        </v-card-text>
-        <v-card-actions>
-          <v-btn :loading="loadingSubmit" type="submit" color="success"
-            >ОК</v-btn
-          >
-        </v-card-actions>
-      </v-form> -->
+      <v-card-actions>
+        <v-btn
+          :disabled="!isAtLeastOneSelected"
+          @click="deleteSelected"
+          color="error"
+          >Изтрий</v-btn
+        >
+      </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
 <script>
-import { getAllCollectionsWithEntryCount } from "../dbController.js";
+import {
+  getAllCollectionsWithEntryCount,
+  deleteCollections,
+} from "../dbController.js";
 
 export default {
   emits: ["refresh-collections"],
@@ -70,18 +68,33 @@ export default {
           key: "itemCount",
         },
       ],
+      selected: [],
+      isAtLeastOneSelected: false,
     };
   },
   methods: {
+    resetArrSelected() {
+      this.selected = [];
+    },
+    async deleteSelected() {
+      const collectionsToDelete = this.selected;
+      const result = await deleteCollections(collectionsToDelete);
+      if (!(result instanceof Error)) {
+        this.emitUpdateParent();
+      } else {
+        this.handleErr(result);
+      }
+    },
     open() {
       this.dialog = true;
-      this.getAllCollections();
+      this.getAllCollectionsWithEntryCount();
     },
     close() {
       this.dialog = false;
+      this.resetArrSelected();
       this.resetAlert();
     },
-    async getAllCollections() {
+    async getAllCollectionsWithEntryCount() {
       this.loadingCollections = true;
       const result = await getAllCollectionsWithEntryCount();
       if (!(result instanceof Error)) {
@@ -108,6 +121,17 @@ export default {
         type: "info",
         message: null,
       };
+    },
+  },
+  watch: {
+    selected() {
+      const len = this.selected.length;
+      // reset value
+      this.isAtLeastOneSelected = false;
+
+      if (len >= 1) {
+        this.isAtLeastOneSelected = true;
+      }
     },
   },
 };

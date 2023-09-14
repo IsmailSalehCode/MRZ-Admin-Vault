@@ -135,6 +135,31 @@ async function updateEntriesCollection(entryDocNums, collectionId) {
     return translateErr(err);
   }
 }
+async function deleteCollections(ids) {
+  const toDelCollectionIds = ids;
+
+  try {
+    for (let i = 0; i < toDelCollectionIds.length; i++) {
+      const iterCollectionId = toDelCollectionIds[i];
+
+      // remove all docs from collection
+      const docsToRelease = await db.mrzEntries
+        .where("collectionId")
+        .equals(iterCollectionId)
+        .toArray();
+      docsToRelease.forEach((doc) => {
+        doc.collectionId = null;
+      });
+      await db.mrzEntries.bulkPut(docsToRelease);
+
+      // delete collection
+      await db.collections.delete(iterCollectionId);
+    }
+    return 1;
+  } catch (err) {
+    return translateErr(err);
+  }
+}
 
 async function deleteEntries(entryDocNums) {
   try {
@@ -229,4 +254,5 @@ export {
   getAllEntriesFromCollection,
   updateEntriesCollection,
   getAllCollectionsWithEntryCount,
+  deleteCollections,
 };
