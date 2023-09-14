@@ -80,8 +80,7 @@ export default {
       const collectionsToDelete = this.selected;
       const result = await deleteCollections(collectionsToDelete);
       if (!(result instanceof Error)) {
-        this.emitParentGoHome();
-        this.emitUpdateParent();
+        this.exitToParent();
       } else {
         this.handleErr(result);
       }
@@ -112,11 +111,10 @@ export default {
       }
       this.loadingCollections = false;
     },
-    emitParentGoHome() {
-      this.$emit("go-home");
-    },
-    emitUpdateParent() {
+
+    exitToParent() {
       this.close();
+      this.$emit("go-home");
       this.$emit("refresh-collections");
     },
     showAlert(type, message) {
