@@ -29,7 +29,10 @@
           <ButtonCreateCollection @refresh-collections="getAllCollections" />
         </v-col>
         <v-col>
-          <ButtonDeleteCollection @refresh-collections="getAllCollections" />
+          <ButtonDeleteCollection
+            @go-home="deselectSelected"
+            @refresh-collections="getAllCollections"
+          />
         </v-col>
       </v-row>
     </v-sheet>

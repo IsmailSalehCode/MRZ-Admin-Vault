@@ -47,7 +47,7 @@ import {
 } from "../dbController.js";
 
 export default {
-  emits: ["refresh-collections"],
+  emits: ["refresh-collections", "go-home"],
   data() {
     return {
       collections: [],
@@ -80,6 +80,7 @@ export default {
       const collectionsToDelete = this.selected;
       const result = await deleteCollections(collectionsToDelete);
       if (!(result instanceof Error)) {
+        this.emitParentGoHome();
         this.emitUpdateParent();
       } else {
         this.handleErr(result);
@@ -110,6 +111,9 @@ export default {
         this.showAlert("error", result.message);
       }
       this.loadingCollections = false;
+    },
+    emitParentGoHome() {
+      this.$emit("go-home");
     },
     emitUpdateParent() {
       this.close();
