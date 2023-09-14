@@ -5,7 +5,7 @@
   <v-container v-if="loadingCollections">
     <v-progress-circular color="green" indeterminate></v-progress-circular>
   </v-container>
-  <v-container>
+  <v-container fluid>
     <v-sheet rounded="lg" class="pa-2" style="border-bottom: black solid 2px">
       <v-row style="text-align: start; max-width: fit-content">
         <v-col>
@@ -28,6 +28,9 @@
         <v-col>
           <ButtonCreateCollection @refresh-collections="getAllCollections" />
         </v-col>
+        <v-col>
+          <ButtonDeleteCollection />
+        </v-col>
       </v-row>
     </v-sheet>
   </v-container>
@@ -35,9 +38,10 @@
 <script>
 import { getAllCollections } from "../dbController.js";
 import ButtonCreateCollection from "./ButtonCreateCollection.vue";
+import ButtonDeleteCollection from "./ButtonDeleteCollection.vue";
 
 export default {
-  components: { ButtonCreateCollection },
+  components: { ButtonCreateCollection, ButtonDeleteCollection },
   props: {
     modelValue: Number,
   },
