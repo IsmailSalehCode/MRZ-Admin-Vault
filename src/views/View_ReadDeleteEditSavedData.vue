@@ -48,7 +48,7 @@
     >
     </v-data-table>
   </v-container>
-  <v-container>
+  <v-container fluid class="mx-3">
     <v-row
       style="
         text-align: center;
