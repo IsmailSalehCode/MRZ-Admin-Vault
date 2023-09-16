@@ -53,13 +53,13 @@ async function getAllCollectionsWithEntryCount() {
         .equals(iterCollection.id)
         .count();
 
-      const collectionWithCount = {
+      const collectionWithEntryCount = {
         id: iterCollection.id,
         name: iterCollection.name,
         itemCount: entryCount,
       };
 
-      collectionsWithEntryCount.push(collectionWithCount);
+      collectionsWithEntryCount.push(collectionWithEntryCount);
     }
 
     return collectionsWithEntryCount;
