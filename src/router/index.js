@@ -1,4 +1,3 @@
-// Composables
 import { createRouter, createWebHistory } from "vue-router";
 import View_ReadAddMRZ from "../views/View_ReadAddMRZ.vue";
 import View_ReadDeleteEditSavedData from "../views/View_ReadDeleteEditSavedData.vue";
