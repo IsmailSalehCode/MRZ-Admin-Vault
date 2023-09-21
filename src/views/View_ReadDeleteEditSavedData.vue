@@ -75,10 +75,18 @@
       </v-col>
       <v-col>
         <v-btn
-          icon="mdi-arrow-right-bold"
+          icon="mdi-folder-swap"
           color="info"
           :disabled="!isAtLeastOneSelected"
           @click="changeSelectedDocsCollection"
+        ></v-btn>
+      </v-col>
+      <v-col>
+        <v-btn
+          icon="mdi-export"
+          :loading="loadingExport"
+          @click="exportSelected"
+          :disabled="!isAtLeastOneSelected"
         ></v-btn>
       </v-col>
     </v-row>
@@ -99,6 +107,7 @@ import {
   getAllEntries,
   deleteEntries,
   getAllEntriesFromCollection,
+  getEntriesByIds,
 } from "../dbController";
 import DialogEditSavedData from "../components/DialogEditSavedData.vue";
 import DialogChangeDocsCollection from "../components/DialogChangeDocsCollection.vue";
@@ -111,6 +120,7 @@ import {
   indicateIfEmpty,
 } from "../readabilityFuncs";
 import ContainerIterCollections from "../components/ContainerIterCollections.vue";
+import { exportToJSON } from "../exportToJSON";
 
 export default {
   mounted() {
@@ -126,6 +136,7 @@ export default {
   },
   data() {
     return {
+      loadingExport: false,
       selectedCollection: null,
       searchQueryField: null,
       searchQueryValue: null,
@@ -215,6 +226,23 @@ export default {
     };
   },
   methods: {
+    async exportSelected() {
+      this.loadingExport = true;
+      const selectedIdsArr = this.selected;
+      const selected = await getEntriesByIds(selectedIdsArr);
+      if (selected instanceof Error) {
+        this.handleErr(selected);
+        return;
+      }
+      //worked
+      const exportPath = "C:\\Users\\gamer\\Desktop\\astro test\\test.json";
+      const exportOperation = exportToJSON(selected, exportPath);
+      if (exportOperation instanceof Error) {
+        this.handleErr(exportOperation);
+        return;
+      }
+      this.loadingExport = false;
+    },
     changeSelectedDocsCollection() {
       this.$refs.move_dialog.open();
     },
@@ -225,7 +253,12 @@ export default {
         message: null,
       };
     },
+    cancelLoadingAnimations() {
+      this.loadingExport == true ? (this.loadingExport = false) : "";
+      this.loadingCards == true ? (this.loadingCards = false) : "";
+    },
     handleErr(err) {
+      this.cancelLoadingAnimations();
       this.alert = {
         show: true,
         type: "error",
