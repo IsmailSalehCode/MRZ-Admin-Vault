@@ -84,7 +84,6 @@
       <v-col>
         <v-btn
           icon="mdi-export"
-          :loading="loadingExport"
           @click="exportSelected"
           :disabled="!isAtLeastOneSelected"
         ></v-btn>
@@ -101,14 +100,15 @@
     ref="move_dialog"
     :docs="selected"
   />
+  <DialogExportDocs ref="export_dialog" :selectedIds="selected" />
 </template>
 <script>
 import {
   getAllEntries,
   deleteEntries,
   getAllEntriesFromCollection,
-  getEntriesByIds,
 } from "../dbController";
+import DialogExportDocs from "../components/DialogExportDocs.vue";
 import DialogEditSavedData from "../components/DialogEditSavedData.vue";
 import DialogChangeDocsCollection from "../components/DialogChangeDocsCollection.vue";
 import {
@@ -120,7 +120,6 @@ import {
   indicateIfEmpty,
 } from "../readabilityFuncs";
 import ContainerIterCollections from "../components/ContainerIterCollections.vue";
-import { exportToJSON } from "../exportToJSON";
 
 export default {
   mounted() {
@@ -133,10 +132,10 @@ export default {
     DialogEditSavedData,
     ContainerIterCollections,
     DialogChangeDocsCollection,
+    DialogExportDocs,
   },
   data() {
     return {
-      loadingExport: false,
       selectedCollection: null,
       searchQueryField: null,
       searchQueryValue: null,
@@ -227,21 +226,7 @@ export default {
   },
   methods: {
     async exportSelected() {
-      this.loadingExport = true;
-      const selectedIdsArr = this.selected;
-      const selected = await getEntriesByIds(selectedIdsArr);
-      if (selected instanceof Error) {
-        this.handleErr(selected);
-        return;
-      }
-      //worked
-      const exportPath = "C:\\Users\\gamer\\Desktop\\astro test\\test.json";
-      const exportOperation = exportToJSON(selected, exportPath);
-      if (exportOperation instanceof Error) {
-        this.handleErr(exportOperation);
-        return;
-      }
-      this.loadingExport = false;
+      this.$refs.export_dialog.open();
     },
     changeSelectedDocsCollection() {
       this.$refs.move_dialog.open();
@@ -253,12 +238,7 @@ export default {
         message: null,
       };
     },
-    cancelLoadingAnimations() {
-      this.loadingExport == true ? (this.loadingExport = false) : "";
-      this.loadingCards == true ? (this.loadingCards = false) : "";
-    },
     handleErr(err) {
-      this.cancelLoadingAnimations();
       this.alert = {
         show: true,
         type: "error",
