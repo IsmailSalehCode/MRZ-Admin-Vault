@@ -161,6 +161,23 @@ async function deleteCollections(ids) {
   }
 }
 
+async function getEntriesByIds(ids) {
+  const toFetch = ids;
+  const result = [];
+  try {
+    for (let i = 0; i < toFetch.length; i++) {
+      const iterId = toFetch[i];
+      const iterEntry = await db.mrzEntries.get(iterId);
+      if (iterEntry) {
+        result.push(iterEntry);
+      }
+    }
+    return result;
+  } catch (err) {
+    return translateErr(err);
+  }
+}
+
 async function deleteEntries(entryDocNums) {
   try {
     const result = await db.mrzEntries.bulkDelete(entryDocNums);
@@ -255,4 +272,5 @@ export {
   updateEntriesCollection,
   getAllCollectionsWithEntryCount,
   deleteCollections,
+  getEntriesByIds,
 };
