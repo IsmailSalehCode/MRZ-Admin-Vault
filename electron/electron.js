@@ -11,6 +11,8 @@ function createWindow() {
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: true,
+      // i want to be able to use 'require' in exportToJSON.js (v)
+      contextIsolation: false,
     },
     icon: path.join(__dirname, "../assets/icon.ico"),
   });
