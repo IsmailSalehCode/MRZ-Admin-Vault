@@ -8,6 +8,7 @@
       no-data-text="Няма създадени колекции"
       :loading="loadingCollections"
       label="Колекция"
+      placeholder="Празно = без колекция"
       :items="collections"
       item-value="id"
       item-title="name"
