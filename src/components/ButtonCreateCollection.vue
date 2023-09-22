@@ -35,6 +35,7 @@
 </template>
 <script>
 import { addNewCollection } from "../dbController.js";
+import { defTxtRules } from "../field-validation-rules/defaultTxtFieldRules";
 
 export default {
   emits: ["refresh-collections"],
@@ -46,10 +47,7 @@ export default {
       return {
         dialog: false,
         name: null,
-        collectionRules: [
-          (v) => !!v || "Не може да е празно!",
-          (v) => (v && v.length > 2) || "Трябва да съдържа минимум 3 символа!",
-        ],
+        collectionRules: defTxtRules,
         loadingSubmit: false,
         alert: {
           show: false,
@@ -65,8 +63,8 @@ export default {
       Object.assign(this.$data, this.initialState());
     },
     async addCollection() {
-      const validation = await this.$refs.form.validate();
-      if (validation.valid) {
+      const { valid } = await this.$refs.form.validate();
+      if (valid) {
         this.loadingSubmit = true;
         const result = await addNewCollection({
           name: this.name,
