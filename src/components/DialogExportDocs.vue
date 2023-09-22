@@ -11,8 +11,18 @@
         </div>
       </v-expand-transition>
       <v-card-title>Експортиране</v-card-title>
-      <v-card-text v-if="entries">
-        <!-- <v-textarea
+      <div v-if="!loadingEntries">
+        <v-form ref="form" @submit="submitExport" @submit.prevent>
+          <v-card-text>
+            <v-text-field
+              class="pb-2"
+              prepend-icon="mdi-file"
+              label="Име на файла"
+              v-model.trim="fileName"
+              :rules="fileNameRules"
+              validate-on="blur"
+            ></v-text-field>
+            <!-- <v-textarea
           :loading="loadingCurrentNotes"
           :disabled="loadingUpdate"
           variant="outlined"
@@ -20,19 +30,22 @@
           clearable
           v-model.trim="currentNotes"
         ></v-textarea> -->
-        {{ entries }}
-      </v-card-text>
-      <v-card-actions>
-        <!-- <v-btn :loading="loadingUpdate" color="success" @click="submitEdit"
-          >Редактирай</v-btn
-        > -->
-      </v-card-actions>
+            {{ entries }}
+          </v-card-text>
+          <v-card-actions>
+            <v-btn :loading="loadingExport" type="submit" color="success"
+              >ОК</v-btn
+            >
+          </v-card-actions>
+        </v-form>
+      </div>
     </v-card>
   </v-dialog>
 </template>
 <script>
 import { getEntriesByIds } from "../dbController.js";
 import { exportToJSON } from "../exportToJSON";
+import { defTxtRules } from "../field-validation-rules/defaultTxtFieldRules";
 
 export default {
   props: {
@@ -44,6 +57,8 @@ export default {
   methods: {
     initialState() {
       return {
+        fileName: null,
+        fileNameRules: defTxtRules,
         loadingEntries: false,
         loadingExport: false,
         entries: null,
@@ -74,16 +89,20 @@ export default {
       this.loadingEntries = false;
     },
     async submitExport() {
-      this.loadingExport = true;
-      const exportPath = "C:\\Users\\gamer\\Desktop\\astro test\\test.json";
-      const selectedEntries = this.entries;
-      const exportOperation = exportToJSON(selectedEntries, exportPath);
-      if (exportOperation instanceof Error) {
-        this.showAlert("error", exportOperation.message);
-        return;
+      const { valid } = await this.$refs.form.validate();
+      if (valid) {
+        this.loadingExport = true;
+        const fileName = this.fileName;
+        const exportPath = "C:\\Users\\gamer\\Desktop\\astro test\\test.json";
+        const selectedEntries = this.entries;
+        const exportOperation = exportToJSON(selectedEntries, exportPath);
+        if (exportOperation instanceof Error) {
+          this.showAlert("error", exportOperation.message);
+          return;
+        }
+        this.showAlert("success", "Готово.");
+        this.loadingExport = false;
       }
-      this.showAlert("success", "Готово.");
-      this.loadingExport = false;
     },
     showAlert(type, message) {
       this.alert = {
