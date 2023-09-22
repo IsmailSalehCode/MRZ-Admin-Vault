@@ -35,7 +35,6 @@
 </template>
 <script>
 import { getEntriesByIds } from "../dbController.js";
-import { exportToJSON } from "../exportToJSON";
 import { defTxtRules } from "../field-validation-rules/defaultTxtFieldRules";
 
 export default {
@@ -84,21 +83,33 @@ export default {
       if (valid) {
         this.loadingExport = true;
         const fileName = this.fileName;
-        const exportPath = "C:\\Users\\gamer\\Desktop\\astro test\\test.json";
         const selectedEntries = this.entries;
-        const exportOperation = exportToJSON(selectedEntries, exportPath);
-        if (exportOperation instanceof Error) {
-          this.showAlert("error", exportOperation.message);
-          return;
+        const fileToExport = this.convertJsObjectToJsonString(selectedEntries);
+
+        try {
+          const result = await window.electronAPI.showSaveDialog({
+            title: "Експортирай селектираните документи",
+            defaultPath: `${fileName}.json`,
+            filters: [{ name: "JSON файлове", extensions: ["json"] }],
+            buttonLabel: "Експорт",
+          });
+
+          if (!result.canceled) {
+            const filePath = result.filePath;
+
+            await window.electronAPI.writeToFile(filePath, fileToExport);
+
+            this.showAlert("success", "Готово!");
+          }
+        } catch (err) {
+          this.showAlert("error", err);
         }
-        const exportLength = selectedEntries.length;
-        const docCountable = exportLength == 1 ? "документ" : "документа";
-        this.showAlert(
-          "success",
-          `Успешно експортирахте ${exportLength} бр. ${docCountable} в ${fileName}.json!`
-        );
         this.loadingExport = false;
       }
+    },
+    convertJsObjectToJsonString(data) {
+      //Prettify JSON with 2-space indentation
+      return JSON.stringify(data, null, 2);
     },
     showAlert(type, message) {
       this.alert = {
