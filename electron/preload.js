@@ -12,3 +12,17 @@ window.addEventListener("DOMContentLoaded", () => {
     replaceText(`${dependency}-version`, process.versions[dependency]);
   }
 });
+
+const { contextBridge, ipcRenderer } = require("electron");
+
+contextBridge.exposeInMainWorld("electronAPI", {
+  showSaveDialog: async (options) => {
+    const result = await ipcRenderer.invoke("show-save-dialog", options);
+    return result;
+  },
+
+  writeToFile: (filePath, content) => {
+    const fs = require("fs");
+    fs.writeFileSync(filePath, content, "utf-8");
+  },
+});
