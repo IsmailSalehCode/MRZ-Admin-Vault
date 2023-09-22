@@ -22,15 +22,6 @@
               :rules="fileNameRules"
               validate-on="blur"
             ></v-text-field>
-            <!-- <v-textarea
-          :loading="loadingCurrentNotes"
-          :disabled="loadingUpdate"
-          variant="outlined"
-          prepend-icon="mdi-note-multiple"
-          clearable
-          v-model.trim="currentNotes"
-        ></v-textarea> -->
-            {{ entries }}
           </v-card-text>
           <v-card-actions>
             <v-btn :loading="loadingExport" type="submit" color="success"
@@ -100,7 +91,12 @@ export default {
           this.showAlert("error", exportOperation.message);
           return;
         }
-        this.showAlert("success", "Готово.");
+        const exportLength = selectedEntries.length;
+        const docCountable = exportLength == 1 ? "документ" : "документа";
+        this.showAlert(
+          "success",
+          `Успешно експортирахте ${exportLength} бр. ${docCountable} в ${fileName}.json!`
+        );
         this.loadingExport = false;
       }
     },
