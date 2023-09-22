@@ -22,6 +22,8 @@
               :rules="fileNameRules"
               validate-on="blur"
             ></v-text-field>
+            <b>Съдържание</b>: {{ selectedDocsLength }} бр.
+            {{ countableDocsWord }}.
           </v-card-text>
           <v-card-actions>
             <v-btn :loading="loadingExport" type="submit" color="success"
@@ -40,6 +42,15 @@ import { defTxtRules } from "../field-validation-rules/defaultTxtFieldRules";
 export default {
   props: {
     selectedIds: Array,
+  },
+  computed: {
+    selectedDocsLength() {
+      return this.selectedIds.length;
+    },
+    countableDocsWord() {
+      const totalDocs = this.selectedDocsLength;
+      return totalDocs == 1 ? "документ" : "документа";
+    },
   },
   data() {
     return this.initialState();
