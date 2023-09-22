@@ -1,6 +1,14 @@
 // electron/electron.js
 const path = require("path");
-const { app, BrowserWindow, Menu, MenuItem, shell } = require("electron");
+const {
+  app,
+  BrowserWindow,
+  Menu,
+  MenuItem,
+  shell,
+  ipcMain,
+  dialog,
+} = require("electron");
 const isDev = process.env.IS_DEV == "true" ? true : false;
 
 function createWindow() {
@@ -11,8 +19,9 @@ function createWindow() {
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: true,
-      // i want to be able to use 'require' in exportToJSON.js (v)
-      contextIsolation: false,
+      // Old:i want to be able to use 'require' in exportToJSON.js => contextIsolation:false
+      // Current: I want to use Electron's 'dialog.showSaveDialog'. To do that I need to send a message to the main process using ipcRenderer. The main process will handle 'dialog.showSaveDialog'. Therefore, contextIsolation:true.
+      contextIsolation: true,
     },
     icon: path.join(__dirname, "../assets/icon.ico"),
   });
@@ -48,6 +57,11 @@ function createWindow() {
   mainWindow.webContents.openDevTools();
   //Note: opening dev tools prevents mrzField foucs (mounted(){} hook in ReadAddMRZ.vue)
   // }
+
+  ipcMain.handle("show-save-dialog", async (event, options) => {
+    const result = await dialog.showSaveDialog(mainWindow, options);
+    return result;
+  });
 }
 
 // This method will be called when Electron has finished
