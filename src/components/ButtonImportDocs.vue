@@ -92,7 +92,7 @@ export default {
         const result = await importEntry(entry);
         console.log(result);
         if (result instanceof Error) {
-          this.pushAlert("error", result);
+          throw new Error(result);
         } else {
           this.pushAlert(
             "success",
