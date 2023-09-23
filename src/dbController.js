@@ -232,6 +232,9 @@ async function clearAllEntries() {
 
 async function importEntry(entry) {
   try {
+    // reset collectionId key. Will work even if entry is an invalid doc.
+    entry.collectionId = null;
+
     const newEntry = await db.mrzEntries.add(entry);
     return newEntry;
   } catch (err) {
