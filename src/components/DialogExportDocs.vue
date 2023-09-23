@@ -27,8 +27,8 @@
           </v-card-text>
           <v-card-actions>
             <v-btn :loading="loadingExport" type="submit" color="success"
-              >ОК</v-btn
-            >
+              >ОК
+            </v-btn>
           </v-card-actions>
         </v-form>
       </div>
