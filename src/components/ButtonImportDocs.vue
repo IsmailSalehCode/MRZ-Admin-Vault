@@ -85,20 +85,23 @@ export default {
     },
     async importSelectedFileContent(toImport) {
       const toImportArr = toImport;
-
+      const importedDocs = [];
+      const importErrors = [];
       for (let i = 0; i < toImportArr.length; i++) {
         const entry = toImportArr[i];
         const result = await importEntry(entry);
-        console.log(result);
+
         if (result instanceof Error) {
-          throw new Error(result);
+          importErrors.push(result);
         } else {
-          this.pushAlert(
-            "success",
-            `Успешен импорт на документ с №: ${result}`
-          );
+          importedDocs.push(result);
         }
       }
+      const importResults = {
+        errors: importErrors,
+        successes: importedDocs,
+      };
+      return importResults;
     },
     initialState() {
       return {
