@@ -84,11 +84,10 @@ export default {
       }
     },
     async importSelectedFileContent(toImport) {
-      const arr = toImport;
-      console.log("arr v");
-      console.log(arr);
-      for (let i = 0; i < arr.length; i++) {
-        const entry = arr[i];
+      const toImportArr = toImport;
+
+      for (let i = 0; i < toImportArr.length; i++) {
+        const entry = toImportArr[i];
         const result = await importEntry(entry);
         console.log(result);
         if (result instanceof Error) {
