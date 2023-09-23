@@ -88,6 +88,9 @@
           :disabled="!isAtLeastOneSelected"
         ></v-btn>
       </v-col>
+      <v-col>
+        <ButtonImportDocs />
+      </v-col>
     </v-row>
   </v-container>
   <DialogEditSavedData
@@ -108,6 +111,7 @@ import {
   deleteEntries,
   getAllEntriesFromCollection,
 } from "../dbController";
+import ButtonImportDocs from "../components/ButtonImportDocs.vue";
 import DialogExportDocs from "../components/DialogExportDocs.vue";
 import DialogEditSavedData from "../components/DialogEditSavedData.vue";
 import DialogChangeDocsCollection from "../components/DialogChangeDocsCollection.vue";
@@ -133,6 +137,7 @@ export default {
     ContainerIterCollections,
     DialogChangeDocsCollection,
     DialogExportDocs,
+    ButtonImportDocs,
   },
   data() {
     return {
