@@ -82,14 +82,14 @@
         ></v-btn>
       </v-col>
       <v-col>
+        <ButtonImportDocs />
+      </v-col>
+      <v-col>
         <v-btn
           icon="mdi-export"
           @click="exportSelected"
           :disabled="!isAtLeastOneSelected"
         ></v-btn>
-      </v-col>
-      <v-col>
-        <ButtonImportDocs />
       </v-col>
     </v-row>
   </v-container>
