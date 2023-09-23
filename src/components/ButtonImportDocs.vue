@@ -6,16 +6,16 @@
         <v-spacer></v-spacer>
         <v-btn icon @click="close" color="red"> ╳ </v-btn>
       </v-toolbar>
+      <v-card-title>Импортиране</v-card-title>
       <v-expand-transition>
         <div v-show="hasAlerts">
           <div v-for="alert in alerts" :key="alert.message">
-            <v-alert rounded="0" :type="alert.type">{{
-              alert.message
-            }}</v-alert>
+            <v-alert rounded="0" :type="alert.type">
+              <div v-html="alert.message"></div>
+            </v-alert>
           </div>
         </div>
       </v-expand-transition>
-      <v-card-title>Импортиране</v-card-title>
       <v-form ref="form" @submit="readAndImportSelectedFile" @submit.prevent>
         <v-card-text>
           <v-file-input
