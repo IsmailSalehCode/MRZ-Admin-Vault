@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import View_CreateDoc from "../views/View_CreateDoc.vue.vue";
+import View_CreateDoc from "../views/View_CreateDoc.vue";
 import View_SavedDocs from "../views/View_SavedDocs.vue";
 import View_Contact from "../views/View_Contact.vue";
 
