@@ -58,7 +58,8 @@ export default {
       const successesDetails = successesLength > 0 ? successes.join(", ") : "0";
       const strSuccessesSummary = `<p><b>Успешно импортирани документи</b>: ${successesDetails}</p>`;
 
-      const errorsDetails = errorsLength > 0 ? errors.join(" | ") : "0";
+      const errorsDetails =
+        errorsLength > 0 ? errors.join(" Следваща грешка 🠞 ") : "0";
       const strErrorsSummary = `<p><b>Възникнали грешки</b>: ${errorsDetails}</p>`;
 
       const strImportSummary = `${strSuccessesSummary}<br/>${strErrorsSummary}`;
