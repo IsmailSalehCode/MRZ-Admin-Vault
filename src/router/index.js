@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
-import View_ReadAddMRZ from "../views/View_ReadAddMRZ.vue";
+import View_CreateDoc from "../views/View_CreateDoc.vue.vue";
 import View_ReadDeleteEditSavedData from "../views/View_ReadDeleteEditSavedData.vue";
 import View_Contact from "../views/View_Contact.vue";
 
 const routes = [
   {
     path: "/",
-    component: View_ReadAddMRZ,
+    component: View_CreateDoc,
   },
   {
     path: "/saved",
