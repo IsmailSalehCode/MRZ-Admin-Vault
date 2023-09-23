@@ -230,6 +230,15 @@ async function clearAllEntries() {
     });
 }
 
+async function importEntry(entry) {
+  try {
+    const newEntry = await db.mrzEntries.add(entry);
+    return newEntry;
+  } catch (err) {
+    return translateErr(err);
+  }
+}
+
 async function addAllEntries() {
   const entries = [
     {
@@ -276,4 +285,5 @@ export {
   getAllCollectionsWithEntryCount,
   deleteCollections,
   getEntriesByIds,
+  importEntry,
 };
