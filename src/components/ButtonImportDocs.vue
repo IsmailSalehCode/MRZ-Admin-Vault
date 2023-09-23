@@ -1,5 +1,5 @@
 <template>
-  <v-btn @click="open"> import </v-btn>
+  <v-btn icon="mdi-import" @click="open"></v-btn>
   <v-dialog v-model="dialog" max-width="600">
     <v-card>
       <v-toolbar density="compact">
