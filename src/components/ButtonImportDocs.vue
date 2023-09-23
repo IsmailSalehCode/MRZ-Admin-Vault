@@ -112,7 +112,7 @@ export default {
         const result = await importEntry(entry);
 
         if (result instanceof Error) {
-          importErrors.push(result);
+          importErrors.push(result.message);
         } else {
           importedDocs.push(result);
         }
