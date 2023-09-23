@@ -48,11 +48,31 @@ export default {
     return this.initialState();
   },
   methods: {
+    drawImportResults(importResults) {
+      const successes = importResults.successes;
+      const errors = importResults.errors;
+
+      const successesLength = successes.length;
+      const errorsLength = errors.length;
+
+      const successesDetails = successesLength > 0 ? successes.join(", ") : "0";
+      const strSuccessesSummary = `<p><b>Успешно импортирани документи</b>: ${successesDetails}</p>`;
+
+      const errorsDetails = errorsLength > 0 ? errors.join(" | ") : "0";
+      const strErrorsSummary = `<p><b>Възникнали грешки</b>: ${errorsDetails}</p>`;
+
+      const strImportSummary = `${strSuccessesSummary}<br/>${strErrorsSummary}`;
+      this.pushAlert("info", strImportSummary);
+    },
     async readAndImportSelectedFile() {
       this.loadingImport = true;
       try {
         const toImportJSON = await this.readSelectedFile();
-        await this.importSelectedFileContent(toImportJSON);
+        this.pushAlert("success", "Успешен прочит на файла.");
+        const importResults = await this.importSelectedFileContent(
+          toImportJSON
+        );
+        this.drawImportResults(importResults);
       } catch (err) {
         this.pushAlert("error", err);
       }
