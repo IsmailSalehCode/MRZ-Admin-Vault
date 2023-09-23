@@ -12,7 +12,10 @@ function translateErr(err) {
   let bgErrMessage;
   switch (err.inner.message) {
     case "Key already exists in the object store.":
-      bgErrMessage = "Този документ е бил добавен вече.";
+      bgErrMessage = "Засечен опит за добавяне на съществуващ запис.";
+      break;
+    case "Failed to execute 'add' on 'IDBObjectStore': Evaluating the object store's key path did not yield a value.":
+      bgErrMessage = "Засечен опит за добавяне на невалиден запис.";
       break;
     default:
       bgErrMessage = `Възникна неочаквана грешка: ${err.message}`;
