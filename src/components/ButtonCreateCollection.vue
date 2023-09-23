@@ -35,7 +35,10 @@
 </template>
 <script>
 import { addNewCollection } from "../dbController.js";
-import { defTxtRules } from "../field-validation-rules/defaultTxtFieldRules";
+import {
+  required,
+  minLength,
+} from "../field-validation-rules/commonFieldRules";
 
 export default {
   emits: ["refresh-collections"],
@@ -47,7 +50,7 @@ export default {
       return {
         dialog: false,
         name: null,
-        collectionRules: defTxtRules,
+        collectionRules: [required, minLength(3)],
         loadingSubmit: false,
         alert: {
           show: false,

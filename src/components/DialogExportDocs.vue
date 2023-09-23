@@ -37,7 +37,10 @@
 </template>
 <script>
 import { getEntriesByIds } from "../dbController.js";
-import { defTxtRules } from "../field-validation-rules/defaultTxtFieldRules";
+import {
+  required,
+  minLength,
+} from "../field-validation-rules/commonFieldRules";
 
 export default {
   props: {
@@ -59,7 +62,7 @@ export default {
     initialState() {
       return {
         fileName: null,
-        fileNameRules: defTxtRules,
+        fileNameRules: [required, minLength(3)],
         loadingEntries: false,
         loadingExport: false,
         entries: null,
