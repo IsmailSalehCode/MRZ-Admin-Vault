@@ -1,6 +1,6 @@
 <template>
   <v-btn icon="mdi-import" @click="open"></v-btn>
-  <v-dialog v-model="dialog" max-width="600">
+  <v-dialog v-model="dialog" max-width="500">
     <v-card>
       <v-toolbar density="compact">
         <v-spacer></v-spacer>
