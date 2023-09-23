@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import View_CreateDoc from "../views/View_CreateDoc.vue.vue";
-import View_ReadDeleteEditSavedData from "../views/View_ReadDeleteEditSavedData.vue";
+import View_SavedDocs from "../views/View_SavedDocs.vue";
 import View_Contact from "../views/View_Contact.vue";
 
 const routes = [
@@ -10,7 +10,7 @@ const routes = [
   },
   {
     path: "/saved",
-    component: View_ReadDeleteEditSavedData,
+    component: View_SavedDocs,
   },
   {
     path: "/contact",
