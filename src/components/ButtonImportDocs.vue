@@ -7,15 +7,15 @@
         <v-btn icon @click="close" color="red"> ╳ </v-btn>
       </v-toolbar>
       <v-card-title>Импортиране</v-card-title>
-      <v-expand-transition>
-        <div v-show="hasAlerts">
+      <div v-show="hasAlerts">
+        <TransitionGroup name="alert" tag="div">
           <div v-for="alert in alerts" :key="alert.message">
             <v-alert rounded="0" :type="alert.type">
               <div v-html="alert.message"></div>
             </v-alert>
           </div>
-        </div>
-      </v-expand-transition>
+        </TransitionGroup>
+      </div>
       <v-form ref="form" @submit="readAndImportSelectedFile" @submit.prevent>
         <v-card-text>
           <v-file-input
@@ -157,4 +157,22 @@ export default {
   },
 };
 </script>
-<style lang=""></style>
+<style scoped>
+.alert-move, /* apply transition to moving elements */
+.alert-enter-active,
+.alert-leave-active {
+  transition: all 0.2s ease;
+}
+
+.alert-enter-from,
+.alert-leave-to {
+  opacity: 0;
+  transform: translateX(25px);
+}
+
+/* ensure leaving items are taken out of layout flow so that moving
+   animations can be calculated correctly. */
+.alert-leave-active {
+  position: absolute;
+}
+</style>
