@@ -82,7 +82,7 @@
         ></v-btn>
       </v-col>
       <v-col>
-        <ButtonImportDocs />
+        <ButtonImportDocs @display-updated-data="getEntries" />
       </v-col>
       <v-col>
         <v-btn
