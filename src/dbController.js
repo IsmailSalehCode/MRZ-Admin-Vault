@@ -5,7 +5,6 @@ function getCurrentTimestamp() {
 }
 
 function translateErr(err) {
-  // FOR DEV TODO: DELETE WHEN DONE
   console.log("Err in translateErr:");
   console.error(err);
   // returns Error containing a message in Bulgarian for the UI
