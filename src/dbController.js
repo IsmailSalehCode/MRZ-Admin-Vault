@@ -218,17 +218,6 @@ async function isNotesUpdateRedundant(docNum, inputNotes) {
   return false;
 }
 
-async function clearAllEntries() {
-  await db.mrzEntries
-    .clear()
-    .then(() => {
-      console.log("Data cleared successfully.");
-    })
-    .catch((error) => {
-      console.error("Failed to clear data:", error);
-    });
-}
-
 async function importEntry(entry) {
   try {
     // reset collectionId key. Will work even if entry is an invalid doc.
@@ -241,42 +230,10 @@ async function importEntry(entry) {
   }
 }
 
-async function addAllEntries() {
-  const entries = [
-    {
-      docNum: "1",
-      surname: "Lancelot",
-      givenNames: "Gary Smith",
-      type: "AC",
-      format: "TD1",
-      issuingOrg: "GBR",
-      nationality: "JAM",
-      sex: "M",
-      birthDate: "98-01-02",
-      expDate: "70-05-12",
-      personalNum: "Example personal num",
-      optional1: "Example optional 1",
-      optional2: "Example optional 2",
-      notes: "Likes golfing",
-      updatedAt: getCurrentTimestamp(),
-    },
-  ];
-  await db.mrzEntries
-    .bulkAdd(entries)
-    .then(() => {
-      console.log("Entries added successfully");
-    })
-    .catch((error) => {
-      console.error("Error occurred while adding entries:", error);
-    });
-}
-
 export {
   addEntry,
-  clearAllEntries,
   getAllEntries,
   deleteEntries,
-  addAllEntries,
   getEntryNotesById,
   updateEntryNotesById,
   isNotesUpdateRedundant,
