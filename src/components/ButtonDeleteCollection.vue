@@ -1,5 +1,4 @@
 <template>
-  <!-- todo -->
   <v-btn color="error" variant="tonal" icon @click="open">
     <v-icon>mdi-folder-minus</v-icon>
   </v-btn>
