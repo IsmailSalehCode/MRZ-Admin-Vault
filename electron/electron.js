@@ -53,10 +53,10 @@ function createWindow() {
       : `file://${path.join(__dirname, "../dist/index.html")}`
   );
   // Open the DevTools.
-  // if (isDev) { TODO UNCOMMENT
-  mainWindow.webContents.openDevTools();
-  //Note: opening dev tools prevents mrzField foucs (mounted(){} hook in ReadAddMRZ.vue)
-  // }
+  if (isDev) {
+    mainWindow.webContents.openDevTools();
+    //Note: opening dev tools prevents mrzField focus (mounted(){} hook in ReadAddMRZ.vue)
+  }
 
   ipcMain.handle("show-save-dialog", async (event, options) => {
     const result = await dialog.showSaveDialog(mainWindow, options);
